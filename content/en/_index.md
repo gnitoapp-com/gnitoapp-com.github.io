@@ -13,7 +13,7 @@ title: GnitoApp.com
 {{% blocks/section type="row" %}}
 <div class="container">
   <div class="row justify-content-center">
-{{% blocks/feature icon="fab fa-bluesky" title="Follow us on Bluesky!"
+{{% blocks/feature icon="fab fa-bluesky" title="Follow us on Bluesky @gnitoapp.com!"
     url="https://bsky.app/profile/gnitoapp.com" %}}
 For announcement of latest features etc.
 {{% /blocks/feature %}}
