@@ -179,8 +179,6 @@ params:
     readingtime:
       enable: false
 
-    showLightDarkModeMenu: true
-
   links:
     # End user relevant links. These will show up on left side of footer and in the community page if you have one.
     user:

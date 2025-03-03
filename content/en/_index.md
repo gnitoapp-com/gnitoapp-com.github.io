@@ -3,7 +3,7 @@ title: GnitoApp.com
 ---
 
 {{< blocks/cover title="Welcome to GnitoApp.com!" image_anchor="top" height="full" >}}
-<a class="btn btn-lg btn-secondary me-3 mb-4" href="/force-workout-helper-docs">
+<a class="btn btn-lg btn-secondary me-3 mb-4" href="/force-workout-helper-docs/docs">
   Force Workout Helper Documentation <i class="fas fa-arrow-alt-circle-right ms-2"></i>
 </a>
 <p class="lead mt-5">We develop applications for the web, Windows, MacOS, Linux, iOS, and Android!</p>
