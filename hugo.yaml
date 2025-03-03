@@ -1,4 +1,4 @@
-baseURL: https://gnito-app.github.io
+baseURL: https://gnitoapp.com
 title: GnitoApp.com
 
 # cSpell:ignore goldmark github hugo readingtime docsy subdir lastmod pygments linenos catmullrom norsk gu
@@ -99,7 +99,7 @@ params:
     # set taxonomyPageHeader = [] to hide taxonomies on the page headers
     taxonomyPageHeader: [tags, categories]
 
-  privacy_policy: https://gnito-app.github.io/privacy
+  privacy_policy: /privacy
 
   # First one is picked as the Twitter card image if not set on page.
   # images: [images/project-illustration.png]
@@ -120,7 +120,7 @@ params:
 
   # A link to latest version of the docs. Used in the "version-banner" partial to
   # point people to the main doc site.
-  url_latest_version: https://gnito-app.github.io
+  url_latest_version: https://gnitoapp.com
 
   # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
   github_repo: https://github.com/gnitoapp-com/gnitoapp-com.github.io
@@ -136,7 +136,7 @@ params:
   github_branch: main
 
   # Google Custom Search Engine ID. Remove or comment out to disable search.
-  gcs_engine_id: d72aa9b2712488cc3
+  # gcs_engine_id: d72aa9b2712488cc3
 
   # Enable Lunr.js offline search
   offlineSearch: false
@@ -179,11 +179,13 @@ params:
     readingtime:
       enable: false
 
+    showLightDarkModeMenu: true
+
   links:
     # End user relevant links. These will show up on left side of footer and in the community page if you have one.
     user:
       - name: Bluesky
-        url: https://bsky.app/@gnitoapp.com
+        url: https://bsky.app/profile/gnitoapp.com
         icon: fa-brands fa-bluesky
         desc: Follow us on Bluesky to get the latest news!
     # Developer relevant links. These will show up on right side of footer and in the community page if you have one.
