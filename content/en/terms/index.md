@@ -7,7 +7,7 @@ menu: {main: {weight: 50}}
 
 ## **Terms And Conditions**
 ### **Introduction**
-These terms and conditions govern your use of GnitoApp.com ("our service") by using our service, you accept these terms and conditions in full. If you disagree with any part of these terms and conditions, do not use our service.
+These terms and conditions govern your use of GnitoApp.com ("our service") by using our service or an application owned by our service, you accept these terms and conditions in full. If you disagree with any part of these terms and conditions, do not use our service.
 
 ### **Licence to Use Website**
 You may view, download for caching purposes only, and print pages from the website, provided that:
