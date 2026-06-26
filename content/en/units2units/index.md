@@ -94,7 +94,7 @@ menu: {main: {weight: 5}}
 ### Say goodbye to multiple converter apps.
 Units2Units is the platinum grade, comprehensive, elegant, and powerful multi-unit conversion suite.
 
-Introducing Units2Units, the comprehensive, premium, and visually stunning unit conversion and calculation suite for Android. Whether you are an engineer, researcher, student, chef, developer, traveler, or home builder, Units2Units replaces dozens of single-purpose apps with a single, lightning-fast workspace.
+Introducing Units2Units, the comprehensive, premium, and visually stunning unit conversion and calculation suite for Android and iOS. Whether you are an engineer, researcher, student, chef, developer, traveler, or home builder, Units2Units replaces dozens of single-purpose apps with a single, lightning-fast workspace.
 
 ### Why Units2Units?
 Units2Units features 165 specialized converters and calculators, spanning many disciplines and everyday math. Everything is calculated instantaneously offline, styled beautifully with dynamic color schemes.
