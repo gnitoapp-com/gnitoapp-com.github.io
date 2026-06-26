@@ -36,7 +36,7 @@ menu: {main: {weight: 5}}
       <tr style="border-bottom: 1px solid #eeeeee;">
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">GnitoApp.com</td>
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">Utilities / Productivity</td>
-        <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">1.0.0</td>
+        <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">1.1.0</td>
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">Free (Optional Pro Upgrade)</td>
       </tr>
     </tbody>
