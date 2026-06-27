@@ -68,7 +68,7 @@ menu: {main: {weight: 5}}
       <ul style="padding-left: 20px; margin-top: 4px;">
         <li>Go to your device's <strong>Settings</strong>.</li>
         <li>Navigate to <strong>Apps</strong> &gt; <strong>Special App Access</strong> (you might need to click the vertical three dots top right and select <strong>Special Access</strong>) &gt; <strong>Install Unknown Apps</strong> (or search "Install unknown apps" in Settings).</li>
-        <li>Select the <strong>browser</strong> you used (e.g., Chrome) or your <strong>File Manager</strong> or <strong>My Files</strong>, and toggle on <strong>"Allow from this source"</strong>.</li>
+        <li>Select your <strong>File Manager</strong> or <strong>My Files</strong>, and toggle on <strong>"Allow from this source"</strong>.</li>
       </ul>
     </li>
     <li style="margin-bottom: 8px;"><strong>Install the APK:</strong> Open your browser's downloads list or your device's File Manager app, select the downloaded <code>app-google-release.apk</code> file, and tap <strong>Install</strong>.</li>
