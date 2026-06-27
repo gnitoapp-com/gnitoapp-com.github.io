@@ -61,7 +61,7 @@ menu: {main: {weight: 5}}
 
 <div style="background-color: #ffffff; border: 1px solid #000000; border-left: 6px solid #000000; padding: 24px; border-radius: 8px; margin-bottom: 32px; color: #000000;">
   <h3 style="margin-top: 0; color: #000000; font-size: 1.15rem; font-weight: 800;">How to Install (Android Sideloading Guide)</h3>
-  <p style="color: #333333; font-size: 0.95rem; margin-bottom: 12px; line-height: 1.5;">Because you are downloading Units2Units directly from our official website rather than the Google Play Store, Android requires manual installation (sideloading). Follow these simple steps to install:</p>
+  <p style="color: #333333; font-size: 0.95rem; margin-bottom: 12px; line-height: 1.5;">Because you are downloading Units2Units for Android directly from our official website rather than an app store, Android requires manual installation (sideloading). Follow these simple steps to install:</p>
   <ol style="color: #111111; font-size: 0.9rem; margin: 0; padding-left: 20px; line-height: 1.6;">
     <li style="margin-bottom: 8px;"><strong>Download the APK:</strong> Tap the black <strong>"Download APK"</strong> button at the top of this page.</li>
     <li style="margin-bottom: 8px;"><strong>Enable Install Permissions:</strong>
