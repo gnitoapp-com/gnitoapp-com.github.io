@@ -12,7 +12,7 @@ menu: {main: {weight: 5}}
     <h1 style="margin: 0; font-size: 2.2rem; font-weight: 800; color: #000000; letter-spacing: -0.5px;">Units2Units</h1>
     <p style="margin: 6px 0 16px 0; font-size: 1.1rem; color: #333333; font-weight: 400; line-height: 1.4;">The platinum grade, comprehensive, elegant, and powerful multi-unit conversion suite.</p>
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-      <a href="/units2units/app-google-release.apk" style="display: inline-block; padding: 12px 28px; background-color: #000000; color: #ffffff; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); transition: all 0.2s ease;">Download APK 1.1.0 (Android)</a>
+      <a href="/units2units/units2units_v1_1_0.apk" style="display: inline-block; padding: 12px 28px; background-color: #000000; color: #ffffff; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); transition: all 0.2s ease;">Download APK 1.1.0 (Android)</a>
       <a href="https://apps.apple.com/ca/app/units2units/id6778024693" style="display: inline-block; padding: 12px 28px; background-color: #ffffff; color: #000000; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; border: 1px solid #000000; transition: all 0.2s ease;">Apple App Store (iOS)</a>
     </div>
   </div>
@@ -71,7 +71,7 @@ menu: {main: {weight: 5}}
         <li>Select your <strong>File Manager</strong> or <strong>My Files</strong>, and toggle on <strong>"Allow from this source"</strong>.</li>
       </ul>
     </li>
-    <li style="margin-bottom: 8px;"><strong>Install the APK:</strong> Open your browser's downloads list or your device's File Manager app, select the downloaded <code>app-google-release.apk</code> file, and tap <strong>Install</strong>.</li>
+    <li style="margin-bottom: 8px;"><strong>Install the APK:</strong> Open your browser's downloads list or your device's File Manager app, select the downloaded <code>units2units_vx_x_x.apk</code> file, and tap <strong>Install</strong>.</li>
     <li><strong>Play Protect Verification:</strong> Since the app is signed by our developers, if Google Play Protect flags an unrecognized signature warning, tap <strong>"More Details"</strong> and select <strong>"Install Anyway"</strong> to complete the setup.</li>
   </ol>
 </div>
