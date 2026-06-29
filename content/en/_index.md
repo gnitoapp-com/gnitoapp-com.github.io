@@ -10,7 +10,7 @@ title: GnitoApp.com
 <a class="btn btn-lg btn-secondary me-3 mb-4" href="https://forceworkouthelper.com/docs">
   Force Workout Helper <i class="fas fa-arrow-alt-circle-right ms-2"></i>
 </a>
-<a class="btn btn-lg btn-secondary me-3 mb-4" href="https://gnitoapp.com/romanitaire-docs/docs">
+<a class="btn btn-lg btn-secondary me-3 mb-4" href="/romanitaire/">
   Romanitaire <i class="fas fa-arrow-alt-circle-right ms-2"></i>
 </a>
 <p class="lead mt-5">We develop applications for the web, Windows, MacOS, Linux, iOS, and Android!</p>
