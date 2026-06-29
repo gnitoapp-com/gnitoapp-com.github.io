@@ -12,7 +12,7 @@ menu: {main: {weight: 5}}
     <h1 style="margin: 0; font-size: 2.2rem; font-weight: 800; color: #000000; letter-spacing: -0.5px;">Romanitaire</h1>
     <p style="margin: 6px 0 16px 0; font-size: 1.1rem; color: #333333; font-weight: 400; line-height: 1.4;">Solitaire with a Roman flavor.</p>
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-      <a href="/romanitaire/romanitaire_v1_0_7.apk" style="display: inline-block; padding: 12px 28px; background-color: #000000; color: #ffffff; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); transition: all 0.2s ease;">Download APK 1.0.7 (Android)</a>
+      <a href="/romanitaire/romanitaire_v1_0_8.apk" style="display: inline-block; padding: 12px 28px; background-color: #000000; color: #ffffff; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); transition: all 0.2s ease;">Download APK 1.0.8 (Android)</a>
       <a href="https://apps.apple.com/us/app/romanitaire/id6758518585" style="display: inline-block; padding: 12px 28px; background-color: #ffffff; color: #000000; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; border: 1px solid #000000; transition: all 0.2s ease;">Apple App Store (iOS)</a>
     </div>
   </div>
@@ -36,7 +36,7 @@ menu: {main: {weight: 5}}
       <tr style="border-bottom: 1px solid #eeeeee;">
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">GnitoApp.com</td>
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">Games</td>
-        <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">1.0.7</td>
+        <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">1.0.8</td>
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">Free</td>
       </tr>
     </tbody>
