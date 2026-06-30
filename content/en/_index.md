@@ -7,7 +7,7 @@ title: GnitoApp.com
 <a class="btn btn-lg btn-secondary me-3 mb-4" href="/units2units/">
   Units2Units <i class="fas fa-arrow-alt-circle-right ms-2"></i>
 </a>
-<a class="btn btn-lg btn-secondary me-3 mb-4" href="https://forceworkouthelper.com/docs">
+<a class="btn btn-lg btn-secondary me-3 mb-4" href="/forceworkouthelper/">
   Force Workout Helper <i class="fas fa-arrow-alt-circle-right ms-2"></i>
 </a>
 <a class="btn btn-lg btn-secondary me-3 mb-4" href="/romanitaire/">
