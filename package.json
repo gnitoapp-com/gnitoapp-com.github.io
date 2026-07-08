@@ -37,13 +37,13 @@
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "cross-env": "^10.1.0",
-    "hugo-extended": "0.145.0",
+    "hugo-extended": "0.161.1",
     "postcss": "^8.5.3",
     "postcss-cli": "^11.0.0",
     "rtlcss": "^4.3.0"
   },
   "optionalDependencies": {
-    "npm-check-updates": "^19.3.2"
+    "npm-check-updates": "^22.0.1"
   },
   "private": true,
   "prettier": {
