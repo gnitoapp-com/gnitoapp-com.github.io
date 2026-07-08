@@ -5,6 +5,8 @@ menu: {main: {weight: 50}}
 # Add blocks of content here to add more sections to the community page
 ---
 
+[简体中文](privacy_zh.md)
+
 ### **Introduction**
 Welcome to  3827992 Canada Inc, trading as GnitoApp.com. Your privacy is important to us, and this Privacy Policy explains how we collect, use, disclose, and protect your personal information when you use our app. By downloading, installing, or using GnitoApp.com, or an application owned by GnitoApp.com, you agree to the terms of this Privacy Policy.
 
