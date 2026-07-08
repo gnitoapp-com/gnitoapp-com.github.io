@@ -12,7 +12,7 @@ menu: {main: {weight: 5}}
     <h1 style="margin: 0; font-size: 2.2rem; font-weight: 800; color: #000000; letter-spacing: -0.5px;">Units2Units</h1>
     <p style="margin: 6px 0 16px 0; font-size: 1.1rem; color: #333333; font-weight: 400; line-height: 1.4;">The platinum grade, comprehensive, elegant, and powerful multi-unit conversion suite.</p>
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-      <a href="/units2units/units2units_v1_1_0.apk" style="display: inline-block; padding: 12px 28px; background-color: #000000; color: #ffffff; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); transition: all 0.2s ease;">Download APK 1.1.0 (Android)</a>
+      <a href="/units2units/units2units_v1_1_1.apk" style="display: inline-block; padding: 12px 28px; background-color: #000000; color: #ffffff; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); transition: all 0.2s ease;">Download APK 1.1.1 (Android)</a>
       <a href="https://apps.apple.com/ca/app/units2units/id6778024693" style="display: inline-block; padding: 12px 28px; background-color: #ffffff; color: #000000; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; border: 1px solid #000000; transition: all 0.2s ease;">Apple App Store (iOS)</a>
     </div>
   </div>
@@ -36,7 +36,7 @@ menu: {main: {weight: 5}}
       <tr style="border-bottom: 1px solid #eeeeee;">
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">GnitoApp.com</td>
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">Utilities / Productivity</td>
-        <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">1.1.0</td>
+        <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">1.1.1</td>
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">Free (Optional Pro Upgrade)</td>
       </tr>
     </tbody>
