@@ -12,7 +12,7 @@ menu: {main: {weight: 5}}
     <h1 style="margin: 0; font-size: 2.2rem; font-weight: 800; color: #000000; letter-spacing: -0.5px;">Units2Units</h1>
     <p style="margin: 6px 0 16px 0; font-size: 1.1rem; color: #333333; font-weight: 400; line-height: 1.4;">The platinum grade, comprehensive, elegant, and powerful multi-unit conversion suite.</p>
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-      <a href="/units2units/units2units_v1_1_1.apk" style="display: inline-block; padding: 12px 28px; background-color: #000000; color: #ffffff; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); transition: all 0.2s ease;">Download APK 1.1.1 (Android)</a>
+      <a href="/units2units/units2units_v1_2_0.apk" style="display: inline-block; padding: 12px 28px; background-color: #000000; color: #ffffff; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); transition: all 0.2s ease;">Download APK 1.2.0 (Android)</a>
       <a href="https://apps.apple.com/ca/app/units2units/id6778024693" style="display: inline-block; padding: 12px 28px; background-color: #ffffff; color: #000000; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; border: 1px solid #000000; transition: all 0.2s ease;">Apple App Store (iOS)</a>
     </div>
   </div>
@@ -36,7 +36,7 @@ menu: {main: {weight: 5}}
       <tr style="border-bottom: 1px solid #eeeeee;">
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">GnitoApp.com</td>
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">Utilities / Productivity</td>
-        <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">1.1.1</td>
+        <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">1.2.0</td>
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">Free (Optional Pro Upgrade)</td>
       </tr>
     </tbody>
@@ -97,7 +97,7 @@ Units2Units is the platinum grade, comprehensive, elegant, and powerful multi-un
 Introducing Units2Units, the comprehensive, premium, and visually stunning unit conversion and calculation suite for Android and iOS. Whether you are an engineer, researcher, student, chef, developer, traveler, or home builder, Units2Units replaces dozens of single-purpose apps with a single, lightning-fast workspace.
 
 ### Why Units2Units?
-Units2Units features 165 specialized converters and calculators, spanning many disciplines and everyday math. Everything is calculated instantaneously offline, styled beautifully with dynamic color schemes.
+Units2Units features 220 specialized converters and calculators, spanning many disciplines and everyday math. Everything is calculated instantaneously offline, styled beautifully with dynamic color schemes.
 
 ### Key Feature Highlights
 * **ABSOLUTE PRIVACY:** No registration, no ads, no trackers, and no user data collection.
@@ -109,15 +109,22 @@ Units2Units features 165 specialized converters and calculators, spanning many d
 
 ## Built-in Converters & Calculators
 
-Units2Units includes a massive database of over 165 converters, categorized for quick navigation:
+**Everyday Units** — Length, Area, Volume, Weight/Mass, Speed, Temperature, Time, Angle, Currency, Data, Pressure, Energy, Power, Force, Density, Frequency, Flow Rate, Torque, Acceleration, Fuel Economy, Metric Prefixes, and more.
 
-* **Basic Everyday Utilities:** Length, Area, Weight/Mass, Temperature, Speed, Time, Clothing Size, Shoe Size, Tip & Bill Splitter, Date Calculator.
-* **Health & Fitness:** BMI & BSA (Body Metrics), GFR Kidney Function, BMR & TDEE, Body Fat Estimator, Blood Pressure Classifier, Blood Glucose, Cholesterol Level, Glycated Hemoglobin (HbA1c).
-* **Finance & Math:** Auto Loan & Mortgage, Discount & Margin, Salary / Wage Converter, Compound Interest, Numeral Systems (Base-N), Quadratic Solver, Fraction to Decimal, Unit Price Comparison.
-* **Cooking & Baking:** Kitchen & Cooking, Baker's Percentage, Baking Pan Scaler, Ingredient Scaler.
-* **Home, Building & Gardening:** Concrete Slab Estimator, Paint & Wallpaper, Lumber Volume, Landscaping Estimator, Bend Allowance.
-* **Physics & Engineering:** Force, Energy, Power, Pressure, Density, Viscosity, Sound Level, Illumination, Torque, Acceleration, Flow Rate, Mass Flow, Chemical Dilution, Thermal Conductivity, Specific Heat Capacity.
-* **Electricity & Magnetism:** Electric Current, Electric Charge, Electric Potential, Resistance, Capacitance, Inductance, Magnetic Flux, Magnetic Field Strength, Electromotive Force.
-* **Specialized & Scientific:** Astronomical Distance, Data Size, Data Transfer Rate, Black Hole Calculator, Escape Velocity, Textile Yarn Count, Resolution, Resistor Color Code, pH/Acidity.
+**Science & Engineering** — Electrical (Ohm's Law, Resistance, Capacitance, RLC Impedance, Voltage Drop), Mechanical (Stress, Modulus, Stiffness, Moment of Inertia), Magnetism, Radiation, Thermodynamics (Heat Transfer, Thermal Expansion, Ideal Gas Law), Chemistry (pH, Molar Concentration, Dilution, Molecular Weight), Optics (f-Stop, Depth of Field, Hyperfocal Distance), and Acoustics (Sound Level, Decibel Addition, BPM & Tempo Delay).
+
+**Health & Fitness** — BMI & BSA, BMR & TDEE, Body Fat, Blood Pressure, Blood Glucose, Cholesterol, Heart Rate Zones, GFR Kidney Function, HbA1c, Hydration & Water Intake, Macro & Calorie Split, One-Rep Max, Running Pace & Splits, Cycling Speed & Cadence, Calories Burned, Golf Handicap, Pet Age & Medication.
+
+**Finance & Business** — Currency, Compound Interest, Loan & Mortgage, Tip & Bill Splitter, Discount & Margin, Tax Calculator, Retirement Savings, Inflation Calculator, Depreciation, Credit Card Payoff, Salary & Wage, Unit Price Comparison, Subscription Comparator, Business Days Calculator.
+
+**Home & DIY** — Concrete Slab, Paint & Wallpaper, Drywall, Tile & Flooring, Stair Calculator, Roof Pitch, Landscaping Volume, Aquarium Volume, Shipping Cost Estimator, EV Range, Trip Fuel Cost.
+
+**Cooking & Baking** — Baker's Percentage, Baking Pan Scaler, Ingredient Scaler, Kitchen & Cooking, Sourdough Starter Ratio, Brewing Alcohol & Sugar.
+
+**Digital & Text** — Data & Data Transfer, Numeral Systems, Binary & Hex, Case Converter, Text Encoder, Slug & URL Generator, IP Subnet Calculator, Color Code, Video Bitrate, Image Aspect Ratio, Resolution.
+
+**Navigation & Time** — Date Calculator, Countdown & Elapsed Time, Unix Timestamp, Time Zone Converter, Compass Bearing, Haversine Distance, Coordinate Converter, Wind Speed.
+
+**Miscellaneous** — Clothing & Shoe Size, Ring Size, Pet Age, Tire Size & Circumference, Motorsport Fuel, Resistor Color Code, GPA Calculator, Quadratic Solver, Standard Deviation, Combinatorics, and many more.
 
 </div>
