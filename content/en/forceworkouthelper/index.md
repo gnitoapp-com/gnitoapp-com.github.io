@@ -12,7 +12,7 @@ menu: {main: {weight: 5}}
     <h1 style="margin: 0; font-size: 2.2rem; font-weight: 800; color: #000000; letter-spacing: -0.5px;">Force Workout Helper</h1>
     <p style="margin: 6px 0 16px 0; font-size: 1.1rem; color: #333333; font-weight: 400; line-height: 1.4;">15 elite timers (AMRAP, TABATA, EMOM+).</p>
     <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-      <a href="/forceworkouthelper/forceworkouthelper_v1_3_4.apk" style="display: inline-block; padding: 12px 28px; background-color: #000000; color: #ffffff; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); transition: all 0.2s ease;">Download APK 1.3.4 (Android)</a>
+      <a href="/forceworkouthelper/forceworkouthelper_v1_3_5.apk" style="display: inline-block; padding: 12px 28px; background-color: #000000; color: #ffffff; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); transition: all 0.2s ease;">Download APK 1.3.5 (Android)</a>
       <a href="https://apps.apple.com/us/app/force-workout-helper/id6743862189" style="display: inline-block; padding: 12px 28px; background-color: #ffffff; color: #000000; text-decoration: none; border-radius: 30px; font-weight: 600; font-size: 0.95rem; border: 1px solid #000000; transition: all 0.2s ease;">Apple App Store (iOS)</a>
     </div>
   </div>
@@ -36,7 +36,7 @@ menu: {main: {weight: 5}}
       <tr style="border-bottom: 1px solid #eeeeee;">
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">GnitoApp.com</td>
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">Fitness</td>
-        <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">1.3.4</td>
+        <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">1.3.5</td>
         <td style="padding: 14px 8px; color: #000000; font-weight: 600; font-size: 0.95rem;">Free</td>
       </tr>
     </tbody>
