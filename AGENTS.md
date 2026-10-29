@@ -1,0 +1,132 @@
+# gnitoapp.com — operating manual
+
+Marketing + app-download site for **GnitoApp.com** (an operating division of 3827992 Canada
+Inc). Three product landing pages — Units2Units, Force Workout Helper, Romanitaire — plus
+privacy, terms, support and search pages. Signed APKs for Android are served from this repo.
+
+Stack: Hugo (extended) + [Docsy](https://www.docsy.dev) as a Hugo module, deployed by
+GitHub Actions to GitHub Pages on the custom domain **https://gnitoapp.com**.
+
+**Read `docs/MAINTENANCE.md` before any structural, dependency or release work.** It holds
+the audit, the known defects with evidence, and the prioritised backlog. This file is the
+short operating manual; that file is the long memory.
+
+## Layout
+
+| Path | Purpose |
+| --- | --- |
+| `content/en/_index.md` | Home page (Docsy blocks: cover + feature) |
+| `content/en/{units2units,forceworkouthelper,romanitaire}/index.md` | Product landing pages — raw HTML embedded in Markdown |
+| `content/en/privacy/` | Privacy policy: `_index.md` (EN) + `privacy_zh.md` (ZH as a separate page, not i18n) |
+| `content/en/terms/index.md`, `support.md`, `search.md` | Legal, contact, search page |
+| `static/<product>/` | `version.json`, the current `*.apk`, `screenshots/`, `images/logo_200_square.png`. Copied verbatim — never processed by Hugo |
+| `hugo.yaml` | The site config that is actually used (language `en`, `contentDir: content/en`, Docsy module import, baseURL) |
+| `layouts/_default/baseof.html` | Local override of Docsy's `baseof.html`; also forces dark mode (see D4 in the maintenance doc) |
+| `layouts/404.html` | Not-found page override |
+| `assets/scss/_variables_project.scss` | The only supported place for Docsy/theme SCSS overrides (currently empty) |
+| `.github/workflows/hugo.yaml` | Build + deploy to GitHub Pages, triggered by push to `main` |
+
+Template leftovers — do **not** treat as documentation and do **not** extend them:
+`README.md`, `CONTRIBUTING.md` (Google Docsy template text), `hugo-disabled.toml`,
+`config.yaml`, `docsy.work`, `docsy.work.sum`, `netlify.toml`, `Dockerfile`,
+`docker-compose.yaml`. See D5–D7.
+
+## Toolchain (verified on this machine, 2026-10-29)
+
+| Component | Version in repo | Notes |
+| --- | --- | --- |
+| Hugo | `hugo-extended` 0.161.1 (`package.json` devDependency) | `npx hugo` / `npm run build:*` use this pin |
+| Hugo in CI | 0.145.0 (`.github/workflows/hugo.yaml` `HUGO_VERSION`) | **differs from the npm pin** — see D2 |
+| Docsy | v0.11.0 (`go.mod`) | upstream is v0.18.0 — see D15 |
+| Node | 22.23.2 (`.nvmrc` says `lts/*`) | |
+| Go | not installed system-wide; used only to download the Docsy module | see bootstrap below |
+| Dart Sass | not needed locally on 0.161.1 (SCSS compiled by Hugo extended) | CI still installs it |
+
+### Bootstrap (one-time, local)
+
+```bash
+npm install                                          # hugo-extended + postcss tooling; creates package-lock.json (gitignored today, see D3)
+export PATH="$HOME/.local/go-sdk/bin:$PATH"          # Go 1.24.5 SDK already unpacked here; add to your shell profile
+```
+
+`hugo` will not resolve the Docsy module without a `go` binary on `PATH`.
+
+## Commands
+
+```bash
+# dev server (hot reload, drafts + future-dated content)
+npx hugo server --port 1313 --bind 127.0.0.1
+
+# production build — same recipe the deploy uses (writes ./public, ~530 MB, gitignored)
+npm run build:production                  # = hugo --cleanDestinationDir --minify, plus the stub link check
+
+# explicit-URL build (use this to compare against the live site)
+npx hugo --gc --minify --baseURL "https://gnitoapp.com/"
+
+# build evidence
+grep -o 'og:url" content="[^"]*"' public/units2units/index.html   # must be https://
+grep -c '<loc>https://gnitoapp.com' public/sitemap.xml
+npx hugo config | head -5                                        # confirms hugo.yaml is the active config
+```
+
+Cold build with an empty Hugo cache takes ~60 s (module download); warm builds take ~2 s.
+
+## Deploy
+
+Push to `main` → `Deploy Hugo site to Pages` → build job → `actions/deploy-pages`.
+Production is served by GitHub Pages; there is no staging environment and no Netlify
+deployment (`netlify.toml` is leftover — D7). Rollback = revert the commit and push.
+
+Release procedure for a new APK lives in the project skill
+`.pi/skills/gnitoapp-release/SKILL.md` — load it (`/skill:gnitoapp-release`) instead of
+re-deriving the four version locations by hand.
+
+## Invariants — break these and the site is wrong
+
+1. **Version consistency.** A product's version lives in four places and nothing checks them:
+   `static/<product>/version.json` (`version`, `buildNumber`), the download button label and
+   href, the version cell of the "Quick Info" table, and the APK filename
+   (`<product>_v1_2_0.apk` ⇄ `1.2.0`). Update all four together; verify after building.
+2. **APK live at the linked path.** Every `href` to an `.apk` must resolve to a file that
+   exists in `static/` and therefore in `public/`.
+3. **Legal pages are the owner's words.** Do not rewrite `content/en/privacy/**` or
+   `content/en/terms/**` prose, even when it contradicts product marketing (it does — D12).
+   Report the inconsistency; change text only when explicitly asked.
+4. **No new large binaries.** One APK per product, plus at most the immediately previous one
+   if the owner asks. Delete superseded APKs in the same commit (D9). Never commit
+   `public/`, `resources/` or `node_modules/`.
+5. **Images stay small.** New screenshots: ≤ 300 KB each, longest edge ≤ 700 px (they render
+   at 230 CSS px). Optimize before committing.
+6. **URLs are stable.** Page paths are `/<product>/` and are linked from the App Store
+   listings and existing QR/APK pages. Do not rename or move a product page; add a redirect
+   or alias if one must change.
+7. **The site is always dark.** `layouts/_default/baseof.html` sets `data-bs-theme="dark"`.
+   Any new page/component must be legible on a dark background; do not add white panels with
+   hard-coded text colors (which the current product pages do — D11).
+8. **`hugo.yaml` is the config.** `config.yaml` is a Docsy version guard and `hugo-disabled.toml`
+   is dead template scaffolding. Put every setting in `hugo.yaml`.
+
+## Working agreement
+
+- **No pull requests.** Work lands as **local commits on `main`**, one coherent commit per
+  task, with the issue number in the message (`refs #123` / `implements #123`).
+- **Push only when explicitly asked.** After every commit, state that it is local and
+  unpushed, with hash + branch.
+- CI is push-triggered; there is no PR gate. Do not propose a PR, a PR description, or a
+  review thread as a delivery mechanism.
+- Only 3 open PRs exist (all Dependabot) — see D18; resolve them as local commits when asked.
+- Verified claims only: if you touch output, build it and quote the artifact. Hugo warns on
+  deprecations: never add a new `WARN` line to the build output.
+
+## Definition of done (any change that ships)
+
+```bash
+npm run build:production                     # no new WARN/ERROR lines
+grep -o 'og:url" content="[^"]*"' public/units2units/index.html   # https, not http
+grep -o 'href="[^"]*\.apk"' public/<product>/index.html           # path matches version
+test -f "public$(grep -o '/<product>/[^"]*\.apk' public/<product>/index.html | head -1)"
+git status --short                           # only intended files; no public/, no node_modules/
+```
+
+Also: the four version locations agree, screenshots/APK budgets respected, and
+`docs/MAINTENANCE.md` updated if you close or open a defect.
