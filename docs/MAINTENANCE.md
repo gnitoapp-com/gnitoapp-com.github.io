@@ -24,7 +24,8 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 | `.git` size | 305 MB | 305 MB (deleting files does not shrink history) |
 | Product pages | 130 / 139 / 112 lines, 43 / 47 / 44 inline `style=` attributes | unchanged |
 | Duplicated version strings | 4 per product, unverified | unchanged |
-| Build time | ~60 s cold, ~2 s warm | unchanged |
+| Build time | ~60 s cold, ~2 s warm | ~15 s cold, ~1.5 s warm (Docsy module cache) |
+| Hugo build warnings | 3 (2 deprecations + 1 Docsy render hook) | 2, both from Docsy v0.11 (D15) |
 | Open Dependabot PRs | 3 (all stale npm bumps) | 3 |
 
 ## Resolved
@@ -34,6 +35,11 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 | D1 — published URLs were `http://`, no canonical | fixed: canonical hook + `hugo.yaml` is the only baseURL source, `robots.txt` advertises the sitemap | `63de339` |
 | D9 — 264 MB of unreferenced APKs | fixed: three superseded APKs deleted (pages unchanged, links verified) | `2d0b3e2` |
 | Deploy from a non-`main` ref (hardening, noted under D18) | fixed: deploy job is gated to `github.ref == 'refs/heads/main'`; a branch dispatch now builds without publishing | `19b1cd1` |
+| D3 — no lockfile | fixed: `package-lock.json` tracked, Node pinned to 22, `npm ci` verified from a clean tree | `7d119c5` |
+| D2 — Hugo version skew (CI 0.145 vs npm 0.161) | fixed: CI now runs `npm ci && npm run build:production`, so the npm pin is the only Hugo version; `HUGO_VERSION` removed from the workflow | `e5740b9` |
+| D17 — no caching, floating tool installs | fixed: npm + Hugo-module caches (15 s cold, 1.4 s warm), no `npm i -D …`, `fetch-depth: 1`; `enableGitInfo` deliberately left off (see D17) | `e5740b9` |
+| Hugo deprecations (`languageName`, `LanguageDirection`) in our config/template | fixed; the two remaining warnings are Docsy v0.11's own (D15) | `2ca1c92` |
+| D18 — Dependabot scope and PR noise | partly fixed: `github-actions` + `gomod` watched, weekly, one PR per ecosystem; the 3 pre-existing PRs are still open | `1ab11e1` |
 
 ---
 
@@ -57,7 +63,7 @@ all 12 pages, `og:url` https, sitemap `<loc>` https, `Sitemap: https://gnitoapp.
 Remaining: after the next deploy, confirm production flipped —
 `curl -s https://gnitoapp.com/units2units/ | grep -o 'og:url" content="[^"]*"'` must say `https`.
 
-### D2. Three different Hugo versions in play
+### D2. Three different Hugo versions in play — **resolved in `e5740b9`**
 `hugo.yaml` pins `HUGO_VERSION: 0.145.0` for CI; `package.json` pins `hugo-extended@0.161.1`
 which is what `npm run build` uses; Docsy is pinned at v0.11.0 while Hugo upstream is 0.169.0.
 The 0.161.1 build already warns:
@@ -74,7 +80,7 @@ build:production`) so there is exactly one version, then bump `hugo-extended` an
 deprecations (`languages.en.label`, `.Language.Direction` in the baseof override). Handle the Docsy
 upgrade as its own task with visual checks (D15).
 
-### D3. Builds are not reproducible (no lockfile)
+### D3. Builds are not reproducible (no lockfile) — **resolved in `7d119c5`**
 `.gitignore` excludes `package-lock.json`; the workflow does
 `[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true`, which silently does
 nothing, then installs floating versions with `npm i -D postcss postcss-cli autoprefixer`.
@@ -206,20 +212,26 @@ word list, and make the deploy job fail on broken internal links. Add a smoke st
 `curl -fsS https://gnitoapp.com/units2units/ | grep -q 'Download APK'` plus one check that the
 `og:url` is `https://`.
 
-### D17. The workflow does no caching and installs floating tools
+### D17. The workflow does no caching and installs floating tools — **resolved in `e5740b9`**
 No npm or Hugo-module cache → every run re-downloads Docsy (~60 s); `npm i -D postcss postcss-cli
 autoprefixer` ignores `package.json` pins. Fix: `actions/setup-node` with `cache: npm`, cache
 `${{ runner.temp }}/hugo_cache` keyed on `go.sum`, and use `npm ci` (see D3). Also set
 `enableGitInfo: true` (the checkout already uses `fetch-depth: 0`) to get `lastmod` in the
 sitemap, and drop the unused `snap install dart-sass` step once CI uses the npm Hugo.
 
-### D18. Dependabot PRs conflict with the working model
+### D18. Dependabot PRs conflict with the working model — **partly resolved in `1ab11e1`**
 Only npm is watched (no `github-actions`, no `gomod`), daily, with 10 open slots — and the owner
 does not use PRs, so the three open bumps pile up: #75 `hugo-extended` 0.166.0, #73 `postcss-cli`
 12.0.0, #72 `npm-check-updates` 23.1.0. Fix: keep Dependabot as a *notification* channel
 (`open-pull-requests-limit: 1`, weekly, add `github-actions` + `gomod`), and resolve its branches
 by applying the change locally on `main`, verifying the build, and closing the PR with a note —
 never merging through the GitHub UI.
+
+Applied: `github-actions` and `gomod` added, weekly schedule, `open-pull-requests-limit: 1` per
+ecosystem, `deps`/`ci` commit prefixes, and the notification-only policy written into the file.
+Still open at audit follow-up: #75 (`hugo-extended` 0.166.0), #73 (`postcss-cli` 12.0.0), #72
+(`npm-check-updates` 23.1.0). #75 is a Hugo jump — do it *after* D15, because Docsy v0.11 still
+uses `LanguageDirection`/`LanguageName` and a future Hugo removes them.
 
 ### D19. Download security
 APKs are served straight from GitHub Pages (`application/octet-stream`) with no published
@@ -249,16 +261,20 @@ blocked by the inline styles in D11.
 
 ## Suggested order of work
 
-1. **Ship the cheap correctness fixes together (D1).** `baseURL`, canonical link, `robots.txt`
-   sitemap line. Touches one workflow line + one partial; verifiable with two `curl`s.
-2. **Trim the repo (D9).** Delete three orphan APKs. Cuts the deployed site in half; no design
-   risk.
-3. **Make the build reproducible and identical to CI (D2, D3, D17).** Lockfile, `npm ci`, one
-   Hugo version, caches, then fix the three deprecation warnings.
-4. **Release-path tooling (D19 + release skill).** Checksums and a scripted, verified publish.
+1. ~~**Ship the cheap correctness fixes together (D1).**~~ Done (`63de339`) — awaiting the
+   post-deploy `curl` confirmation against gnitoapp.com.
+2. ~~**Trim the repo (D9).**~~ Done (`2d0b3e2`) — 530 MB → 267 MB.
+3. ~~**Make the build reproducible and identical to CI (D2, D3, D17).**~~ Done (`7d119c5`,
+   `e5740b9`, `2ca1c92`). One Hugo version, committed lockfile, caches, no avoidable warnings.
+   First push of these three will deploy a build produced by Hugo 0.161.1 instead of 0.145.0;
+   the only output differences measured between the two were minifier cosmetics and asset hashes.
+4. **Release-path tooling (D19 + release skill).** SHA-256 manifest next to the APKs, signing
+   certificate fingerprint on the page, and a `scripts/` helper the release skill can call.
 5. **Content architecture (D11, D14, D10).** Data-driven product pages + optimized images + brand
    assets. Do this before any visual redesign; it is the rewrite that makes later work cheap.
-6. **Docsy upgrade (D15)** as an isolated task, then retire `baseof.html` (D4).
+6. **Docsy upgrade to v0.18 (D15)** as an isolated task, then retire `baseof.html` (D4) with
+   before/after screenshots. Do not bump Hugo past 0.166 (Dependabot #75) before this: Docsy
+   0.11 still reads `LanguageDirection`/`LanguageName`, which a future Hugo removes.
 7. **Template cleanup (D5, D6, D7)** — invisible, but stops the next person (or model) from
    trusting the Docsy README.
 8. **Gates and monitoring (D16, D21)** once the content model is stable.

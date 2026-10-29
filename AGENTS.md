@@ -35,21 +35,22 @@ Template leftovers — do **not** treat as documentation and do **not** extend t
 
 | Component | Version in repo | Notes |
 | --- | --- | --- |
-| Hugo | `hugo-extended` 0.161.1 (`package.json` devDependency) | `npx hugo` / `npm run build:*` use this pin |
-| Hugo in CI | 0.145.0 (`.github/workflows/hugo.yaml` `HUGO_VERSION`) | **differs from the npm pin** — see D2 |
-| Docsy | v0.11.0 (`go.mod`) | upstream is v0.18.0 — see D15 |
-| Node | 22.23.2 (`.nvmrc` says `lts/*`) | |
+| Hugo | `hugo-extended` 0.161.1 (`package.json` devDependency, exact) | **One version everywhere**: `npm run build:*` locally and in CI. Bump with `npm run update:hugo` — never edit the workflow |
+| Docsy | v0.11.0 (`go.mod`) | upstream is v0.18.0, and 0.11 emits 2 Hugo deprecation warnings — see D15 |
+| Node | 22 (`.nvmrc`), 22.23.2 installed locally | CI reads `.nvmrc` via `setup-node` |
+| npm | 10.9.8 | `package-lock.json` is tracked; always install with `npm ci` |
 | Go | not installed system-wide; used only to download the Docsy module | see bootstrap below |
-| Dart Sass | not needed locally on 0.161.1 (SCSS compiled by Hugo extended) | CI still installs it |
+| Dart Sass | not needed (SCSS compiled by Hugo extended) | no longer installed in CI |
 
 ### Bootstrap (one-time, local)
 
 ```bash
-npm install                                          # hugo-extended + postcss tooling; creates package-lock.json (gitignored today, see D3)
+npm ci                                               # exact tree from the committed lockfile, incl. the hugo 0.161.1 binary
 export PATH="$HOME/.local/go-sdk/bin:$PATH"          # Go 1.24.5 SDK already unpacked here; add to your shell profile
 ```
 
-`hugo` will not resolve the Docsy module without a `go` binary on `PATH`.
+`hugo` will not resolve the Docsy module without a `go` binary on `PATH`. CI relies on the Go
+that ships with the `ubuntu-latest` image and logs `go version` in a preflight step.
 
 ## Commands
 
@@ -57,19 +58,25 @@ export PATH="$HOME/.local/go-sdk/bin:$PATH"          # Go 1.24.5 SDK already unp
 # dev server (hot reload, drafts + future-dated content)
 npx hugo server --port 1313 --bind 127.0.0.1
 
-# production build — same recipe the deploy uses (writes ./public, ~530 MB, gitignored)
+# production build — exactly what CI runs (writes ./public, ~267 MB, gitignored)
 npm run build:production                  # = hugo --cleanDestinationDir --minify, plus the stub link check
+
+# full CI simulation from a clean tree
+export PATH="$HOME/.local/go-sdk/bin:$PATH"
+rm -rf node_modules public && npm ci && npm run build:production
 
 # explicit-URL build (use this to compare against the live site)
 npx hugo --gc --minify --baseURL "https://gnitoapp.com/"
 
 # build evidence
 grep -o 'og:url" content="[^"]*"' public/units2units/index.html   # must be https://
+grep -c 'rel=canonical' public/units2units/index.html             # exactly 1
 grep -c '<loc>https://gnitoapp.com' public/sitemap.xml
 npx hugo config | head -5                                        # confirms hugo.yaml is the active config
 ```
 
-Cold build with an empty Hugo cache takes ~60 s (module download); warm builds take ~2 s.
+Cold build with an empty Hugo module cache takes ~15 s (Docsy download); warm builds take ~1.5 s.
+CI caches both npm and `$RUNNER_TEMP/hugo_cache`.
 
 ## Deploy
 
@@ -118,9 +125,12 @@ re-deriving the four version locations by hand.
   unpushed, with hash + branch.
 - CI is push-triggered; there is no PR gate. Do not propose a PR, a PR description, or a
   review thread as a delivery mechanism.
-- Only 3 open PRs exist (all Dependabot) — see D18; resolve them as local commits when asked.
+- **Dependabot is a notification channel, not a review queue.** It opens at most one PR per
+  ecosystem (npm, github-actions, gomod), weekly. Apply the bump locally on `main`, verify the
+  build, then close the PR with a note — never merge it through the UI (D18).
 - Verified claims only: if you touch output, build it and quote the artifact. Hugo warns on
-  deprecations: never add a new `WARN` line to the build output.
+  deprecations: never add a new `WARN` line to the build output. Two warnings are expected today
+  and both come from Docsy v0.11 (D15).
 
 ## Definition of done (any change that ships)
 
