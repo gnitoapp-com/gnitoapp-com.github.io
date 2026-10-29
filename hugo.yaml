@@ -45,7 +45,7 @@ imaging:
 # Language configuration
 languages:
   en:
-    languageName: English
+    label: English
     title: GnitoApp.com
     params:
       description: We develop applications for the web, Windows, MacOS, Linux, iOS, and Android.
