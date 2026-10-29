@@ -27,3 +27,16 @@ body:not(.td-home) main.td-main {
     padding-top: 5.5rem;
   }
 }
+
+/*
+  Brand accents.
+
+  Docsy 0.11 shipped warm defaults ($secondary: #ffa630, $info: #c0e0de) that the
+  home page's product buttons and the cover's scroll-down circle relied on.
+  Docsy 0.16+ uses plain Bootstrap defaults ($gray-600 / $cyan), which turned
+  those elements grey and bright cyan. Restore the two accents the site uses;
+  the rest of the palette deliberately follows the theme (and its dark-mode
+  contrast adjustments).
+*/
+$secondary: #ffa630;
+$info: #c0e0de;
