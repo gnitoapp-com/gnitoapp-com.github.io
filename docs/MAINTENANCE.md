@@ -316,6 +316,14 @@ What to do, in order:
    the requirement goes global in 2027; unregistered apps fall back to ADB/advanced flow. A Play
    account is not required, and Google forbids opening a new one after a termination.
 
+Tracking lives in the app repos (issues created 2026-10-29):
+[force-workout-helper#7](https://github.com/gnitoapp-com/force-workout-helper/issues/7) (untrack keystore +
+credentials, rotate password, hard-fail signing, register) ·
+[units2units#1](https://github.com/gnitoapp-com/units2units/issues/1) (locate/rotate keystore, untrack
+plaintext credentials, hard-fail signing, register) ·
+[romanitaire#2](https://github.com/gnitoapp-com/romanitaire/issues/2) (create release keystore, rebuild,
+publish new fingerprint + one-time uninstall notice, register).
+
 Now partly machine-enforced: `scripts/apk-checksums.sh` refuses to publish when an APK's signing
 certificate differs from the committed `signerCertSha256`, and refuses when it cannot read the
 certificate at all. A deliberate change needs `--allow-key-change`, plus the announcement and the
