@@ -1,4 +1,16 @@
 {{- /*
+  Dark theme, set before the first paint.
+
+  This used to live in a copy of Docsy's baseof.html, which had drifted from
+  the theme (wrong wrapper classes) and placed the script after </body>. Doing
+  it here keeps the theme's own base template and avoids the light-theme flash.
+  If the site should ever offer a toggle, replace this with Docsy's
+  params.ui.showLightDarkModeMenu and a persisted preference.
+*/ -}}
+<script>
+  document.documentElement.setAttribute("data-bs-theme", "dark");
+</script>
+{{- /*
   Canonical URL for every indexable page.
 
   Do not drop this. The site also answers on www.gnitoapp.com and

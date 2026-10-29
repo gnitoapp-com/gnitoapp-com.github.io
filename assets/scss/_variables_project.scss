@@ -1,5 +1,29 @@
 /*
+  Project-level additions on top of the Docsy theme.
 
-Add styles or override variables from the theme here.
-
+  Keep this file limited to what the theme cannot express as parameters.
 */
+
+/*
+  Fixed navbar offset.
+
+  Docsy's navbar is `position: fixed` from the `md` breakpoint up, and its
+  default base template offsets page content only when a parent element carries
+  `.td-main`. Product pages render raw HTML rather than a blocks `<section>`, so
+  without this they start underneath the navbar.
+
+  The removed local `baseof.html` used to provide this padding by accident (it
+  wrapped the page in a `.td-main` div, which is also why the theme's own
+  `.td-default` section spacing never applied). Apply it explicitly instead, and
+  leave the home page alone — its cover block positions itself.
+*/
+body:not(.td-home) main.td-main {
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  body:not(.td-home) main.td-main {
+    padding-top: 5.5rem;
+  }
+}
