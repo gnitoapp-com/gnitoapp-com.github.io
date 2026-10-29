@@ -39,8 +39,14 @@ permalinks:
 # Image processing configuration.
 imaging:
   resampleFilter: CatmullRom
-  quality: 75
   anchor: Smart
+  # Hugo 0.163 deprecated the single `quality` key in favour of per-format keys.
+  jpeg:
+    quality: 75
+  webp:
+    quality: 75
+  avif:
+    quality: 75
 
 # Language configuration
 languages:
@@ -198,7 +204,11 @@ module:
   # workspace: docsy.work
   hugoVersion:
     extended: true
-    min: 0.110.0
+    # Docsy 0.16 raised its own minimum to 0.160.1; keep this in step with the
+    # hugo-extended pin in package.json.
+    min: 0.160.1
   imports:
-    - path: github.com/google/docsy
+    # Docsy moved to the docsy GitHub organisation at v0.18 and its theme now
+    # lives in the theme/ subdirectory.
+    - path: github.com/docsy/docsy/theme
       disable: false
