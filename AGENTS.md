@@ -77,6 +77,10 @@ Push to `main` → `Deploy Hugo site to Pages` → build job → `actions/deploy
 Production is served by GitHub Pages; there is no staging environment and no Netlify
 deployment (`netlify.toml` is leftover — D7). Rollback = revert the commit and push.
 
+The deploy job is gated to `github.ref == 'refs/heads/main'`, so a `workflow_dispatch`
+started from a branch runs the build (useful to validate a workflow change) but cannot
+publish. Pushing to any other branch triggers nothing at all.
+
 Release procedure for a new APK lives in the project skill
 `.pi/skills/gnitoapp-release/SKILL.md` — load it (`/skill:gnitoapp-release`) instead of
 re-deriving the four version locations by hand.
@@ -123,6 +127,7 @@ re-deriving the four version locations by hand.
 ```bash
 npm run build:production                     # no new WARN/ERROR lines
 grep -o 'og:url" content="[^"]*"' public/units2units/index.html   # https, not http
+grep -c 'rel=canonical' public/units2units/index.html             # exactly 1
 grep -o 'href="[^"]*\.apk"' public/<product>/index.html           # path matches version
 test -f "public$(grep -o '/<product>/[^"]*\.apk' public/<product>/index.html | head -1)"
 git status --short                           # only intended files; no public/, no node_modules/

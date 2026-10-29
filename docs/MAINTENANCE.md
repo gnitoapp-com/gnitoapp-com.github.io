@@ -13,36 +13,49 @@ soon · **P2** maintainability/quality debt · **P3** polish.
 
 ## Snapshot
 
-| Metric | Value |
-| --- | --- |
-| Pages built | 19 |
-| `public/` size | 530 MB |
-| `static/` size | 528 MB, of which 509 MB is 6 APK files and 21 MB is screenshots |
-| APKs with no page linking to them | 3 files, 264 MB |
-| `.git` size | 305 MB |
-| Product pages | 130 / 139 / 112 lines, 43 / 47 / 44 inline `style=` attributes |
-| Duplicated version strings | 4 per product, unverified |
-| Build time | ~60 s cold, ~2 s warm |
-| Open Dependabot PRs | 3 (all stale npm bumps) |
+Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes below.
+
+| Metric | At audit | Now |
+| --- | --- | --- |
+| Pages built | 19 | 19 |
+| `public/` size | 530 MB | 267 MB |
+| `static/` size | 528 MB (509 MB APKs, 21 MB screenshots) | 265 MB (245 MB APKs, 21 MB screenshots) |
+| APKs with no page linking to them | 3 files, 264 MB | 0 |
+| `.git` size | 305 MB | 305 MB (deleting files does not shrink history) |
+| Product pages | 130 / 139 / 112 lines, 43 / 47 / 44 inline `style=` attributes | unchanged |
+| Duplicated version strings | 4 per product, unverified | unchanged |
+| Build time | ~60 s cold, ~2 s warm | unchanged |
+| Open Dependabot PRs | 3 (all stale npm bumps) | 3 |
+
+## Resolved
+
+| Finding | Status | Commit |
+| --- | --- | --- |
+| D1 — published URLs were `http://`, no canonical | fixed: canonical hook + `hugo.yaml` is the only baseURL source, `robots.txt` advertises the sitemap | `63de339` |
+| D9 — 264 MB of unreferenced APKs | fixed: three superseded APKs deleted (pages unchanged, links verified) | `2d0b3e2` |
+| Deploy from a non-`main` ref (hardening, noted under D18) | fixed: deploy job is gated to `github.ref == 'refs/heads/main'`; a branch dispatch now builds without publishing | `19b1cd1` |
 
 ---
 
 ## P0 — correctness
 
-### D1. Every published URL is `http://`, not `https://`
-The deploy passes `--baseURL "${{ steps.pages.outputs.base_url }}/"`; on GitHub Pages with a
-custom domain that output is `http://gnitoapp.com`, so `og:url` and `sitemap.xml` ship insecure
-absolute URLs while Hugo would use the correct `baseURL` from `hugo.yaml`.
+### D1. Every published URL was `http://`, not `https://` — **resolved in `63de339`**
+The deploy passed `--baseURL "${{ steps.pages.outputs.base_url }}/"`; on GitHub Pages with a
+custom domain that output is `http://gnitoapp.com`, so `og:url` and `sitemap.xml` shipped insecure
+absolute URLs while Hugo would have used the correct `baseURL` from `hugo.yaml`. No
+`<link rel="canonical">` was emitted at all.
 
 Evidence: `curl -s https://gnitoapp.com/units2units/ | grep og:url` → `http://gnitoapp.com/units2units/`;
-`curl -s https://gnitoapp.com/sitemap.xml | head` → every `<loc>` is `http://`; a local build with
-`--baseURL https://gnitoapp.com/` produces `https://`. No `<link rel="canonical">` is emitted at all.
+`curl -s https://gnitoapp.com/sitemap.xml | head` → every `<loc>` was `http://`.
 
-Fix: drop the flag and rely on `baseURL` in `hugo.yaml` (it is already `https://gnitoapp.com`), or
-hardcode `--baseURL "https://gnitoapp.com/"`. Then add a canonical tag — with Docsy, a three-line
-`layouts/partials/hooks/head-end.html`:
-`<link rel="canonical" href="{{ .Permalink }}">`. Add `Sitemap: https://gnitoapp.com/sitemap.xml`
-to the generated `robots.txt` (currently `User-agent: *` and nothing else).
+Fix applied: the `--baseURL` override is gone (baseURL now comes only from `hugo.yaml`),
+`layouts/partials/hooks/head-end.html` emits `<link rel="canonical" href="{{ .Permalink }}">`
+(skipped for the 404 page and for Docsy's `print` output, which canonicalises itself), and
+`layouts/robots.txt` advertises the sitemap. Verified in the build: one canonical inside `<head>` on
+all 12 pages, `og:url` https, sitemap `<loc>` https, `Sitemap: https://gnitoapp.com/sitemap.xml`.
+
+Remaining: after the next deploy, confirm production flipped —
+`curl -s https://gnitoapp.com/units2units/ | grep -o 'og:url" content="[^"]*"'` must say `https`.
 
 ### D2. Three different Hugo versions in play
 `hugo.yaml` pins `HUGO_VERSION: 0.145.0` for CI; `package.json` pins `hugo-extended@0.161.1`
@@ -116,7 +129,7 @@ in `hugo.yaml`, so the page renders without a search backend (Docsy only emits t
 when one is configured). Fix: either enable Docsy offline search (`offlineSearch: true`) or delete
 the page.
 
-### D9. 264 MB of static APKs nothing links to
+### D9. 264 MB of static APKs nothing links to — **resolved in `2d0b3e2`**
 Unreferenced files: `forceworkouthelper_v1_3_4.apk` (84 MB), `units2units_v1_1_0.apk` (90 MB),
 `units2units_v1_1_1.apk` (90 MB). They account for half the published site and every deploy
 artifact upload, and every clone of the repo. GitHub Pages limits (1 GB site, 100 GB/month soft
