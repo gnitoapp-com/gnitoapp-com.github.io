@@ -130,6 +130,23 @@ re-deriving the four version locations by hand.
 10. **`hugo.yaml` is the config.** `config.yaml` is a Docsy version guard and `hugo-disabled.toml`
    is dead template scaffolding. Put every setting in `hugo.yaml`.
 
+### GitHub credentials on this machine
+
+Two different tokens are in play, and mixing them up wastes an hour:
+
+- **`git`** goes through the token router (`~/.local/bin/git-credential-tokenrouter`), which maps
+  `github.com/<owner>/<repo>` to `~/.config/git/tokens/<owner>/_default`. For this repo that is
+  the `gnitoapp-com` token, which has **Contents: write** — `git push` works with it.
+  Verify with: `printf 'protocol=https\nhost=github.com\npath=gnitoapp-com/gnitoapp-com.github.io.git\n\n' | git credential fill`.
+- **`gh`** uses its own keyring token (a different PAT), which has **no write access to this repo**:
+  every `gh pr`/`gh issue` write fails with `403 Resource not accessible by personal access token`
+  even when the token you are editing in the browser has the permissions. Do not re-edit PATs on
+  that evidence — check which token `gh` actually holds first.
+- For GitHub API writes here, override per command instead of touching global auth:
+  `GH_TOKEN=$(cat ~/.config/git/tokens/gnitoapp-com/_default) gh pr close 12 --comment "..."`.
+  That works once the router token carries **Pull requests: Read and write**,
+  **Issues: Read and write** and **Workflows: Read and write** (needed to push workflow edits).
+
 ## Working agreement
 
 - **No pull requests.** Work lands as **local commits on `main`**, one coherent commit per
