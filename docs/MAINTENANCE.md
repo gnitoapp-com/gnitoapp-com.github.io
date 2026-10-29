@@ -265,29 +265,61 @@ trades a real build-version regression for an advisory with no user exposure. `h
 0.166.0 still pins the same range. Revisit when upstream bumps `adm-zip`, and keep the production
 audit (`--omit=dev`) in the quality gate instead of the full audit.
 
-### D25. Two of the three APKs are signed with non-production identities
-Read from the published artifacts with `apksigner verify --print-certs`:
+### D25. Signing identities are inconsistent, and release builds silently fall back to debug
+Read from the published artifacts with `apksigner verify --print-certs`, and from the app repos
+on 2026-10-29:
 
-| APK | Signing certificate |
-| --- | --- |
-| Force Workout Helper 1.3.6 | `CN=Dewald Pretorius, OU=gnitoapp.com, O=gnitoapp.com, L=moncton, ST=nb, C=ca` |
-| Units2Units 1.2.0 | `CN=Unknown, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown` |
-| Romanitaire 1.0.8 | `C=US, O=Android, CN=Android Debug` |
+| APK | Signing certificate | Key available? |
+| --- | --- | --- |
+| Force Workout Helper 1.3.6 | `CN=Dewald Pretorius, OU=gnitoapp.com, O=gnitoapp.com, L=moncton, ST=nb, C=ca` | yes — verified on disk, matches the published `55bd1c5b…4aa3` |
+| Units2Units 1.2.0 | `CN=Unknown, OU=Unknown, …` (all fields `Unknown`) | **not on this machine** |
+| Romanitaire 1.0.8 | `C=US, O=Android, CN=Android Debug` | debug keystore only |
 
-Romanitaire is signed with the **Android debug keystore**. That is the classic trigger for the
-Play Protect "unknown developer" warning the install guide tells users to click through, and it
-has two hard consequences: a debug key is not a stable identity (bit-for-bit the same key only on
-the machine that generated it), and installing a later build signed with a proper release key
-will fail with a signature mismatch — users would have to uninstall first, which also wipes app
-data. Units2Units' all-`Unknown` DN is not a debug key by name but is equally anonymous.
+Root cause of the Romanitaire case: all three app repos use the Flutter template release block,
+which falls back to the debug signing config when `android/key.properties` is missing:
 
-This is an owner decision with a deadline, not something to fix silently: re-signing changes the
-fingerprint that D19 now publishes, and existing installs on the debug key cannot be upgraded in
-place. Recommended: generate one release keystore per product, store it offline, sign all future
-builds with it, and publish the new fingerprint with a note to users that Romanitaire needs a
-one-time uninstall. Do not re-sign the *current* files "to look better" without that
-communication. Also note all three APKs are v2-signed only (`v1: false`), which is fine for
-Android 7+ but rules out very old devices.
+```kotlin
+signingConfig = if (keystorePropertiesFile.exists()) signingConfigs.getByName("release")
+                else signingConfigs.getByName("debug")
+```
+
+Any machine without `key.properties` therefore produces a *release* APK signed with a throwaway
+key, with no error. Romanitaire 1.0.8 was built that way. The same fallback is still armed in
+`force-workout-helper` and `units2units` — replace it with a hard failure, e.g.
+`require(keystorePropertiesFile.exists())`.
+
+Two further problems in the Force Workout Helper repo (private, `gnitoapp-com/force-workout-helper`):
+
+- **The PKCS12 keystore is committed** (`android/upload-keystore.jks`, alias `upload`, RSA 2048,
+  valid to 2052-08-21) together with `android/key.properties`, which holds `storePassword` and
+  `keyPassword` in clear text (they are identical). Anyone with repo read access, any CI checkout,
+  or one accidental visibility change owns the app's signing identity for good. Untrack both
+  (`git rm --cached`, then `.gitignore`), rotate the store/key password (`keytool -storepasswd`
+  leaves the certificate unchanged — re-verify the fingerprint afterwards), keep the repo private,
+  and purge history with `git filter-repo` before adding collaborators or ever making it public.
+  Keep the key itself: rotating the key would break in-place updates.
+- **2048-bit RSA** is acceptable (Play requires ≥2048). Do not "upgrade" it — that means a new key.
+
+What to do, in order:
+
+1. **Units2Units** — find the keystore that produces `cfb9df2f…be38`. If found, back it up and keep
+   it: a stable anonymous identity beats a pretty one that breaks updates. If lost, the next
+   release needs a new key plus a one-time "uninstall and reinstall" note on the page.
+2. **Romanitaire** — generate a real release keystore now (smallest install base it will ever
+   have), put `key.properties` on the build machine only, rebuild, publish the new fingerprint,
+   and tell users about the one-time uninstall. Register the new certificate with Android
+   developer verification at the same time.
+3. **All three** — replace the debug fallback in Gradle with a hard failure so this cannot recur.
+4. **All three** — register the package names in the Android Developer Console (the console for
+   developers who distribute only outside Google Play). Since 2026-09-30 installs in
+   Brazil/Indonesia/Singapore/Thailand already require registration from participating stores, and
+   the requirement goes global in 2027; unregistered apps fall back to ADB/advanced flow. A Play
+   account is not required, and Google forbids opening a new one after a termination.
+
+Now partly machine-enforced: `scripts/apk-checksums.sh` refuses to publish when an APK's signing
+certificate differs from the committed `signerCertSha256`, and refuses when it cannot read the
+certificate at all. A deliberate change needs `--allow-key-change`, plus the announcement and the
+developer-verification registration that go with it.
 
 ## P3 — polish
 

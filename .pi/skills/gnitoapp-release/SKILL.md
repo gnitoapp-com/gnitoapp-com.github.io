@@ -57,6 +57,25 @@ and the published fingerprint will change. As of 2026-10-29 Romanitaire is signe
 **Android debug** certificate and Units2Units with an anonymous `CN=Unknown` one (D25) — if the
 APK you are publishing changes that identity, stop and raise it before shipping.
 
+**Never ship a debug-signed build.** All three app repos use the Flutter template's release
+block, which silently falls back to `signingConfigs.getByName("debug")` when `key.properties` is
+missing. That is how Romanitaire 1.0.8 ended up debug-signed. If `apksigner` reports
+`CN=Android Debug` (or the certificate differs from `data/apk_checksums.json`), the build machine
+is missing the signing config — fix that, rebuild, do not publish.
+
+### Keys and custody
+
+- Keystores belong to the **app** repos or an offline backup, never to this site repo. A keystore
+  in a repo is a compromise waiting to happen: anyone with read access can sign updates as you,
+  and the fingerprint you publish becomes worthless.
+- Back up: one copy offline (encrypted USB / printed secret), one in a password manager entry,
+  both with the store password and alias. Losing the key permanently freezes the app.
+- After any signing change, confirm the certificate fingerprint is unchanged:
+  `keytool -list -v -keystore <file> | grep SHA256` must match
+  `data/apk_checksums.json`'s `signerCertSha256`.
+- Changing a keystore *password* does not change the certificate, so password rotation is safe;
+  re-verify the fingerprint afterwards.
+
 `versionName` must equal the new `version` and `versionCode` must equal `buildNumber`; the
 `--check` step below enforces both when aapt2 is available.
 
@@ -124,6 +143,11 @@ python3 -c "import json;d=json.load(open('public/<product>/version.json'));print
 
 # integrity data agrees with the APK, the page and version.json
 ./scripts/apk-checksums.sh --check
+
+# after placing a new APK: regenerate. The script REFUSES (exit 1) when the signing
+# certificate changed, and refuses when it cannot read the certificate at all.
+# Only deliberate, announced key changes may use --allow-key-change.
+./scripts/apk-checksums.sh
 
 # the page carries the new hash and the checksums file is served
 grep -o '<code[^>]*>[0-9a-f]\{64\}' public/<product>/index.html | head -2

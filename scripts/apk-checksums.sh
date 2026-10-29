@@ -114,8 +114,11 @@ def apk_identity(apk: Path, aapt2: str | None) -> dict:
     return {"package": pkg.group(1), "versionCode": pkg.group(2), "versionName": pkg.group(3)}
 
 
-def collect(apksigner: str | None, aapt2: str | None, previous: dict) -> dict:
+def collect(apksigner: str | None, aapt2: str | None, previous: dict):
+    """Return (entries, key_changes, unverified_identities)."""
     result: dict[str, dict] = {}
+    key_changes: list[tuple[str, str, str]] = []
+    unverified: list[str] = []
     for apk in sorted(STATIC.glob("*/*.apk")):
         product_dir = apk.parent
         product = product_dir.name
@@ -127,6 +130,10 @@ def collect(apksigner: str | None, aapt2: str | None, previous: dict) -> dict:
             cert, dn = None, None  # never carry a fingerprint to a different file
         if cert is None and old.get("sha256") == digest:
             cert, dn = old.get("signerCertSha256"), old.get("signerDn")
+        if cert is None and (not old or old.get("sha256") != digest):
+            unverified.append(product)
+        if cert and old.get("signerCertSha256") and cert != old["signerCertSha256"]:
+            key_changes.append((product, old["signerCertSha256"], cert))
 
         entry = {
             "apk": apk.name,
@@ -146,7 +153,7 @@ def collect(apksigner: str | None, aapt2: str | None, previous: dict) -> dict:
             identity = {k: old[k] for k in ("package", "versionCode", "versionName") if k in old}
         entry.update(identity)
         result[product] = entry
-    return dict(sorted(result.items()))
+    return dict(sorted(result.items())), key_changes, unverified
 
 
 def write(entries: dict) -> None:
@@ -194,6 +201,14 @@ def check(entries: dict) -> int:
         if f"Download APK {entry['version']}" not in html:
             problems.append(f"{product}: {page.relative_to(ROOT)} has no 'Download APK {entry['version']}' button")
 
+        # signing identity, when this run could read it
+        if entry.get("signerCertSha256") and old.get("signerCertSha256") \
+                and entry["signerCertSha256"] != old["signerCertSha256"]:
+            problems.append(
+                f"{product}: signing certificate changed - {old['signerCertSha256']} was published, "
+                f"the APK is signed by {entry['signerCertSha256']}"
+            )
+
         # APK identity, when aapt2 is available
         if entry.get("versionName") and entry["versionName"] != entry["version"]:
             problems.append(f"{product}: APK versionName {entry['versionName']!r} != version.json {entry['version']!r}")
@@ -221,12 +236,16 @@ def check(entries: dict) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--check", action="store_true", help="verify committed data instead of rewriting it")
+    parser.add_argument("--allow-key-change", action="store_true",
+                        help="accept a new signing certificate (announce it and re-register the app first)")
+    parser.add_argument("--skip-cert", action="store_true",
+                        help="write without a signing certificate even though the APK changed")
     args = parser.parse_args()
 
     previous = json.loads(DATA.read_text()) if DATA.exists() else {}
     apksigner = find_android_tool("apksigner")
     aapt2 = find_android_tool("aapt2")
-    entries = collect(apksigner, aapt2, previous)
+    entries, key_changes, unverified = collect(apksigner, aapt2, previous)
 
     if not entries:
         die("no APKs found under static/*/")
@@ -234,7 +253,30 @@ def main() -> int:
     if args.check:
         return check(entries)
 
-    if not apksigner:
+    if unverified and not args.skip_cert:
+        die(
+            "cannot verify the signing identity of a changed APK (apksigner not found):\n  "
+            + "\n  ".join(unverified)
+            + "\nInstall the Android build-tools or pass --skip-cert, but a published fingerprint "
+              "must never be stale."
+        )
+
+    if key_changes and not args.allow_key_change:
+        print("the signing certificate changed since the last release:", file=sys.stderr)
+        for product, before, after in key_changes:
+            print(f"  {product}: {before} -> {after}", file=sys.stderr)
+        die(
+            "refusing to publish a new signing identity. Existing installs cannot update in place "
+            "and the fingerprint on the page is the contract with users. If this is deliberate: "
+            "note the change on the landing page, register the new certificate with Android "
+            "developer verification, then re-run with --allow-key-change."
+        )
+
+    if key_changes:
+        for product, before, after in key_changes:
+            print(f"warning: {product} signing identity changed to {after}", file=sys.stderr)
+
+    if not apksigner and args.skip_cert:
         print("note: apksigner not found - signing-certificate fields left unchanged", file=sys.stderr)
     write(entries)
     return 0

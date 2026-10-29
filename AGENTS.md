@@ -122,7 +122,12 @@ re-deriving the four version locations by hand.
 8. **The site is always dark.** `layouts/_default/baseof.html` sets `data-bs-theme="dark"`.
    Any new page/component must be legible on a dark background; do not add white panels with
    hard-coded text colors (which the current product pages do — D11).
-9. **`hugo.yaml` is the config.** `config.yaml` is a Docsy version guard and `hugo-disabled.toml`
+9. **Signing identity is a contract.** Never sign a release with a debug key, never commit a
+   keystore or `key.properties` to any repo, and never publish an APK whose certificate differs
+   from the published `signerCertSha256`. `scripts/apk-checksums.sh` enforces the last one and
+   requires `--allow-key-change` for a deliberate rotation (which also needs a page note and
+   Android developer-verification registration). See D25.
+10. **`hugo.yaml` is the config.** `config.yaml` is a Docsy version guard and `hugo-disabled.toml`
    is dead template scaffolding. Put every setting in `hugo.yaml`.
 
 ## Working agreement
