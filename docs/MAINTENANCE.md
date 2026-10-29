@@ -43,6 +43,26 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 | D18 — Dependabot scope and PR noise | partly fixed: `github-actions` + `gomod` watched, weekly, one PR per ecosystem; #73 and #72 applied locally, #75 deliberately blocked on D15. Closing the PRs needs an Issues/PR write scope the `gh` token lacks | `1ab11e1`, `83da277` |
 | D19 — no download integrity data | fixed for integrity: `scripts/apk-checksums.sh` derives SHA-256/size/certificate, `SHA256SUMS` per product, a collapsed block on each page, and a CI gate. HTTP security headers remain out of scope on Pages | `cca3069` |
 
+## Open work (issues)
+
+Remaining findings are tracked as issues in this repository, created 2026-10-29. Put findings,
+decisions and verification evidence in the issue thread; close it only with the evidence.
+
+| Issue | Covers |
+| --- | --- |
+| #76 Product pages from data, not inline HTML | D11 |
+| #77 Brand icons, processed screenshots, per-page social images | D10, D14, D20 |
+| #78 Remove the `baseof.html` fork, set dark mode before first paint | D4 |
+| #79 Docsy v0.18, then Hugo past 0.166 | D15, D2 (follow-up) |
+| #80 Repo cleanup: template leftovers, dead scaffolding, dead config | D5, D6, D7, D8, D13, D23 |
+| #81 Quality gates: links, spelling, HTML/a11y, post-deploy smoke test | D16, D22, D24 |
+| #82 Download trust: verification copy + key-change playbook | D19 (remainder), D25 (site side) |
+| #83 Privacy policy vs product claims | D12 |
+
+Ordering constraints that matter: **#78 before #79** (one unknown at a time), and **#79 before any
+Hugo bump past 0.166** (Docsy v0.11 reads APIs a future Hugo removes). #76 and #77 are independent
+and can land in either order, but #76 first makes #77 cheaper.
+
 ---
 
 ## P0 — correctness

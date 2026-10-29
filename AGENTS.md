@@ -155,6 +155,9 @@ Two different tokens are in play, and mixing them up wastes an hour:
   unpushed, with hash + branch.
 - CI is push-triggered; there is no PR gate. Do not propose a PR, a PR description, or a
   review thread as a delivery mechanism.
+- **Open site work is tracked as issues in this repository** (#76–#83 when this was written).
+  Findings, decisions and verification evidence belong in the issue thread; close an issue only
+  with the evidence that satisfies its acceptance criteria.
 - **Dependabot is a notification channel, not a review queue.** It opens at most one PR per
   ecosystem (npm, github-actions, gomod), weekly. Apply the bump locally on `main`, verify the
   build, then close the PR with a note — never merge it through the UI (D18).
