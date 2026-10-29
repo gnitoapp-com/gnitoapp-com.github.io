@@ -38,12 +38,12 @@ Template leftovers — do **not** treat as documentation and do **not** extend t
 
 | Component | Version in repo | Notes |
 | --- | --- | --- |
-| Hugo | `hugo-extended` 0.161.1 (`package.json` devDependency, exact) | **One version everywhere**: `npm run build:*` locally and in CI. Bump with `npm run update:hugo` — never edit the workflow |
-| Docsy | v0.11.0 (`go.mod`) | upstream is v0.18.0, and 0.11 emits 2 Hugo deprecation warnings — see D15 |
+| Hugo | `hugo-extended` 0.169.0 (`package.json` devDependency, exact) | **One version everywhere**: `npm run build:*` locally and in CI. Bump with `npm run update:hugo` — never edit the workflow |
+| Docsy | v0.18.0 (`go.mod`, module path `github.com/docsy/docsy/theme`) | Moved to the `docsy` org at v0.18; the old `github.com/google/docsy` path is gone. `hugo mod npm pack` supplies Bootstrap 5.3.8 + Font Awesome 7.3.1 |
 | Node | 22 (`.nvmrc`), 22.23.2 installed locally | CI reads `.nvmrc` via `setup-node` |
 | npm | 10.9.8 | `package-lock.json` is tracked; always install with `npm ci` |
 | Go | not installed system-wide; used only to download the Docsy module | see bootstrap below |
-| Dart Sass | not needed (SCSS compiled by Hugo extended) | no longer installed in CI |
+| Dart Sass | `sass-embedded` 1.105.0 (devDependency, exact) | Docsy 0.17+ requires it. `scripts/ensure-dart-sass.mjs` runs as `postinstall` to link `node_modules/.bin/sass` at it — see D15 |
 
 ### Bootstrap (one-time, local)
 
@@ -64,9 +64,12 @@ npx hugo server --port 1313 --bind 127.0.0.1
 # production build — exactly what CI runs (writes ./public, ~267 MB, gitignored)
 npm run build:production                  # = hugo --cleanDestinationDir --minify, plus the stub link check
 
-# full CI simulation from a clean tree
+# full CI simulation from a clean tree (postinstall links the embedded Dart Sass)
 export PATH="$HOME/.local/go-sdk/bin:$PATH"
 rm -rf node_modules public && npm ci && npm run build:production
+
+# after changing the Docsy module version: refresh the generated npm workspace and commit it
+hugo mod npm pack && npm install && git add packages/hugoautogen/package.json
 
 # explicit-URL build (use this to compare against the live site)
 npx hugo --gc --minify --baseURL "https://gnitoapp.com/"
@@ -119,9 +122,10 @@ re-deriving the four version locations by hand.
 7. **URLs are stable.** Page paths are `/<product>/` and are linked from the App Store
    listings and existing QR/APK pages. Do not rename or move a product page; add a redirect
    or alias if one must change.
-8. **The site is always dark.** `layouts/_default/baseof.html` sets `data-bs-theme="dark"`.
-   Any new page/component must be legible on a dark background; do not add white panels with
-   hard-coded text colors (which the current product pages do — D11).
+8. **The site is always dark.** `layouts/partials/hooks/head-end.html` sets
+   `data-bs-theme="dark"` in `<head>`, before first paint; there is no local `baseof.html` any
+   more (D4). Any new page/component must be legible on a dark background; do not add white
+   panels with hard-coded text colors (which the current product pages do — D11).
 9. **Signing identity is a contract.** Never sign a release with a debug key, never commit a
    keystore or `key.properties` to any repo, and never publish an APK whose certificate differs
    from the published `signerCertSha256`. `scripts/apk-checksums.sh` enforces the last one and
@@ -163,9 +167,8 @@ Two different tokens are in play, and mixing them up wastes an hour:
   build, then close the PR with a note — never merge it through the UI (D18).
   Note: the authenticated `gh` token has repo admin but **no Issues/PR write scope**, so it
   cannot comment on or close PRs. Either the owner closes them or the token needs that scope.
-- Verified claims only: if you touch output, build it and quote the artifact. Hugo warns on
-  deprecations: never add a new `WARN` line to the build output. Two warnings are expected today
-  and both come from Docsy v0.11 (D15).
+- Verified claims only: if you touch output, build it and quote the artifact. **The build must
+  stay warning-free** — any `WARN` line is a defect to fix, not noise to live with.
 
 ## Definition of done (any change that ships)
 

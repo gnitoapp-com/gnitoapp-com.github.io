@@ -18,6 +18,7 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 | Metric | At audit | Now |
 | --- | --- | --- |
 | Pages built | 19 | 19 |
+| Static files | 59 | 36 (Docsy 0.16 dropped its default favicons — pending #77) |
 | `public/` size | 530 MB | 267 MB |
 | `static/` size | 528 MB (509 MB APKs, 21 MB screenshots) | 265 MB (245 MB APKs, 21 MB screenshots) |
 | APKs with no page linking to them | 3 files, 264 MB | 0 |
@@ -25,7 +26,7 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 | Product pages | 130 / 139 / 112 lines, 43 / 47 / 44 inline `style=` attributes | unchanged |
 | Duplicated version strings | 4 per product, unverified | unchanged |
 | Build time | ~60 s cold, ~2 s warm | ~15 s cold, ~1.5 s warm (Docsy module cache) |
-| Hugo build warnings | 3 (2 deprecations + 1 Docsy render hook) | 2, both from Docsy v0.11 (D15) |
+| Hugo build warnings | 3 (2 deprecations + 1 Docsy render hook) | 0 |
 | Open Dependabot PRs | 3 (all stale npm bumps) | 1 (#75, blocked on D15) |
 | Published APK integrity data | none | SHA-256 + size + signing-certificate fingerprint per APK, gated in CI |
 
@@ -41,6 +42,9 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 | D17 — no caching, floating tool installs | fixed: npm + Hugo-module caches (15 s cold, 1.4 s warm), no `npm i -D …`, `fetch-depth: 1`; `enableGitInfo` deliberately left off (see D17) | `e5740b9` |
 | Hugo deprecations (`languageName`, `LanguageDirection`) in our config/template | fixed; the two remaining warnings are Docsy v0.11's own (D15) | `2ca1c92` |
 | D18 — Dependabot scope and PR noise | partly fixed: `github-actions` + `gomod` watched, weekly, one PR per ecosystem; #73 and #72 applied locally, #75 deliberately blocked on D15. Closing the PRs needs an Issues/PR write scope the `gh` token lacks | `1ab11e1`, `83da277` |
+| D4 — stale `baseof.html` fork, dark mode after `</body>` | fixed: template deleted, dark mode set in the head hook, fixed-navbar offset restored in project SCSS | `4169d95` |
+| D15 — Docsy v0.11 vs v0.18 | fixed: Docsy v0.18.0 at `github.com/docsy/docsy/theme`, Bootstrap/Font Awesome via `hugo mod npm pack`, Dart Sass via `sass-embedded` + postinstall shim, zero build warnings | `2fbf3d1` |
+| D2 follow-up — Hugo 0.161.1 vs latest | fixed: Hugo 0.169.0, `imaging.quality` migrated to per-format keys | `2fbf3d1` |
 | D19 — no download integrity data | fixed for integrity: `scripts/apk-checksums.sh` derives SHA-256/size/certificate, `SHA256SUMS` per product, a collapsed block on each page, and a CI gate. HTTP security headers remain out of scope on Pages | `cca3069` |
 
 ## Open work (issues)
@@ -52,8 +56,8 @@ decisions and verification evidence in the issue thread; close it only with the 
 | --- | --- |
 | #76 Product pages from data, not inline HTML | D11 |
 | #77 Brand icons, processed screenshots, per-page social images | D10, D14, D20 |
-| #78 Remove the `baseof.html` fork, set dark mode before first paint | D4 |
-| #79 Docsy v0.18, then Hugo past 0.166 | D15, D2 (follow-up) |
+| #78 Remove the `baseof.html` fork, set dark mode before first paint | D4 — **done** (`4169d95`) |
+| #79 Docsy v0.18, then Hugo past 0.166 | D15, D2 (follow-up) — **done** (`2fbf3d1`) |
 | #80 Repo cleanup: template leftovers, dead scaffolding, dead config | D5, D6, D7, D8, D13, D23 |
 | #81 Quality gates: links, spelling, HTML/a11y, post-deploy smoke test | D16, D22, D24 |
 | #82 Download trust: verification copy + key-change playbook | D19 (remainder), D25 (site side) |
@@ -109,7 +113,7 @@ nothing, then installs floating versions with `npm i -D postcss postcss-cli auto
 Dependabot therefore edits `package.json` ranges with no resolved tree. Fix: delete the ignore
 line, commit the lockfile, use `npm ci` unconditionally, and delete the ad-hoc install step.
 
-### D4. The local `baseof.html` is a stale fork of the theme, and dark mode is a hack
+### D4. The local `baseof.html` is a stale fork of the theme, and dark mode is a hack — **resolved in `4169d95`**
 `layouts/_default/baseof.html` is a copy of Docsy 0.11's baseof with an extra
 `<script defer>document.documentElement.setAttribute("data-bs-theme","dark")</script>` placed
 **after `</body>`** (and no trailing newline). It has already drifted: the theme ships
@@ -215,11 +219,16 @@ apps, mostly to mobile users. Fix: move to page bundles under `assets/` and use 
 processing (`fill 460x`, `webp`), or pre-optimize with `oxipng`/`cwebp` at ≤ 300 KB and add
 dimensions. Target: < 2 MB total.
 
-### D15. Docsy v0.11.0 vs upstream v0.18.0
+### D15. Docsy v0.11.0 vs upstream v0.18.0 — **resolved in `2fbf3d1`**
 Seven minor versions behind, and the local baseof override (D4) is based on 0.11. Upgrading will
 change markup/CSS and probably config keys; treat it as a project: bump `go.mod`, refresh the Hugo
 pin, remove the baseof override first, then diff `public/` before/after for the public pages.
 Do not attempt it in the same commit as content or release work.
+
+Done (2026-10-29): Docsy v0.18.0 and Hugo 0.169.0 land together with the module-path change,
+`hugo mod npm pack` for Bootstrap/Font Awesome, and the Dart Sass toolchain. Two visible
+consequences are documented in the commit and on #79: the dark background is a shade darker (theme
+palette change) and the site emits no favicon links until #77 supplies real icons.
 
 ---
 
