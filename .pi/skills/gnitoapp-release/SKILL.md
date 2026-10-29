@@ -43,14 +43,28 @@ The version lives in **four** places; all must end up equal:
 ```bash
 ls -lh "<new-apk>"
 sha256sum "<new-apk>"
-unzip -l "<new-apk>" | head -5           # must be a valid zip; catches truncated uploads
+unzip -l "<new-apk>" | head -5                     # valid zip; catches truncated uploads
+
+APKSIGNER=$(ls -d "$HOME"/Android/Sdk/build-tools/*/apksigner 2>/dev/null | tail -1)
+"$APKSIGNER" verify --print-certs "<new-apk>" | grep -E "certificate DN|certificate SHA-256"
+AAPT2=$(ls -d "$HOME"/Android/Sdk/build-tools/*/aapt2 2>/dev/null | tail -1)
+"$AAPT2" dump badging "<new-apk>" | head -1        # package/versionCode/versionName
 ```
 
-Rules: one current APK per product, plus at most the immediately previous one if the owner
-asked to keep it. The site must stay well under the 1 GB GitHub Pages limit — delete the
-superseded APK in this same commit unless told otherwise.
+Read the signing certificate before anything else. Each product must keep the **same signing
+key forever**: a different key means existing installs cannot update (users must uninstall),
+and the published fingerprint will change. As of 2026-10-29 Romanitaire is signed with the
+**Android debug** certificate and Units2Units with an anonymous `CN=Unknown` one (D25) — if the
+APK you are publishing changes that identity, stop and raise it before shipping.
 
-## 3. Place the file and update the version file
+`versionName` must equal the new `version` and `versionCode` must equal `buildNumber`; the
+`--check` step below enforces both when aapt2 is available.
+
+Rules: one current APK per product, plus at most the immediately previous one if the owner
+asked to keep it. The site must stay well under the 1 GB GitHub Pages limit (~267 MB today) —
+delete the superseded APK in this same commit unless told otherwise.
+
+## 3. Place the file, update version.json, regenerate the integrity data
 
 ```bash
 cp "<new-apk>" static/<product>/<product>_vX_Y_Z.apk
@@ -68,6 +82,17 @@ keeping `buildNumber` as a number:
 
 Keep the old `static/<product>/version.json` semantics: the apps poll this URL, so it must be
 valid JSON on the first try (`python3 -m json.tool static/<product>/version.json`).
+
+Then regenerate the published checksums and signing fingerprint (needs `python3`; run it on a
+machine with an Android SDK so the certificate fields refresh):
+
+```bash
+./scripts/apk-checksums.sh           # rewrites data/apk_checksums.json + static/<product>/SHA256SUMS
+```
+
+Commit the regenerated `data/apk_checksums.json` and `static/<product>/SHA256SUMS` with the APK.
+A stale checksum is a release defect: the page would tell users to expect the old file, and CI's
+`.github/workflows/hugo.yaml` step "Verify APK integrity data" fails the deploy.
 
 ## 4. Update the landing page
 
@@ -96,6 +121,13 @@ test -f "public$(grep -o '/<product>/[^"]*\.apk' public/<product>/index.html | h
 # the four version locations agree
 grep -n 'X\.Y\.Z' public/<product>/index.html
 python3 -c "import json;d=json.load(open('public/<product>/version.json'));print(d)"
+
+# integrity data agrees with the APK, the page and version.json
+./scripts/apk-checksums.sh --check
+
+# the page carries the new hash and the checksums file is served
+grep -o '<code[^>]*>[0-9a-f]\{64\}' public/<product>/index.html | head -2
+cat public/<product>/SHA256SUMS
 
 # no leftover references to the removed APK
 grep -rn "v<old>_" content/ static/ | head
@@ -137,3 +169,7 @@ Push only if the owner explicitly asks: `git push origin main`.
 - Building without Go on `PATH` → `failed to download modules: binary with name "go" not found`.
 - Trusting `npm run build:preview`: it substitutes `DEPLOY_PRIME_URL` or `/` as baseURL. Use
   `build:production` or an explicit `--baseURL https://gnitoapp.com/` when checking URLs.
+- Forgetting `./scripts/apk-checksums.sh` after replacing an APK: the landing page then shows the
+  previous file's hash and the CI gate fails (by design).
+- Re-signing with a different key "just for this build": silently breaks in-place updates for
+  every existing install. The fingerprint on the page is the contract; keep the key.

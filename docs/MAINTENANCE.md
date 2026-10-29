@@ -26,7 +26,8 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 | Duplicated version strings | 4 per product, unverified | unchanged |
 | Build time | ~60 s cold, ~2 s warm | ~15 s cold, ~1.5 s warm (Docsy module cache) |
 | Hugo build warnings | 3 (2 deprecations + 1 Docsy render hook) | 2, both from Docsy v0.11 (D15) |
-| Open Dependabot PRs | 3 (all stale npm bumps) | 3 |
+| Open Dependabot PRs | 3 (all stale npm bumps) | 1 (#75, blocked on D15) |
+| Published APK integrity data | none | SHA-256 + size + signing-certificate fingerprint per APK, gated in CI |
 
 ## Resolved
 
@@ -39,7 +40,8 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 | D2 — Hugo version skew (CI 0.145 vs npm 0.161) | fixed: CI now runs `npm ci && npm run build:production`, so the npm pin is the only Hugo version; `HUGO_VERSION` removed from the workflow | `e5740b9` |
 | D17 — no caching, floating tool installs | fixed: npm + Hugo-module caches (15 s cold, 1.4 s warm), no `npm i -D …`, `fetch-depth: 1`; `enableGitInfo` deliberately left off (see D17) | `e5740b9` |
 | Hugo deprecations (`languageName`, `LanguageDirection`) in our config/template | fixed; the two remaining warnings are Docsy v0.11's own (D15) | `2ca1c92` |
-| D18 — Dependabot scope and PR noise | partly fixed: `github-actions` + `gomod` watched, weekly, one PR per ecosystem; the 3 pre-existing PRs are still open | `1ab11e1` |
+| D18 — Dependabot scope and PR noise | partly fixed: `github-actions` + `gomod` watched, weekly, one PR per ecosystem; #73 and #72 applied locally, #75 deliberately blocked on D15. Closing the PRs needs an Issues/PR write scope the `gh` token lacks | `1ab11e1`, `83da277` |
+| D19 — no download integrity data | fixed for integrity: `scripts/apk-checksums.sh` derives SHA-256/size/certificate, `SHA256SUMS` per product, a collapsed block on each page, and a CI gate. HTTP security headers remain out of scope on Pages | `cca3069` |
 
 ---
 
@@ -206,6 +208,8 @@ Do not attempt it in the same commit as content or release work.
 ### D16. No verification gates at all
 `npm run check:links` prints `IMPLEMENTATION PENDING`; there is no HTML validation, no
 accessibility check, no spell check (despite `.cspell.yml`), and no post-deploy smoke test.
+(The APK integrity gate from D19 now exists and is the model for these: a cheap, deterministic
+check that fails the deploy.)
 Fix: add a `scripts/check-links.sh` (lychee or htmltest over `public/`, ignoring the external
 App Store URLs or checking them with retries), add `cspell` over `content/` with the real
 word list, and make the deploy job fail on broken internal links. Add a smoke step after deploy:
@@ -233,16 +237,57 @@ Still open at audit follow-up: #75 (`hugo-extended` 0.166.0), #73 (`postcss-cli`
 (`npm-check-updates` 23.1.0). #75 is a Hugo jump — do it *after* D15, because Docsy v0.11 still
 uses `LanguageDirection`/`LanguageName` and a future Hugo removes them.
 
-### D19. Download security
+### D19. Download security — **integrity part resolved in `cca3069`**
 APKs are served straight from GitHub Pages (`application/octet-stream`) with no published
-integrity data, while the pages tell users to bypass Google Play Protect. Publish a `SHA256SUMS`
-next to the APKs, show the hash (or a short fingerprint) on the page, and include the APK's
-signing certificate fingerprint. Signing identity + version + hash is what makes "Install anyway"
-a defensible instruction. Server-side headers are not configurable on GitHub Pages; if CSP/HSTS
-headers matter, front the site with Cloudflare (Pages custom domains work) — a `<meta>` CSP is
-blocked by the inline styles in D11.
+integrity data, while the pages tell users to bypass Google Play Protect. Signing identity +
+version + hash is what makes "Install anyway" a defensible instruction.
+
+Applied: `scripts/apk-checksums.sh` computes the APK's SHA-256, byte size, version, signing
+certificate digest/DN and (via `aapt2`) package/`versionCode`/`versionName`; it writes a
+sha256sum-compatible `SHA256SUMS` per product and `data/apk_checksums.json`, which
+`layouts/shortcodes/apk-checksum.html` renders as a collapsed "Verify this download" block. The
+workflow's `Verify APK integrity data` step runs `--check` (plain Python) before building, so a
+stale checksum, a renamed APK, a mismatched `version.json`/`versionName`, or a page still linking
+the previous file fails the deploy.
+
+Still open: server-side headers are not configurable on GitHub Pages (CSP/HSTS need a proxy such
+as Cloudflare in front). A `<meta>` CSP stays blocked by the inline styles in D11.
 
 ---
+
+### D24. `npm audit` reports high-severity advisories in a dev-only tool
+`hugo-extended` depends on `adm-zip@^0.5.17` to unpack the Hugo binary at install time, and
+`adm-zip <= 0.6.0` carries several high advisories (zip-slip, decompression bomb, memory abuse).
+Reach: install-time only, on a build machine, against a GitHub release artifact — never in the
+shipped site, and `npm audit --omit=dev` reports 0 vulnerabilities. **Do not run
+`npm audit fix --force`**: npm's suggested fix downgrades `hugo-extended` to 0.152.2, i.e. it
+trades a real build-version regression for an advisory with no user exposure. `hugo-extended`
+0.166.0 still pins the same range. Revisit when upstream bumps `adm-zip`, and keep the production
+audit (`--omit=dev`) in the quality gate instead of the full audit.
+
+### D25. Two of the three APKs are signed with non-production identities
+Read from the published artifacts with `apksigner verify --print-certs`:
+
+| APK | Signing certificate |
+| --- | --- |
+| Force Workout Helper 1.3.6 | `CN=Dewald Pretorius, OU=gnitoapp.com, O=gnitoapp.com, L=moncton, ST=nb, C=ca` |
+| Units2Units 1.2.0 | `CN=Unknown, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown` |
+| Romanitaire 1.0.8 | `C=US, O=Android, CN=Android Debug` |
+
+Romanitaire is signed with the **Android debug keystore**. That is the classic trigger for the
+Play Protect "unknown developer" warning the install guide tells users to click through, and it
+has two hard consequences: a debug key is not a stable identity (bit-for-bit the same key only on
+the machine that generated it), and installing a later build signed with a proper release key
+will fail with a signature mismatch — users would have to uninstall first, which also wipes app
+data. Units2Units' all-`Unknown` DN is not a debug key by name but is equally anonymous.
+
+This is an owner decision with a deadline, not something to fix silently: re-signing changes the
+fingerprint that D19 now publishes, and existing installs on the debug key cannot be upgraded in
+place. Recommended: generate one release keystore per product, store it offline, sign all future
+builds with it, and publish the new fingerprint with a note to users that Romanitaire needs a
+one-time uninstall. Do not re-sign the *current* files "to look better" without that
+communication. Also note all three APKs are v2-signed only (`v1: false`), which is fine for
+Android 7+ but rules out very old devices.
 
 ## P3 — polish
 
@@ -268,8 +313,9 @@ blocked by the inline styles in D11.
    `e5740b9`, `2ca1c92`). One Hugo version, committed lockfile, caches, no avoidable warnings.
    First push of these three will deploy a build produced by Hugo 0.161.1 instead of 0.145.0;
    the only output differences measured between the two were minifier cosmetics and asset hashes.
-4. **Release-path tooling (D19 + release skill).** SHA-256 manifest next to the APKs, signing
-   certificate fingerprint on the page, and a `scripts/` helper the release skill can call.
+4. ~~**Release-path tooling (D19 + release skill).**~~ Done (`cca3069`) — checksums, signing
+   fingerprints and the CI gate. The remaining item is D25: decide the signing identity per
+   product before the next Romanitaire build.
 5. **Content architecture (D11, D14, D10).** Data-driven product pages + optimized images + brand
    assets. Do this before any visual redesign; it is the rewrite that makes later work cheap.
 6. **Docsy upgrade to v0.18 (D15)** as an isolated task, then retire `baseof.html` (D4) with
@@ -278,4 +324,5 @@ blocked by the inline styles in D11.
 7. **Template cleanup (D5, D6, D7)** — invisible, but stops the next person (or model) from
    trusting the Docsy README.
 8. **Gates and monitoring (D16, D21)** once the content model is stable.
-9. **Legal/marketing alignment (D12)** — owner decision, not an agent edit.
+9. **Legal/marketing alignment (D12)** and **APK signing identity (D25)** — owner decisions with
+   user-visible consequences, not agent edits.

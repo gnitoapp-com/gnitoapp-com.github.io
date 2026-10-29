@@ -19,7 +19,10 @@ short operating manual; that file is the long memory.
 | `content/en/{units2units,forceworkouthelper,romanitaire}/index.md` | Product landing pages — raw HTML embedded in Markdown |
 | `content/en/privacy/` | Privacy policy: `_index.md` (EN) + `privacy_zh.md` (ZH as a separate page, not i18n) |
 | `content/en/terms/index.md`, `support.md`, `search.md` | Legal, contact, search page |
-| `static/<product>/` | `version.json`, the current `*.apk`, `screenshots/`, `images/logo_200_square.png`. Copied verbatim — never processed by Hugo |
+| `static/<product>/` | `version.json`, the current `*.apk`, `SHA256SUMS`, `screenshots/`, `images/logo_200_square.png`. Copied verbatim — never processed by Hugo |
+| `data/apk_checksums.json` | **Generated** per-APK SHA-256, size, signing-certificate fingerprint, package/versionCode. Never hand-edit; run `scripts/apk-checksums.sh` |
+| `scripts/apk-checksums.sh` | Regenerates the integrity data (`--check` verifies it; CI runs `--check`) |
+| `layouts/shortcodes/apk-checksum.html` | Renders the "Verify this download" block on each product page from that data |
 | `hugo.yaml` | The site config that is actually used (language `en`, `contentDir: content/en`, Docsy module import, baseURL) |
 | `layouts/_default/baseof.html` | Local override of Docsy's `baseof.html`; also forces dark mode (see D4 in the maintenance doc) |
 | `layouts/404.html` | Not-found page override |
@@ -94,27 +97,32 @@ re-deriving the four version locations by hand.
 
 ## Invariants — break these and the site is wrong
 
-1. **Version consistency.** A product's version lives in four places and nothing checks them:
-   `static/<product>/version.json` (`version`, `buildNumber`), the download button label and
-   href, the version cell of the "Quick Info" table, and the APK filename
-   (`<product>_v1_2_0.apk` ⇄ `1.2.0`). Update all four together; verify after building.
-2. **APK live at the linked path.** Every `href` to an `.apk` must resolve to a file that
+1. **Version consistency.** A product's version lives in four places: `static/<product>/version.json`
+   (`version`, `buildNumber`), the download button label, the download button href, and the
+   version cell of the "Quick Info" table — plus the APK filename
+   (`<product>_v1_2_0.apk` ⇄ `1.2.0`). `scripts/apk-checksums.sh --check` (and therefore CI)
+   enforces version.json ↔ filename ↔ page link ↔ button label ↔ APK `versionName`/`versionCode`;
+   the *table cell* is not machine-checked, so update it by hand.
+2. **Integrity data is part of a release.** Any change to an APK means re-running
+   `scripts/apk-checksums.sh` in the same commit. The landing page publishes that hash and the
+   signing-certificate fingerprint, and the CI step fails if they disagree with the file.
+3. **APK live at the linked path.** Every `href` to an `.apk` must resolve to a file that
    exists in `static/` and therefore in `public/`.
-3. **Legal pages are the owner's words.** Do not rewrite `content/en/privacy/**` or
+4. **Legal pages are the owner's words.** Do not rewrite `content/en/privacy/**` or
    `content/en/terms/**` prose, even when it contradicts product marketing (it does — D12).
    Report the inconsistency; change text only when explicitly asked.
-4. **No new large binaries.** One APK per product, plus at most the immediately previous one
+5. **No new large binaries.** One APK per product, plus at most the immediately previous one
    if the owner asks. Delete superseded APKs in the same commit (D9). Never commit
    `public/`, `resources/` or `node_modules/`.
-5. **Images stay small.** New screenshots: ≤ 300 KB each, longest edge ≤ 700 px (they render
+6. **Images stay small.** New screenshots: ≤ 300 KB each, longest edge ≤ 700 px (they render
    at 230 CSS px). Optimize before committing.
-6. **URLs are stable.** Page paths are `/<product>/` and are linked from the App Store
+7. **URLs are stable.** Page paths are `/<product>/` and are linked from the App Store
    listings and existing QR/APK pages. Do not rename or move a product page; add a redirect
    or alias if one must change.
-7. **The site is always dark.** `layouts/_default/baseof.html` sets `data-bs-theme="dark"`.
+8. **The site is always dark.** `layouts/_default/baseof.html` sets `data-bs-theme="dark"`.
    Any new page/component must be legible on a dark background; do not add white panels with
    hard-coded text colors (which the current product pages do — D11).
-8. **`hugo.yaml` is the config.** `config.yaml` is a Docsy version guard and `hugo-disabled.toml`
+9. **`hugo.yaml` is the config.** `config.yaml` is a Docsy version guard and `hugo-disabled.toml`
    is dead template scaffolding. Put every setting in `hugo.yaml`.
 
 ## Working agreement
@@ -128,6 +136,8 @@ re-deriving the four version locations by hand.
 - **Dependabot is a notification channel, not a review queue.** It opens at most one PR per
   ecosystem (npm, github-actions, gomod), weekly. Apply the bump locally on `main`, verify the
   build, then close the PR with a note — never merge it through the UI (D18).
+  Note: the authenticated `gh` token has repo admin but **no Issues/PR write scope**, so it
+  cannot comment on or close PRs. Either the owner closes them or the token needs that scope.
 - Verified claims only: if you touch output, build it and quote the artifact. Hugo warns on
   deprecations: never add a new `WARN` line to the build output. Two warnings are expected today
   and both come from Docsy v0.11 (D15).
@@ -136,6 +146,7 @@ re-deriving the four version locations by hand.
 
 ```bash
 npm run build:production                     # no new WARN/ERROR lines
+./scripts/apk-checksums.sh --check           # APK ↔ checksum ↔ version ↔ page link
 grep -o 'og:url" content="[^"]*"' public/units2units/index.html   # https, not http
 grep -c 'rel=canonical' public/units2units/index.html             # exactly 1
 grep -o 'href="[^"]*\.apk"' public/<product>/index.html           # path matches version
