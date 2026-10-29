@@ -72,6 +72,11 @@ jobs:
           go version
           ./node_modules/.bin/hugo version
 
+      # Fails if a published checksum, SHA256SUMS file, version.json, APK file
+      # name or landing-page download link disagrees with the APK itself.
+      - name: Verify APK integrity data
+        run: ./scripts/apk-checksums.sh --check
+
       - name: Build with Hugo
         env:
           # Must match the cache path above. The runner context is only

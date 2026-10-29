@@ -18,6 +18,8 @@ menu: {main: {weight: 5}}
   </div>
 </div>
 
+{{< apk-checksum "units2units" >}}
+
 ---
 
 ## Quick Info

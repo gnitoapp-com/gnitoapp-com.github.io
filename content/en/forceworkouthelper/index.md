@@ -18,6 +18,8 @@ menu: {main: {weight: 5}}
   </div>
 </div>
 
+{{< apk-checksum "forceworkouthelper" >}}
+
 ---
 
 ## Quick Info
