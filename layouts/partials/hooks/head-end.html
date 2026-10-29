@@ -1,0 +1,14 @@
+{{- /*
+  Canonical URL for every indexable page.
+
+  Do not drop this. The site also answers on www.gnitoapp.com and
+  gnitoapp-com.github.io, and the deploy workflow used to pass an http://
+  baseURL, so published pages advertised insecure, ambiguous URLs.
+
+  Skipped for the 404 page and for the `print` output, which Docsy already
+  gives its own canonical link.
+*/ -}}
+{{- $outputFormat := partial "outputformat.html" . -}}
+{{- if and (ne .Kind "404") (ne $outputFormat "print") }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{- end }}

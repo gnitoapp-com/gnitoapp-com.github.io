@@ -57,11 +57,13 @@ jobs:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
           TZ: UTC
+        # No --baseURL override: it comes from hugo.yaml (https://gnitoapp.com).
+        # configure-pages reports the custom domain as http://, which used to make
+        # every published canonical/og:url/sitemap entry insecure.
         run: |
           hugo \
             --gc \
-            --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
+            --minify
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
