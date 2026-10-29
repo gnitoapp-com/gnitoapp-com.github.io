@@ -68,7 +68,11 @@ jobs:
           path: ./public
 
   # Deployment job
+  # Only `main` may publish. Branch pushes never reach this workflow, but a manual
+  # workflow_dispatch can select any ref: gating the deploy here keeps that path from
+  # publishing while still letting a branch run the build job for validation.
   deploy:
+    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
