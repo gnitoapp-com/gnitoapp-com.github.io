@@ -33,6 +33,7 @@ the single word "push" and deployed it. Work stays on a working branch until the
 | `content/en/{units2units,forceworkouthelper,romanitaire}/index.md` | Product pages: front matter (`layout: product`, `product: <key>`) plus the product description only |
 | `data/products/<product>.yaml` | Per-product facts: `platforms` (required), tagline, category, licence, store link, badges, screenshots, logo, optional `notice` (Markdown, rendered above the download buttons) and optional `version` (only for non-Android products — Android takes it from the APK) |
 | `layouts/_default/product.html` + `layouts/partials/product/*` | Renders the shared product chrome from that data |
+| `layouts/_default/single.html`, `layouts/privacy/list.html` | Plain content pages (support, terms, privacy, privacy_zh) rendered through Docsy's `_td-content` wrapper. Docsy 0.18's generic `all.html` otherwise emits the content bare — no page title, no prose or code styling |
 | `content/en/privacy/` | Privacy policy: `_index.md` (EN) + `privacy_zh.md` (ZH as a separate page, not i18n) |
 | `content/en/terms/index.md`, `support.md` | Legal and contact pages |
 | `static/<product>/` | `version.json`, the current `*.apk`, `SHA256SUMS` and `images/logo_200_square.png`. Copied verbatim |
@@ -166,12 +167,16 @@ re-deriving the four version locations by hand.
 7. **URLs are stable.** Page paths are `/<product>/` and are linked from the App Store
    listings and existing QR/APK pages. Do not rename or move a product page; add a redirect
    or alias if one must change.
-8. **The site is always dark.** `layouts/partials/hooks/head-end.html` sets
+8. **Code blocks need class-based highlighting.** `markup.highlight.noClasses: false` in `hugo.yaml`
+   plus `@import 'td/code-dark'` in `_styles_project.scss`. With inline Chroma styles Hugo bakes a
+   light `#f8f8f8` background into every `<pre>`, and the dark theme's light text makes the block
+   unreadable; Docsy's dark Chroma classes are opt-in.
+9. **The site is always dark.** `layouts/partials/hooks/head-end.html` sets
    `data-bs-theme="dark"` in `<head>`, before first paint; there is no local `baseof.html` any
    more (D4). Any new page/component must be legible on a dark background. The product pages are
    a deliberate exception: they render a white surface via the `.product-page` class in
    `_variables_project.scss`, never via inline styles.
-9. **Android-only blocks are gated by `platforms`.** The APK download button, the integrity
+10. **Android-only blocks are gated by `platforms`.** The APK download button, the integrity
    block and the install guide render only when `platforms` contains `android`, and only then is
    `data/apk_checksums.json` required. A desktop-only product needs no APK, no checksum entry and
    no `static/<product>/` APK — set `platforms` and, if it has no APK, a `version:` in its data.
@@ -180,13 +185,13 @@ re-deriving the four version locations by hand.
    **Deliberately deferred:** per-platform installer downloads (a `downloads:` field rendered as
    buttons) — build it when the first desktop-only app is actually ready, not before. Until then a
    non-Android product renders with its store link only.
-10. **Signing identity is a contract.** Never sign a release with a debug key, never commit a
+11. **Signing identity is a contract.** Never sign a release with a debug key, never commit a
    keystore or `key.properties` to any repo, and never publish an APK whose certificate differs
    from the published `signerCertSha256`. `scripts/apk-checksums.sh` enforces the last one and
    requires `--allow-key-change` for a deliberate rotation (which also needs a page note and
    Android developer-verification registration). The full procedure is `docs/KEY-CHANGE.md`;
    announcements go in the `notice` field of `data/products/<product>.yaml`. See D25.
-11. **`hugo.yaml` is the only config.** `config.yaml` and `hugo-disabled.toml` are gone; do not
+12. **`hugo.yaml` is the only config.** `config.yaml` and `hugo-disabled.toml` are gone; do not
    reintroduce them. Put every setting in `hugo.yaml`.
 
 ### GitHub credentials on this machine

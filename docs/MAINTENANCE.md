@@ -41,6 +41,7 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 
 | Finding | Status | Commit |
 | --- | --- | --- |
+| D26 — code blocks unreadable on the support page, legal pages missing their wrapper | fixed: `markup.highlight.noClasses: false` + `@import 'td/code-dark'`; plain pages render through Docsy's `_td-content` wrapper | `147b47e` |
 | D16 — no verification gates (link check was a stub) | fixed: `scripts/check-links.sh` (internal links + anchors) in `postbuild:production`, cspell, html-validate, `npm audit --omit=dev`, and a post-deploy smoke test in the deploy job | `e0144db` |
 | D22 — placeholder cspell dictionary | fixed: real product/domain dictionary; it immediately caught an `ifetime` typo | `e0144db` |
 | D23 — feedback widget posting to an unconfigured Google Analytics | fixed: the `feedback` block was removed | `441455d` |
@@ -422,6 +423,13 @@ developer-verification registration that go with it.
   site would still be worthwhile; not done.
 - **D22.** Placeholder cspell dictionary — **resolved** (`e0144db`).
 - **D23.** `ui.feedback` posting to an unconfigured Google Analytics — **resolved** (`441455d`).
+- **D26.** Code blocks on the support page were white-on-white, and the legal pages were rendered
+  without Docsy's content wrapper. Two causes: the legacy `pygmentsUseClasses: false` forced inline
+  Chroma styles (light background) while the dark theme supplied light text — Docsy's dark Chroma
+  classes are opt-in and were not imported; and Docsy 0.18's generic `all.html` emits `.Content`
+  bare, so those pages had no page title, no prose styles and no code-block styling. Fixed with
+  `noClasses: false`, `@import 'td/code-dark'`, and project layouts that render plain pages through
+  `_td-content`. **Resolved** (`147b47e`).
 
 ---
 
