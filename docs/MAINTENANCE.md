@@ -60,7 +60,7 @@ decisions and verification evidence in the issue thread; close it only with the 
 | #78 Remove the `baseof.html` fork, set dark mode before first paint | D4 — **done** (`4169d95`) |
 | #79 Docsy v0.18, then Hugo past 0.166 | D15, D2 (follow-up) — **done** (`2fbf3d1`) |
 | #80 Repo cleanup: template leftovers, dead scaffolding, dead config | D5, D6, D7, D8, D13, D23 |
-| #81 Quality gates: links, spelling, HTML/a11y, post-deploy smoke test | D16, D22, D24 |
+| #81 Quality gates: links, spelling, HTML/a11y, post-deploy smoke test | D16, D22, D24 — **done** |
 | #82 Download trust: verification copy + key-change playbook | D19 (remainder), D25 (site side) |
 | #83 Privacy policy vs product claims | D12 |
 
@@ -240,7 +240,7 @@ freezes old navbar markup.
 
 ## P2 — delivery and quality gates
 
-### D16. No verification gates at all
+### D16. No verification gates at all — **resolved in `e0144db`**
 `npm run check:links` prints `IMPLEMENTATION PENDING`; there is no HTML validation, no
 accessibility check, no spell check (despite `.cspell.yml`), and no post-deploy smoke test.
 (The APK integrity gate from D19 now exists and is the model for these: a cheap, deterministic

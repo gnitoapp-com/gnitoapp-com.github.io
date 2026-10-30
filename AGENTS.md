@@ -210,12 +210,37 @@ Two different tokens are in play, and mixing them up wastes an hour:
 - Verified claims only: if you touch output, build it and quote the artifact. **The build must
   stay warning-free** — any `WARN` line is a defect to fix, not noise to live with.
 
+## Quality gates
+
+All gates are local and deterministic; CI runs the same commands, so a green local run means a
+green build (except the post-deploy smoke test, which only runs on `main`).
+
+```bash
+npm run verify                  # check:apk + spell + lint:html + check:links
+npm run build:production        # also runs the link check via postbuild:production
+npm run smoke <url>             # post-deploy assertions (default: https://gnitoapp.com)
+```
+
+| Gate | What it enforces |
+| --- | --- |
+| `scripts/apk-checksums.sh --check` | APK ↔ SHA256SUMS ↔ version.json ↔ product data; refuses a changed signing certificate |
+| `scripts/apk-checksums.sh --rendered public` | the built pages link the APK, show its version and publish its hash |
+| `scripts/check-links.sh` | internal links and `#anchors` resolve in `public/` (188 links, 13 pages). `--external` probes external URLs as warnings |
+| `html-validate` (`.htmlvalidate.json`) | HTML validity and a11y rules on the nine public pages; theme-only style rules are switched off with reasons in the config |
+| `cspell` (`.cspell.yml`) | spelling in `content/` and `data/`, with the product/domain dictionary |
+| `npm audit --omit=dev` | production dependency advisories (dev-only advisories are D24) |
+| `scripts/smoke-test.sh` | after deploy: canonical, download link, version, SHA-256, SHA256SUMS content, APK 200, robots sitemap, sitemap scheme |
+
+Not covered, deliberately: `pa11y`/axe automated a11y (needs a browser in CI; `html-validate`'s
+a11y rules cover structure only), external links as hard failures (App Store/Bluesky bot-wall
+automated requests), and `_print`/taxonomy output (theme-generated; taxonomies are dead weight per
+#80).
+
 ## Definition of done (any change that ships)
 
 ```bash
-npm run build:production                     # no new WARN/ERROR lines
-./scripts/apk-checksums.sh --check           # APK ↔ checksum ↔ version.json ↔ product data
-./scripts/apk-checksums.sh --rendered public # built pages link the APK, show its version + hash
+npm run build:production                     # no new WARN/ERROR lines (runs the link check)
+npm run verify                                # APK data, spelling, HTML, links
 grep -o 'og:url" content="[^"]*"' public/units2units/index.html   # https, not http
 grep -c 'rel=canonical' public/units2units/index.html             # exactly 1
 grep -o 'href="[^"]*\.apk"' public/<product>/index.html           # path matches version
