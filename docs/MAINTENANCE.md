@@ -23,7 +23,7 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 | `static/` size | 528 MB (509 MB APKs, 21 MB screenshots) | 265 MB (245 MB APKs, 21 MB screenshots) |
 | APKs with no page linking to them | 3 files, 264 MB | 0 |
 | `.git` size | 305 MB | 305 MB (deleting files does not shrink history) |
-| Product pages | 130 / 139 / 112 lines, 43 / 47 / 44 inline `style=` attributes | unchanged |
+| Product pages | 130 / 139 / 112 lines, 43 / 47 / 44 inline `style=` attributes | front matter + Markdown, rendered from `data/products/*.yaml`; 0 inline styles |
 | Duplicated version strings | 4 per product, unverified | unchanged |
 | Build time | ~60 s cold, ~2 s warm | ~15 s cold, ~1.5 s warm (Docsy module cache) |
 | Hugo build warnings | 3 (2 deprecations + 1 Docsy render hook) | 0 |
@@ -34,6 +34,7 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 
 | Finding | Status | Commit |
 | --- | --- | --- |
+| D11 — product pages were raw inline-styled HTML with a 4-way version duplication | fixed: `data/products/*.yaml` + one layout + partials, version from generated data, zero inline styles, semantic tables | `7860279` |
 | D1 — published URLs were `http://`, no canonical | fixed: canonical hook + `hugo.yaml` is the only baseURL source, `robots.txt` advertises the sitemap | `63de339` |
 | D9 — 264 MB of unreferenced APKs | fixed: three superseded APKs deleted (pages unchanged, links verified) | `2d0b3e2` |
 | Deploy from a non-`main` ref (hardening, noted under D18) | fixed: deploy job is gated to `github.ref == 'refs/heads/main'`; a branch dispatch now builds without publishing | `19b1cd1` |
@@ -54,7 +55,7 @@ decisions and verification evidence in the issue thread; close it only with the 
 
 | Issue | Covers |
 | --- | --- |
-| #76 Product pages from data, not inline HTML | D11 |
+| #76 Product pages from data, not inline HTML | D11 — **done** (`7860279`) |
 | #77 Brand icons, processed screenshots, per-page social images | D10, D14, D20 |
 | #78 Remove the `baseof.html` fork, set dark mode before first paint | D4 — **done** (`4169d95`) |
 | #79 Docsy v0.18, then Hugo past 0.166 | D15, D2 (follow-up) — **done** (`2fbf3d1`) |
@@ -179,7 +180,7 @@ link previews on Bluesky/App Store listings have no artwork. Fix: add real `stat
 `twitter:image`. Also add `apple-touch-icon` and `site.webmanifest` if the site should be
 installable.
 
-### D11. Product pages defeat the theme (and dark mode)
+### D11. Product pages defeat the theme (and dark mode) — **resolved in `7860279`**
 Each product page is 110–140 lines of raw HTML with 43–47 inline `style=` attributes, a wrapper
 `div` that hard-codes `background-color:#ffffff; color:#000000`, non-semantic tables (a second
 `<thead>` mid-table, no `scope` attributes), and 30-property style strings repeated for every
@@ -274,7 +275,7 @@ version + hash is what makes "Install anyway" a defensible instruction.
 Applied: `scripts/apk-checksums.sh` computes the APK's SHA-256, byte size, version, signing
 certificate digest/DN and (via `aapt2`) package/`versionCode`/`versionName`; it writes a
 sha256sum-compatible `SHA256SUMS` per product and `data/apk_checksums.json`, which
-`layouts/shortcodes/apk-checksum.html` renders as a collapsed "Verify this download" block. The
+`layouts/partials/apk-verify.html` renders as a collapsed "Verify this download" block. The
 workflow's `Verify APK integrity data` step runs `--check` (plain Python) before building, so a
 stale checksum, a renamed APK, a mismatched `version.json`/`versionName`, or a page still linking
 the previous file fails the deploy.
@@ -390,6 +391,10 @@ developer-verification registration that go with it.
 6. **Docsy upgrade to v0.18 (D15)** as an isolated task, then retire `baseof.html` (D4) with
    before/after screenshots. Do not bump Hugo past 0.166 (Dependabot #75) before this: Docsy
    0.11 still reads `LanguageDirection`/`LanguageName`, which a future Hugo removes.
+6b. **Product pages follow-up (#82):** the install guide still says "tap Install Anyway" without
+   telling users to compare the hash; the integrity block is right above it, so that rewrite is a
+   small copy change now that #82 owns it.
+
 7. **Template cleanup (D5, D6, D7)** — invisible, but stops the next person (or model) from
    trusting the Docsy README.
 8. **Gates and monitoring (D16, D21)** once the content model is stable.

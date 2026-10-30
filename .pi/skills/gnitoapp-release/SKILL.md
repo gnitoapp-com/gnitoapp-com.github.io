@@ -113,15 +113,18 @@ Commit the regenerated `data/apk_checksums.json` and `static/<product>/SHA256SUM
 A stale checksum is a release defect: the page would tell users to expect the old file, and CI's
 `.github/workflows/hugo.yaml` step "Verify APK integrity data" fails the deploy.
 
-## 4. Update the landing page
+## 4. Update the product data (no landing-page HTML any more)
 
-In `content/en/<product>/index.md`, change exactly the button label, the button `href`, and the
-Quick Info table version cell. Do not reformat the surrounding HTML, do not restyle, do not
-"fix" the page architecture during a release (that is D11 and its own task).
+The pages are rendered from `data/products/<product>.yaml` plus the generated
+`data/apk_checksums.json` (layout: `layouts/_default/product.html`). The version, APK file name
+and checksum come from `version.json` via that generated file, so **there is nothing to edit in
+`content/en/<product>/index.md`** for a version bump — the button label, href and Quick Info
+table all follow automatically.
 
-If screenshots change: replace files in `static/<product>/screenshots/`, keep the numeric
-naming, keep every `<img>` order/alt text in sync, and respect the budget (< 300 KB each,
-longest edge ≤ 700 px). Optimize before committing:
+Only touch the YAML when the product's story changes (tagline, category, licence, store URL,
+badges). If screenshots change, replace files in `static/<product>/screenshots/`, update the
+`alt` text in the YAML if the content changed, keep the numeric naming, and respect the budget
+(< 300 KB each, longest edge ≤ 700 px). Optimize before committing:
 
 ```bash
 oxipng -o4 --strip safe static/<product>/screenshots/*.png   # or: cwebp -q 82 in.png -o out.webp
@@ -137,8 +140,7 @@ npm run build:production 2>&1 | grep -E "WARN|ERROR|Total in"   # no new warning
 grep -o 'href="[^"]*\.apk"' public/<product>/index.html
 test -f "public$(grep -o '/<product>/[^"]*\.apk' public/<product>/index.html | head -1)" && echo APK-OK
 
-# the four version locations agree
-grep -n 'X\.Y\.Z' public/<product>/index.html
+# version.json and the generated data agree
 python3 -c "import json;d=json.load(open('public/<product>/version.json'));print(d)"
 
 # integrity data agrees with the APK, the page and version.json
@@ -149,8 +151,8 @@ python3 -c "import json;d=json.load(open('public/<product>/version.json'));print
 # Only deliberate, announced key changes may use --allow-key-change.
 ./scripts/apk-checksums.sh
 
-# the page carries the new hash and the checksums file is served
-grep -o '<code[^>]*>[0-9a-f]\{64\}' public/<product>/index.html | head -2
+# the rendered page links the new APK, shows its version and carries its hash
+./scripts/apk-checksums.sh --rendered public
 cat public/<product>/SHA256SUMS
 
 # no leftover references to the removed APK

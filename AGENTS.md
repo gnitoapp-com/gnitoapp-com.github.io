@@ -16,14 +16,16 @@ short operating manual; that file is the long memory.
 | Path | Purpose |
 | --- | --- |
 | `content/en/_index.md` | Home page (Docsy blocks: cover + feature) |
-| `content/en/{units2units,forceworkouthelper,romanitaire}/index.md` | Product landing pages — raw HTML embedded in Markdown |
+| `content/en/{units2units,forceworkouthelper,romanitaire}/index.md` | Product pages: front matter (`layout: product`, `product: <key>`) plus the product description only |
+| `data/products/<product>.yaml` | Per-product facts: tagline, category, licence, store link, badges, screenshots, logo |
+| `layouts/_default/product.html` + `layouts/partials/product/*` | Renders the shared product chrome from that data |
 | `content/en/privacy/` | Privacy policy: `_index.md` (EN) + `privacy_zh.md` (ZH as a separate page, not i18n) |
 | `content/en/terms/index.md`, `support.md`, `search.md` | Legal, contact, search page |
 | `static/<product>/` | `version.json`, the current `*.apk`, `SHA256SUMS`, `screenshots/`, `images/logo_200_square.png`. Copied verbatim — never processed by Hugo |
 | `data/apk_checksums.json` | **Generated** per-APK SHA-256, size, signing-certificate fingerprint, package/versionCode. Never hand-edit; run `scripts/apk-checksums.sh` |
 | `scripts/apk-checksums.sh` | Regenerates the integrity data (`--check` verifies it; CI runs `--check`) |
 | `scripts/hugo` | Runs the npm-pinned Hugo with node_modules/.bin and Go on PATH — **there is no system-wide `hugo`** |
-| `layouts/shortcodes/apk-checksum.html` | Renders the "Verify this download" block on each product page from that data |
+| `layouts/partials/apk-verify.html` | Renders the "Verify this download" block on each product page from that data |
 | `hugo.yaml` | The site config that is actually used (language `en`, `contentDir: content/en`, Docsy module import, baseURL) |
 | `layouts/_default/baseof.html` | Local override of Docsy's `baseof.html`; also forces dark mode (see D4 in the maintenance doc) |
 | `layouts/404.html` | Not-found page override |
@@ -107,12 +109,11 @@ re-deriving the four version locations by hand.
 
 ## Invariants — break these and the site is wrong
 
-1. **Version consistency.** A product's version lives in four places: `static/<product>/version.json`
-   (`version`, `buildNumber`), the download button label, the download button href, and the
-   version cell of the "Quick Info" table — plus the APK filename
-   (`<product>_v1_2_0.apk` ⇄ `1.2.0`). `scripts/apk-checksums.sh --check` (and therefore CI)
-   enforces version.json ↔ filename ↔ page link ↔ button label ↔ APK `versionName`/`versionCode`;
-   the *table cell* is not machine-checked, so update it by hand.
+1. **Version consistency.** `static/<product>/version.json` is the only place a version is typed.
+   The button label, href, Quick Info cell and checksum block all come from
+   `data/apk_checksums.json`, which `scripts/apk-checksums.sh` generates from the APK. `--check`
+   enforces version.json ↔ APK filename ↔ generated data ↔ APK `versionName`/`versionCode`, and
+   `--rendered public` enforces the built page. Run both (CI runs both).
 2. **Integrity data is part of a release.** Any change to an APK means re-running
    `scripts/apk-checksums.sh` in the same commit. The landing page publishes that hash and the
    signing-certificate fingerprint, and the CI step fails if they disagree with the file.
@@ -131,8 +132,9 @@ re-deriving the four version locations by hand.
    or alias if one must change.
 8. **The site is always dark.** `layouts/partials/hooks/head-end.html` sets
    `data-bs-theme="dark"` in `<head>`, before first paint; there is no local `baseof.html` any
-   more (D4). Any new page/component must be legible on a dark background; do not add white
-   panels with hard-coded text colors (which the current product pages do — D11).
+   more (D4). Any new page/component must be legible on a dark background. The product pages are
+   a deliberate exception: they render a white surface via the `.product-page` class in
+   `_variables_project.scss`, never via inline styles.
 9. **Signing identity is a contract.** Never sign a release with a debug key, never commit a
    keystore or `key.properties` to any repo, and never publish an APK whose certificate differs
    from the published `signerCertSha256`. `scripts/apk-checksums.sh` enforces the last one and
@@ -181,7 +183,8 @@ Two different tokens are in play, and mixing them up wastes an hour:
 
 ```bash
 npm run build:production                     # no new WARN/ERROR lines
-./scripts/apk-checksums.sh --check           # APK ↔ checksum ↔ version ↔ page link
+./scripts/apk-checksums.sh --check           # APK ↔ checksum ↔ version.json ↔ product data
+./scripts/apk-checksums.sh --rendered public # built pages link the APK, show its version + hash
 grep -o 'og:url" content="[^"]*"' public/units2units/index.html   # https, not http
 grep -c 'rel=canonical' public/units2units/index.html             # exactly 1
 grep -o 'href="[^"]*\.apk"' public/<product>/index.html           # path matches version
