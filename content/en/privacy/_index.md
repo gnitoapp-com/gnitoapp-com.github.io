@@ -2,88 +2,129 @@
 title: Privacy Policy
 linkTitle: Privacy
 menu: {main: {weight: 50}}
-# Add blocks of content here to add more sections to the community page
 ---
 
-[简体中文](privacy_zh.md)
+This policy is also available in [简体中文](privacy_zh.md).
 
-### **Introduction**
-Welcome to  3827992 Canada Inc, trading as GnitoApp.com. Your privacy is important to us, and this Privacy Policy explains how we collect, use, disclose, and protect your personal information when you use our app. By downloading, installing, or using GnitoApp.com, or an application owned by GnitoApp.com, you agree to the terms of this Privacy Policy.
+**Last updated: 30 October 2026**
 
-### **Information We Collect**
-We may collect the following types of information from you:
+### Who we are
 
-#### **Personal Information**
-- We do not collect any personal information.
+GnitoApp.com is the trading name of 3827992 Canada Inc. This policy covers this
+website (gnitoapp.com) and the applications we publish — Units2Units, Force Workout
+Helper and Romanitaire (together, "the apps").
 
-#### **Non-Personal Information**
-- **Device Information**: Device type, operating system, and app usage data. We do not collect IP addresses.
-- **Usage Data**: Anonymized information about how you interact with the app, such as features used, pages visited, and time spent on the app.
-- **Cookies and Similar Technologies**: We may use cookies, web beacons, and other tracking technologies to enhance your experience and analyze app usage.
+### The short version
 
-#### **Third-Party Information**
-If you link third-party accounts (e.g., social media platforms) to GnitoApp.com, we may receive information from those platforms, such as your profile information or friends list, depending on the permissions you grant.
+- **No accounts.** The apps work offline and never ask you to register or sign in.
+- **No advertising, and no advertising or analytics SDKs.**
+- **What you type into the apps stays on your device.**
+- Only four things ever leave the device, each for a stated reason: crash
+  diagnostics, purchase processing, a version check, and — in Units2Units only —
+  currency-rate requests.
+- **This website sets no cookies and runs no analytics.** Our host keeps standard
+  server logs, as every web server does.
 
-### **How We Use Your Information**
-We use the information we collect for the following purposes:
+### The apps
 
-- **Provide and Improve Services**: To deliver the app's functionality, personalize your experience, and improve our services.
-- **Communicate with You**: To send you updates, notifications, promotional materials, and respond to your inquiries.
-- **Analytics and Research**: To analyze app usage patterns, troubleshoot issues, and develop new features.
-- **Security and Fraud Prevention**: To detect, prevent, and address security risks, unauthorized access, or fraudulent activities.
-- **Legal Compliance**: To comply with applicable laws, regulations, or legal processes.
+#### Information you enter
 
-### **How We Share Your Information**
-We do not sell, trade, or rent your personal information to third parties. However, we may share your information in the following circumstances:
+Conversions, timers, settings and saved items stay on your device. We cannot read
+them. Uninstalling the app removes them, except for anything your device's own
+backup system has copied.
 
-#### **With Service Providers**
-We may share your information with trusted third-party service providers who assist us in operating the app, conducting business, or servicing you. These providers include:
-- Payment processors
-- Hosting services
-- Analytics companies
-- Customer support teams
+#### Crash diagnostics (all three apps)
 
-Our payment processors directly collect and store your personal information required for successful payments. We do not touch that information.
+If an app crashes or hits an unexpected error, it sends a technical report to
+Sentry, our error-monitoring provider. A report contains the error and its stack
+trace, the app version and build number, the device model and operating-system
+version, and the app's state at the time. It does **not** contain your name, email
+address or any account identifier — we do not have them. We do not attach default
+personal data to reports or link them to a person; reports exist so we can find and
+fix bugs.
 
-#### **For Legal Reasons**
-We may disclose your information if required by law, court order, or government request. We may also share information to protect our rights, property, or safety, or the rights, property, or safety of others.
+#### Purchases (Units2Units, optional)
 
-#### **Business Transfers**
-In the event of a merger, acquisition, or sale of all or part of our assets, your information may be transferred to the acquiring entity.
+The optional Pro upgrade is the only part of any app that involves personal data,
+and it is optional. Payments are processed by RevenueCat and its payment providers —
+Apple's App Store on iOS, Stripe for web-based purchases on Android. Those parties
+receive what is needed to take a payment (for example an email address and payment
+method) and keep a purchase record; we receive confirmation that an upgrade is
+active, not your card details. Their own privacy policies govern that processing.
 
-#### **With Your Consent**
-We will only share your information with third parties outside the above scenarios if you provide explicit consent.
+#### Version check (all three apps)
 
-### **Data Retention**
-We retain your information for as long as necessary to fulfill the purposes outlined in this Privacy Policy unless a longer retention period is required or permitted by law. When your data is no longer needed, we will securely delete or anonymize it.
+Each app asks our website whether a newer version exists. That request includes your
+IP address, which our host records in its server logs. We use it only to serve the
+correct version information; we do not use it to identify you.
 
-### **Your Rights**
-Depending on your location, you may have certain rights regarding your personal information, including:
+#### Currency rates (Units2Units only)
 
-- **Access**: Request a copy of the personal information we hold about you.
-- **Correction**: Update or correct inaccurate or incomplete information.
-- **Deletion**: Request the deletion of your personal information.
-- **Opt-Out**: Opt out of receiving marketing communications or withdraw consent for specific uses of your data.
-- **Portability**: Request a transfer of your data to another service provider.
+The currency converter fetches exchange rates from open.er-api.com. The provider
+sees the request and your IP address, but not what you converted.
 
-To exercise these rights, please contact us by email. We will respond to your request within a reasonable timeframe.
+### This website
 
-### **Children’s Privacy**
-Our app is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected such information, we will take steps to delete it.
+No cookies, no analytics, no tracking pixels and no contact forms. The site is
+hosted on GitHub Pages, which keeps standard server logs (IP address, user agent,
+requested URL) under GitHub's own privacy statement. The APK downloads come with
+published SHA-256 checksums and signing-certificate fingerprints so you can verify
+what you received. If you email us, we receive what you choose to send.
 
-### **Security**
-We implement reasonable security measures to protect your information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet or electronic storage is 100% secure, and we cannot guarantee absolute security.
+### What we do not do
 
-### **Third-Party Links**
-The app may contain links to third-party websites, apps, or services. This Privacy Policy does not apply to those third parties. We are not responsible for their privacy practices or content. Please review their privacy policies before interacting with them.
+We do not sell, rent or trade personal information. We do not profile you, track you
+across other apps or websites, use advertising identifiers, or access your location,
+contacts, photos or files.
 
-### **Changes to This Privacy Policy**
-We reserve the right to update or modify this Privacy Policy at any time. If we make material changes, we will notify you through the app or via email. Your continued use of the app after such changes constitutes your acceptance of the updated Privacy Policy.
+### How long we keep things
 
-### **Contact Us**
-If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:
+- **Crash reports** are kept by Sentry for a limited period and then deleted.
+- **Purchase records** are held by RevenueCat, Apple or Stripe under their retention
+  policies; we keep the minimum needed to honour a purchase.
+- **Support email** is kept while the issue is open and for a reasonable period
+  afterwards.
+- **Server logs** are kept by GitHub under its retention policy.
 
-- Email: legal@gnitoapp.com
-- Address: 331 Elmwood Dr, Suite 4-999, Moncton, NB  E1A 7Y1, Canada
+### Your rights
 
-By using GnitoApp.com, you acknowledge that you have read, understood, and agreed to this Privacy Policy.
+Subject to your local law (for example PIPEDA in Canada and the GDPR in the EEA and
+UK), you may ask us to give you a copy of the personal information we hold, correct
+it, delete it, or stop a particular use, and you may withdraw consent at any time.
+Write to **legal@gnitoapp.com**; we may ask you to confirm your identity, and we
+answer within a reasonable period. You may also complain to the Office of the
+Privacy Commissioner of Canada or to your local supervisory authority.
+
+Because the apps require no account and keep your content on your device, the honest
+answer to many requests will be that we hold no personal information about you.
+
+### Children
+
+The apps are not directed at children under 13, and we do not knowingly collect
+personal information from them. If you believe a child has sent us personal data,
+contact us and we will delete it.
+
+### Security
+
+We use HTTPS throughout, keep the amount of data we hold to a minimum, and publish
+the signing certificate of every Android APK so you can verify its origin. No system
+is perfectly secure, and we cannot guarantee absolute security.
+
+### Other sites
+
+The apps and this site link to third parties — the Apple App Store, Bluesky, GitHub,
+and 3827992canadainc.com. Their privacy policies apply to what they do; this policy
+does not.
+
+### Changes to this policy
+
+We update this page whenever what the apps or the site actually do changes, and the
+date at the top is the authoritative one. Material changes are also noted on the
+home page.
+
+### Contact
+
+- Email: legal@gnitoapp.com (privacy) · support@gnitoapp.com (help with an app)
+- Address: 331 Elmwood Dr, Suite 4-999, Moncton, NB E1A 7Y1, Canada
+
+By using this website or an app, you acknowledge that you have read this policy.
