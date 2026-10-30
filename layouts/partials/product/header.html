@@ -7,8 +7,12 @@
     <div class="product-notice">{{ . | markdownify }}</div>
     {{- end }}
     <div class="product-actions">
+      {{- if .android }}
       <a class="product-btn product-btn--primary" href="/{{ .product }}/{{ .apk.apk }}">Download APK {{ .apk.version }} (Android)</a>
-      <a class="product-btn product-btn--secondary" href="{{ .data.store.url }}">{{ .data.store.label }}</a>
+      {{- end }}
+      {{- with .data.store }}
+      <a class="product-btn product-btn--secondary" href="{{ .url }}">{{ .label }}</a>
+      {{- end }}
     </div>
   </div>
 </div>

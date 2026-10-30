@@ -13,19 +13,27 @@
     {{ errorf "%s: front matter needs `product:` (see data/products/)" .File.Path }}
   {{- end -}}
   {{- $data := index hugo.Data.products $product -}}
-  {{- $apk := index hugo.Data.apk_checksums $product -}}
   {{- if not $data -}}
     {{ errorf "%s: data/products/%s.yaml is missing" .File.Path $product }}
   {{- end -}}
-  {{- if not $apk -}}
-    {{ errorf "%s: %s is missing from data/apk_checksums.json - run scripts/apk-checksums.sh" .File.Path $product }}
+  {{- if not $data.platforms -}}
+    {{ errorf "%s: data/products/%s.yaml needs a `platforms:` list (e.g. [android, ios])" .File.Path $product }}
   {{- end -}}
-  {{- $ctx := dict "page" . "product" $product "data" $data "apk" $apk -}}
+  {{- $android := in $data.platforms "android" -}}
+  {{- $apk := false -}}
+  {{- if $android -}}
+    {{- $apk = index hugo.Data.apk_checksums $product -}}
+    {{- if not $apk -}}
+      {{ errorf "%s: %s is marked Android but has no entry in data/apk_checksums.json - run scripts/apk-checksums.sh" .File.Path $product }}
+    {{- end -}}
+  {{- end -}}
+  {{- $ctx := dict "page" . "product" $product "data" $data "apk" $apk "android" $android -}}
   <article class="td-content product-page">
     {{ partial "product/header.html" $ctx }}
-    {{ partial "apk-verify.html" $ctx }}
+    {{- /* APK-specific blocks only exist for Android products. */ -}}
+    {{ if $android }}{{ partial "apk-verify.html" $ctx }}{{ end }}
     {{ partial "product/quickinfo.html" $ctx }}
-    {{ partial "product/install.html" $ctx }}
+    {{ if $android }}{{ partial "product/install.html" $ctx }}{{ end }}
     {{ partial "product/screenshots.html" $ctx }}
     <div class="product-description">
       {{ .Content }}

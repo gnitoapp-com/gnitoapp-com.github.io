@@ -2,6 +2,12 @@ name: Force Workout Helper
 tagline: 15 elite timers (AMRAP, TABATA, EMOM+).
 category: Fitness
 license: Free
+# Machine-readable platforms. "android" controls whether the APK download
+# button, the integrity block and the install guide render at all; "ios" and any
+# future desktop platforms are informational and drive the Quick Info row.
+platforms:
+  - android
+  - ios
 logo: /forceworkouthelper/images/logo_200_square.png
 logoAlt: Force Workout Helper icon
 store:

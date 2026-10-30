@@ -31,7 +31,7 @@ the single word "push" and deployed it. Work stays on a working branch until the
 | --- | --- |
 | `content/en/_index.md` | Home page (Docsy blocks: cover + feature) |
 | `content/en/{units2units,forceworkouthelper,romanitaire}/index.md` | Product pages: front matter (`layout: product`, `product: <key>`) plus the product description only |
-| `data/products/<product>.yaml` | Per-product facts: tagline, category, licence, store link, badges, screenshots, logo |
+| `data/products/<product>.yaml` | Per-product facts: `platforms` (required), tagline, category, licence, store link, badges, screenshots, logo, optional `notice` (Markdown, rendered above the download buttons) and optional `version` (only for non-Android products — Android takes it from the APK) |
 | `layouts/_default/product.html` + `layouts/partials/product/*` | Renders the shared product chrome from that data |
 | `content/en/privacy/` | Privacy policy: `_index.md` (EN) + `privacy_zh.md` (ZH as a separate page, not i18n) |
 | `content/en/terms/index.md`, `support.md`, `search.md` | Legal, contact, search page |
@@ -151,13 +151,19 @@ re-deriving the four version locations by hand.
    more (D4). Any new page/component must be legible on a dark background. The product pages are
    a deliberate exception: they render a white surface via the `.product-page` class in
    `_variables_project.scss`, never via inline styles.
-9. **Signing identity is a contract.** Never sign a release with a debug key, never commit a
+9. **Android-only blocks are gated by `platforms`.** The APK download button, the integrity
+   block and the install guide render only when `platforms` contains `android`, and only then is
+   `data/apk_checksums.json` required. A desktop-only product needs no APK, no checksum entry and
+   no `static/<product>/` APK — set `platforms` and, if it has no APK, a `version:` in its data.
+   The Quick Info "Platform Support" cell is derived from `platforms` (android, ios, windows,
+   macos, linux, web), so a page cannot claim a platform it does not ship on.
+10. **Signing identity is a contract.** Never sign a release with a debug key, never commit a
    keystore or `key.properties` to any repo, and never publish an APK whose certificate differs
    from the published `signerCertSha256`. `scripts/apk-checksums.sh` enforces the last one and
    requires `--allow-key-change` for a deliberate rotation (which also needs a page note and
    Android developer-verification registration). The full procedure is `docs/KEY-CHANGE.md`;
    announcements go in the `notice` field of `data/products/<product>.yaml`. See D25.
-10. **`hugo.yaml` is the config.** `config.yaml` is a Docsy version guard and `hugo-disabled.toml`
+11. **`hugo.yaml` is the config.** `config.yaml` is a Docsy version guard and `hugo-disabled.toml`
    is dead template scaffolding. Put every setting in `hugo.yaml`.
 
 ### GitHub credentials on this machine

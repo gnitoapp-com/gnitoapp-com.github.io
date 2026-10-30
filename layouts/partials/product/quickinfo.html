@@ -14,7 +14,9 @@
       <tr>
         <td>GnitoApp.com</td>
         <td>{{ .data.category }}</td>
-        <td>{{ .apk.version }}</td>
+        {{- /* Android: the version comes from the published APK. Other
+               platforms have no APK, so the product data supplies it. */ -}}
+        <td>{{ with .apk }}{{ .version }}{{ else }}{{ .data.version | default "—" }}{{ end }}</td>
         <td>{{ .data.license }}</td>
       </tr>
     </tbody>
@@ -30,9 +32,21 @@
       </tr>
     </thead>
     <tbody>
+      {{- /* "Platform Support" is derived from `platforms:` so a product cannot
+             advertise a platform it does not ship on (and so desktop apps get
+             their row for free). Any other badge uses its data value. */ -}}
+      {{- $platformNames := dict "android" "Android" "ios" "iOS" "windows" "Windows" "macos" "macOS" "linux" "Linux" "web" "Web" -}}
       <tr>
         {{- range .data.badges }}
-        <td>{{ .value }}</td>
+        {{- $value := .value -}}
+        {{- if and (eq .label "Platform Support") $.data.platforms -}}
+          {{- $names := slice -}}
+          {{- range $.data.platforms -}}
+            {{- $names = $names | append (index $platformNames . | default .) -}}
+          {{- end -}}
+          {{- $value = delimit $names " & " -}}
+        {{- end }}
+        <td>{{ $value }}</td>
         {{- end }}
       </tr>
     </tbody>
