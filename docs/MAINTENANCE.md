@@ -1,10 +1,15 @@
 # Maintenance audit — gnitoapp.com
 
 Audit date: 2026-10-29. Baseline commit: `5efb80c` (`main`, deployed 2026-07-27).
-Everything below was verified by reading the repo, building it locally with Hugo 0.161.1 +
-Docsy v0.11.0, and comparing the artifact with the live site (`curl https://gnitoapp.com/...`).
-Each finding states its evidence and the fix. Findings are referenced as `D<n>` from
-`AGENTS.md` and from commit messages.
+Everything below was verified by reading the repo, building it locally, and comparing the
+artifact with the live site. Each finding states its evidence and the fix; findings are referenced
+as `D<n>` from `AGENTS.md` and from commit messages.
+
+**Status (2026-10-30).** Every finding below is addressed on the working branch
+`major-enhancements` (more than 50 commits ahead of `main`, pushed). **`main` and the live site are
+deliberately still at the baseline** — advancing `main` is the owner's call (see
+`AGENTS.md`, "Hard rule: `main` is off-limits"), and until it moves the Dependabot pull requests
+targeting `main` stay open and valid. Remaining work is in the app repositories, not here.
 
 Severity: **P0** breaks correct output or the delivery contract · **P1** will break or bite
 soon · **P2** maintainability/quality debt · **P3** polish.
@@ -18,22 +23,29 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 | Metric | At audit | Now |
 | --- | --- | --- |
 | Pages built | 19 | 13 (search, taxonomies and print output removed) |
-| Static files | 59 | 36 (Docsy 0.16 dropped its default favicons — pending #77) |
-| `public/` size | 530 MB | 267 MB |
-| `static/` size | 528 MB (509 MB APKs, 21 MB screenshots) | 265 MB (245 MB APKs, 21 MB screenshots) |
+| Static files | 59 | 33 |
+| `public/` size | 530 MB | 247 MB |
+| `static/` size | 528 MB (509 MB APKs, 21 MB screenshots) | 245 MB (APKs only; screenshots moved to `assets/`) |
+| Screenshot weight served | 21 MB of PNG | 592 KB of WebP (230/460 px, `srcset`) |
 | APKs with no page linking to them | 3 files, 264 MB | 0 |
 | `.git` size | 305 MB | 305 MB (deleting files does not shrink history) |
 | Product pages | 130 / 139 / 112 lines, 43 / 47 / 44 inline `style=` attributes | front matter + Markdown, rendered from `data/products/*.yaml`; 0 inline styles |
-| Duplicated version strings | 4 per product, unverified | unchanged |
-| Build time | ~60 s cold, ~2 s warm | ~15 s cold, ~1.5 s warm (Docsy module cache) |
+| Duplicated version strings | 4 per product, unverified | 1 typed (`version.json`); the rest generated and CI-checked |
+| Build time | ~60 s cold, ~2 s warm | ~15 s cold, ~2–3 s warm (module cache + image processing) |
 | Hugo build warnings | 3 (2 deprecations + 1 Docsy render hook) | 0 |
-| Open Dependabot PRs | 3 (all stale npm bumps) | 1 (#75, blocked on D15) |
+| Open Dependabot PRs | 3 (all stale npm bumps) | 3, kept deliberately: they target `main`, which is behind the branch |
 | Published APK integrity data | none | SHA-256 + size + signing-certificate fingerprint per APK, gated in CI |
+| Brand assets | Docsy's favicons, no navbar logo, no `og:image` | own favicon/manifest/PWA set, navbar mark, per-page social cards |
 
 ## Resolved
 
 | Finding | Status | Commit |
 | --- | --- | --- |
+| D16 — no verification gates (link check was a stub) | fixed: `scripts/check-links.sh` (internal links + anchors) in `postbuild:production`, cspell, html-validate, `npm audit --omit=dev`, and a post-deploy smoke test in the deploy job | `e0144db` |
+| D22 — placeholder cspell dictionary | fixed: real product/domain dictionary; it immediately caught an `ifetime` typo | `e0144db` |
+| D23 — feedback widget posting to an unconfigured Google Analytics | fixed: the `feedback` block was removed | `441455d` |
+| D19 remainder — HTTP security headers | decided: accepted and documented; Pages cannot set headers, a `<meta>` CSP would be symbolic here. Cloudflare in front is the path if it ever matters | `a559317` |
+| D25 — signing identities | decided: re-key all three apps (FWH included because its keystore is in git); execution tracked in the app repos | `856152c` |
 | D14 — screenshots were unoptimised PNGs served verbatim | fixed: sources moved to `assets/screenshots/`, Hugo renders 230/460 px WebP with `srcset` + width/height; published weight 21 MB → **592 KB** | `f5fc309` |
 | D10 — theme branding: Docsy favicons, no navbar logo, no social image | fixed: favicon set + manifest + apple-touch generated from the master logo, navbar mark, per-product 1200×630 social cards with a site-wide fallback | `5f32de4` |
 | D12 — privacy policy contradicted the apps and had no date | fixed: rewritten against what the shipped APKs actually do (Sentry crash reports, RevenueCat/Stripe purchases, version check, currency API, GitHub Pages logs), dated, Chinese sibling kept per owner decision | `b80326f` |
@@ -44,8 +56,8 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 | D3 — no lockfile | fixed: `package-lock.json` tracked, Node pinned to 22, `npm ci` verified from a clean tree | `7d119c5` |
 | D2 — Hugo version skew (CI 0.145 vs npm 0.161) | fixed: CI now runs `npm ci && npm run build:production`, so the npm pin is the only Hugo version; `HUGO_VERSION` removed from the workflow | `e5740b9` |
 | D17 — no caching, floating tool installs | fixed: npm + Hugo-module caches (15 s cold, 1.4 s warm), no `npm i -D …`, `fetch-depth: 1`; `enableGitInfo` deliberately left off (see D17) | `e5740b9` |
-| Hugo deprecations (`languageName`, `LanguageDirection`) in our config/template | fixed; the two remaining warnings are Docsy v0.11's own (D15) | `2ca1c92` |
-| D18 — Dependabot scope and PR noise | partly fixed: `github-actions` + `gomod` watched, weekly, one PR per ecosystem; #73 and #72 applied locally, #75 deliberately blocked on D15. Closing the PRs needs an Issues/PR write scope the `gh` token lacks | `1ab11e1`, `83da277` |
+| Hugo deprecations (`languageName`, `LanguageDirection`) in our config/template | fixed; the Docsy v0.11 warnings disappeared with the theme upgrade (D15), so the build is warning-free | `2ca1c92`, `2fbf3d1` |
+| D18 — Dependabot scope and PR noise | partly fixed: `github-actions` + `gomod` watched, weekly, one PR per ecosystem. Owner decision 2026-10-30: leave the PRs open while `main` stays behind the branch — they are valid against `main` | `1ab11e1`, `83da277` |
 | D5 — README/CONTRIBUTING/LICENSE were Docsy template text | fixed: real README, CONTRIBUTING deleted, LICENSE replaced with an all-rights-reserved notice (owner decision) that lists third-party licences | `441455d` |
 | D6 — repo identity was the Docsy example's | fixed: `package.json` name/description/repository/homepage/author/licence, `go.mod` module path, go directive 1.18 | `441455d` |
 | D7 — dead scaffolding | fixed: `hugo-disabled.toml`, `config.yaml`, `docsy.work*`, `netlify.toml`, `Dockerfile`, `docker-compose.yaml` deleted with their npm scripts | `441455d` |
@@ -56,25 +68,25 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 | D2 follow-up — Hugo 0.161.1 vs latest | fixed: Hugo 0.169.0, `imaging.quality` migrated to per-format keys | `2fbf3d1` |
 | D19 — no download integrity data | fixed for integrity: `scripts/apk-checksums.sh` derives SHA-256/size/certificate, `SHA256SUMS` per product, a collapsed block on each page, and a CI gate. HTTP security headers remain out of scope on Pages | `cca3069` |
 
-## Open work (issues)
+## Open work
 
-Remaining findings are tracked as issues in this repository, created 2026-10-29. Put findings,
-decisions and verification evidence in the issue thread; close it only with the evidence.
+**This repository has no open issues** — #76 to #83 are closed, each with the evidence in its
+thread. What remains lives in the app repositories:
 
-| Issue | Covers |
-| --- | --- |
-| #76 Product pages from data, not inline HTML | D11 — **done** (`7860279`) |
-| #77 Brand icons, processed screenshots, per-page social images | **done** — D10 `5f32de4`, D14 `f5fc309`; D20 dropped by owner decision (site left as-is) |
-| #78 Remove the `baseof.html` fork, set dark mode before first paint | D4 — **done** (`4169d95`) |
-| #79 Docsy v0.18, then Hugo past 0.166 | D15, D2 (follow-up) — **done** (`2fbf3d1`) |
-| #80 Repo cleanup: template leftovers, dead scaffolding, dead config | D5, D6, D7, D8, D13, D23 — **done** (`441455d`) |
-| #81 Quality gates: links, spelling, HTML/a11y, post-deploy smoke test | D16, D22, D24 — **done** |
-| #82 Download trust: verification copy + key-change playbook | D19 (remainder), D25 (site side) |
-| #83 Privacy policy vs product claims | D12 — **done** (`b80326f`) |
+| Repo | Issue | Work |
+| --- | --- | --- |
+| force-workout-helper | [#7](https://github.com/gnitoapp-com/force-workout-helper/issues/7) | Replace the signing key (new 4096-bit key, untrack the committed keystore, hard-fail the debug fallback, register the package) |
+| units2units | [#1](https://github.com/gnitoapp-com/units2units/issues/1) | Generate a new signing key (the old one is unlocatable), untrack the plaintext credential file, register |
+| romanitaire | [#2](https://github.com/gnitoapp-com/romanitaire/issues/2) | Replace the Android debug key with a release key, hard-fail the debug fallback, publish with the uninstall notice, register |
+| romanitaire | [#3](https://github.com/gnitoapp-com/romanitaire/issues/3) | In-app privacy link is a 404 (`/privacy_policy/` → `/privacy/`) |
+| force-workout-helper | [#8](https://github.com/gnitoapp-com/force-workout-helper/issues/8) | Its in-app policy is a second, stale copy that contradicts the app |
 
-Ordering constraints that matter: **#78 before #79** (one unknown at a time), and **#79 before any
-Hugo bump past 0.166** (Docsy v0.11 reads APIs a future Hugo removes). #76 and #77 are independent
-and can land in either order, but #76 first makes #77 cheaper.
+The site side of the re-key is ready: the `notice:` text is pre-written (commented) in
+`data/products/*.yaml`, `--allow-key-change` is the publish gate, and `docs/KEY-CHANGE.md` has the
+procedure including the `keytool` command.
+
+Not in the issue tracker, by choice: **D21** (monitoring/performance budget) is optional polish, and
+**D20** was dropped by the owner — the home page stays as-is.
 
 ---
 
@@ -95,7 +107,7 @@ Fix applied: the `--baseURL` override is gone (baseURL now comes only from `hugo
 `layouts/robots.txt` advertises the sitemap. Verified in the build: one canonical inside `<head>` on
 all 12 pages, `og:url` https, sitemap `<loc>` https, `Sitemap: https://gnitoapp.com/sitemap.xml`.
 
-Remaining: after the next deploy, confirm production flipped —
+Still to confirm on the first deploy of `main`: production flipped —
 `curl -s https://gnitoapp.com/units2units/ | grep -o 'og:url" content="[^"]*"'` must say `https`.
 
 ### D2. Three different Hugo versions in play — **resolved in `e5740b9`**
@@ -202,16 +214,27 @@ read from `static/<product>/version.json` via `os.ReadFile` at build time, or �
 file becomes the source of truth and `version.json` is generated in the build, eliminating the
 4-way duplication in `AGENTS.md` invariant 1.
 
-### D12. Privacy policy contradicts the product claims, and has no date — **resolved (rewritten 2026-10-30)**
-`content/en/privacy/_index.md` says "We may use cookies, web beacons, and other tracking
-technologies", and describes third-party account linking, while every product page advertises
-"No Ads / No Trackers / No Login". There is no "last updated" date, no retention/deletion
-section, no named data-protection contact beyond `legal@gnitoapp.com`, and the Chinese version is a
-separate page (`privacy_zh.md`) rather than a language. This is a legal-consistency and
-store-listing risk (App Store privacy declarations). Do not rewrite the prose yourself: hand the
-owner a diff proposal. Structurally, `params.privacy_policy: /privacy` is fine; if i18n is wanted,
-enable a `zh` language in `hugo.yaml` (the commented `no`/`fa` examples are the pattern) instead of
-a sibling page.
+### D12. Privacy policy contradicts the product claims, and has no date — **resolved in `b80326f`**
+
+The old policy claimed "cookies, web beacons and other tracking technologies" and third-party
+account linking, while every product page says "No Ads / No Trackers / No Login" and no app has
+accounts. It had no date and no retention/contact specifics.
+
+What shipped: the policy was rewritten against behaviour verified in the shipped APKs and app
+sources — all three bundle Sentry (`sentry_flutter` via `catcher_2`, `sendDefaultPii` at its
+default) for crash diagnostics; Units2Units sells its Pro upgrade through RevenueCat (Apple on
+iOS, Stripe web paywalls on Android); every app polls gnitoapp.com for updates; Units2Units fetches
+currency rates from open.er-api.com; the site sets no cookies and runs no analytics, while GitHub
+Pages keeps server logs. The page now states those four outbound flows, what stays on the device,
+retention per party, PIPEDA/GDPR rights, a one-line children statement, and **Last updated:
+30 October 2026**. Chinese remains a sibling page (`privacy_zh.md`, translated to match, linking
+back to `/privacy/`).
+
+Follow-ups, tracked in the app repos: Romanitaire's in-app link points at a 404
+(`/privacy_policy/` → `romanitaire#3`) and Force Workout Helper ships a second, stale policy
+(`force-workouthelper#8`). In App Store Connect, the App Privacy answers must match this text —
+"Purchases" for Units2Units, "Diagnostics" for all three, no tracking — that is a store-console
+task, not a page edit.
 
 ### D13. Empty taxonomy pages and dead template params — **resolved in `441455d`**
 `taxonomies` are enabled and Docsy shows tag/category clouds, but no page uses `tags:` or
@@ -236,8 +259,9 @@ Do not attempt it in the same commit as content or release work.
 
 Done (2026-10-29): Docsy v0.18.0 and Hugo 0.169.0 land together with the module-path change,
 `hugo mod npm pack` for Bootstrap/Font Awesome, and the Dart Sass toolchain. Two visible
-consequences are documented in the commit and on #79: the dark background is a shade darker (theme
-palette change) and the site emits no favicon links until #77 supplies real icons.
+consequences are documented in the commit and on #79: the dark background is a shade darker
+(theme palette change) and Docsy 0.16 stopped shipping default favicons — the site now supplies its
+own (`5f32de4`).
 
 The upgrade also added a second local override to re-diff each time: `layouts/partials/navbar.html`
 (theme template + dropdown support for menu entries with children, added for #87). Treat it like
@@ -266,19 +290,20 @@ autoprefixer` ignores `package.json` pins. Fix: `actions/setup-node` with `cache
 `enableGitInfo: true` (the checkout already uses `fetch-depth: 0`) to get `lastmod` in the
 sitemap, and drop the unused `snap install dart-sass` step once CI uses the npm Hugo.
 
-### D18. Dependabot PRs conflict with the working model — **partly resolved in `1ab11e1`**
-Only npm is watched (no `github-actions`, no `gomod`), daily, with 10 open slots — and the owner
-does not use PRs, so the three open bumps pile up: #75 `hugo-extended` 0.166.0, #73 `postcss-cli`
-12.0.0, #72 `npm-check-updates` 23.1.0. Fix: keep Dependabot as a *notification* channel
-(`open-pull-requests-limit: 1`, weekly, add `github-actions` + `gomod`), and resolve its branches
-by applying the change locally on `main`, verifying the build, and closing the PR with a note —
-never merging through the GitHub UI.
+### D18. Dependabot PRs conflict with the working model — **policy settled 2026-10-30**
 
-Applied: `github-actions` and `gomod` added, weekly schedule, `open-pull-requests-limit: 1` per
-ecosystem, `deps`/`ci` commit prefixes, and the notification-only policy written into the file.
-Still open at audit follow-up: #75 (`hugo-extended` 0.166.0), #73 (`postcss-cli` 12.0.0), #72
-(`npm-check-updates` 23.1.0). #75 is a Hugo jump — do it *after* D15, because Docsy v0.11 still
-uses `LanguageDirection`/`LanguageName` and a future Hugo removes them.
+Original problem: only npm was watched, daily, with 10 open slots, for an owner who does not use
+pull requests.
+
+Applied (`1ab11e1`, `83da277`): `github-actions` and `gomod` ecosystems added, weekly schedule,
+`open-pull-requests-limit: 1` per ecosystem, `deps`/`ci` commit-message prefixes, and the
+notification-only policy written into `.github/dependabot.yml`.
+
+**Owner decision 2026-10-30:** leave the open Dependabot pull requests alone while `main` stays
+behind the working branch — they are valid *against `main`*, which still pins the old versions.
+`#86` (`deploy-pages` v5) is already applied on the branch (`6ea54a3`) but must not be closed
+until `main` moves. Once `main` advances, the remaining PRs become redundant and should be closed
+with a note pointing at the commits that superseded them.
 
 ### D19. Download security — **integrity part resolved in `cca3069`**
 APKs are served straight from GitHub Pages (`application/octet-stream`) with no published
@@ -391,42 +416,34 @@ developer-verification registration that go with it.
 
 ## P3 — polish
 
-- **D20.** Home page: "Our products:" is an `<h1>` inside a cover block that already has one;
-  three equal buttons with no logos; the Bluesky feature block is alone in its row. Add product
-  logos, one-line descriptions, and the `3827992 Canada Inc` relation in the footer, not the hero.
+- **D20.** Home page: product logos/one-liners beside the three buttons and the company relation
+  in the footer. **Dropped by the owner on 2026-10-30** — the page stays as-is.
 - **D21.** No monitoring and no performance budget. A monthly `lighthouse-ci` run against the live
-  site (mobile) would have caught D14 and D11.
-- **D22.** `.cspell.yml` lists `Docsy`/`Goldydocs`; the real dictionary needs product words
-  (Units2Units, Romanitaire, AMRAP, TABATA, EMOM, sideloading, ...). Same for `package.json`
-  `spelling`.
-- **D23.** Docsy `ui.feedback` posts "was this helpful?" events to Google Analytics, but
-  `services.googleAnalytics.id` is unset — the buttons do nothing. Remove or configure.
+  site would still be worthwhile; not done.
+- **D22.** Placeholder cspell dictionary — **resolved** (`e0144db`).
+- **D23.** `ui.feedback` posting to an unconfigured Google Analytics — **resolved** (`441455d`).
 
 ---
 
-## Suggested order of work
+## Status and remaining work
 
-1. ~~**Ship the cheap correctness fixes together (D1).**~~ Done (`63de339`) — awaiting the
-   post-deploy `curl` confirmation against gnitoapp.com.
-2. ~~**Trim the repo (D9).**~~ Done (`2d0b3e2`) — 530 MB → 267 MB.
-3. ~~**Make the build reproducible and identical to CI (D2, D3, D17).**~~ Done (`7d119c5`,
-   `e5740b9`, `2ca1c92`). One Hugo version, committed lockfile, caches, no avoidable warnings.
-   First push of these three will deploy a build produced by Hugo 0.161.1 instead of 0.145.0;
-   the only output differences measured between the two were minifier cosmetics and asset hashes.
-4. ~~**Release-path tooling (D19 + release skill).**~~ Done (`cca3069`) — checksums, signing
-   fingerprints and the CI gate. The remaining item is D25: decide the signing identity per
-   product before the next Romanitaire build.
-5. **Content architecture (D11, D14, D10).** Data-driven product pages + optimized images + brand
-   assets. Do this before any visual redesign; it is the rewrite that makes later work cheap.
-6. **Docsy upgrade to v0.18 (D15)** as an isolated task, then retire `baseof.html` (D4) with
-   before/after screenshots. Do not bump Hugo past 0.166 (Dependabot #75) before this: Docsy
-   0.11 still reads `LanguageDirection`/`LanguageName`, which a future Hugo removes.
-6b. **Product pages follow-up (#82):** the install guide still says "tap Install Anyway" without
-   telling users to compare the hash; the integrity block is right above it, so that rewrite is a
-   small copy change now that #82 owns it.
+The audit is closed on this side. Everything in `P0`–`P3` is either fixed, decided, or explicitly
+dropped; the branch holds the whole result.
 
-7. **Template cleanup (D5, D6, D7)** — invisible, but stops the next person (or model) from
-   trusting the Docsy README.
-8. **Gates and monitoring (D16, D21)** once the content model is stable.
-9. **Legal/marketing alignment (D12)** and **APK signing identity (D25)** — owner decisions with
-   user-visible consequences, not agent edits.
+1. **Owner action: advance `main` when ready.** The branch (`major-enhancements`) is the complete,
+   verified build; `main` is the 2026-07-27 baseline. Only a push to `main` deploys (the deploy job
+   is gated to it). The first deploy after merging also exercises the two things that can only run
+   there: the post-deploy smoke test and the redirect-free canonical check against production.
+2. **App repos: signing keys.** Generate the three new keys, sign, publish with the pre-written
+   notices and `--allow-key-change`, register the package names — `force-workout-helper#7`,
+   `units2units#1`, `romanitaire#2`, procedure in `docs/KEY-CHANGE.md`.
+3. **App repos: privacy links.** `romanitaire#3` (404 link) and `force-workout-helper#8` (stale
+   second policy).
+4. **Optional:** D21 monitoring, and Docsy's offline search if the site should ever have search
+   (it currently has none, deliberately).
+
+Operational note for whoever runs the dev server: `hugo server` writes development HTML into
+`public/` by default, so running it alongside a production build leaves pages pointing at a
+deleted stylesheet (the site then renders unstyled). `scripts/hugo` now injects
+`--renderToMemory` for `serve`/`server`, and `public/` is written only by
+`npm run build:production`.
