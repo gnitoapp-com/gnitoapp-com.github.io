@@ -14,7 +14,7 @@ We want to hear from you!
 
 ## Verifying a download
 
-Every product page shows a "Verify this download" block with the SHA-256 of the
+Every product page shows a "Verify this APK" block with the SHA-256 of the
 current APK, the SHA-256 of the certificate it was signed with, and a link to the
 `SHA256SUMS` file next to the download.
 

@@ -280,7 +280,7 @@ version + hash is what makes "Install anyway" a defensible instruction.
 Applied: `scripts/apk-checksums.sh` computes the APK's SHA-256, byte size, version, signing
 certificate digest/DN and (via `aapt2`) package/`versionCode`/`versionName`; it writes a
 sha256sum-compatible `SHA256SUMS` per product and `data/apk_checksums.json`, which
-`layouts/partials/apk-verify.html` renders as a collapsed "Verify this download" block. The
+`layouts/partials/apk-verify.html` renders as a collapsed "Verify this APK" block. The
 workflow's `Verify APK integrity data` step runs `--check` (plain Python) before building, so a
 stale checksum, a renamed APK, a mismatched `version.json`/`versionName`, or a page still linking
 the previous file fails the deploy.
