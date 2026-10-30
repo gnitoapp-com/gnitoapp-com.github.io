@@ -44,8 +44,6 @@ deployed site. The deployment job runs only for `main`.
 - `AGENTS.md` — operating manual: commands, invariants, quality gates, working agreement.
 - `docs/MAINTENANCE.md` — audit findings, what is fixed, and the remaining backlog.
 - `docs/KEY-CHANGE.md` — procedure for changing an app's signing key.
-- `docs/ANDROID-DEVELOPER-VERIFICATION.md` — how to register as an Android developer
-  (Android Developer Console, not Play) and register each app's package name and key.
 
 ## Licence
 
