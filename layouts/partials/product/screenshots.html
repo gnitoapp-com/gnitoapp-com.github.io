@@ -1,8 +1,29 @@
+{{- /*
+  Screenshot strip. The sources live in assets/screenshots/<product>/ (they were
+  previously served verbatim from static/, ~21 MB of full-resolution PNG). Hugo
+  renders a 230 px and a 460 px WebP variant and emits both as srcset, with the
+  intrinsic aspect ratio in width/height so the strip cannot shift while loading.
+*/ -}}
 <section class="product-screenshots">
   <h2>Screenshots</h2>
   <div class="product-screenshots__strip">
     {{- range .data.screenshots }}
-    <img class="product-screenshot" src="/{{ $.product }}/screenshots/{{ .file }}" alt="{{ .alt }}" width="230" loading="lazy" decoding="async">
+      {{- $file := .file -}}
+      {{- $alt := .alt -}}
+      {{- $path := printf "screenshots/%s/%s" $.product $file -}}
+      {{- with resources.Get $path -}}
+        {{- $small := .Resize "230x webp q82" -}}
+        {{- $large := .Resize "460x webp q82" -}}
+        {{- $height := int (math.Round (div (mul $large.Height 230.0) $large.Width)) }}
+        <img class="product-screenshot"
+             src="{{ $large.RelPermalink }}"
+             srcset="{{ $small.RelPermalink }} 230w, {{ $large.RelPermalink }} 460w"
+             sizes="230px"
+             width="230" height="{{ $height }}"
+             alt="{{ $alt }}" loading="lazy" decoding="async">
+      {{- else -}}
+        {{ errorf "screenshot source missing: assets/%s (data/products/%s.yaml)" $path $.product }}
+      {{- end -}}
     {{- end }}
   </div>
 </section>

@@ -34,6 +34,7 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 
 | Finding | Status | Commit |
 | --- | --- | --- |
+| D14 — screenshots were unoptimised PNGs served verbatim | fixed: sources moved to `assets/screenshots/`, Hugo renders 230/460 px WebP with `srcset` + width/height; published weight 21 MB → **592 KB** | `SHOT_COMMIT` |
 | D10 — theme branding: Docsy favicons, no navbar logo, no social image | fixed: favicon set + manifest + apple-touch generated from the master logo, navbar mark, per-product 1200×630 social cards with a site-wide fallback | `5f32de4` |
 | D11 — product pages were raw inline-styled HTML with a 4-way version duplication | fixed: `data/products/*.yaml` + one layout + partials, version from generated data, zero inline styles, semantic tables | `7860279` |
 | D1 — published URLs were `http://`, no canonical | fixed: canonical hook + `hugo.yaml` is the only baseURL source, `robots.txt` advertises the sitemap | `63de339` |
@@ -62,7 +63,7 @@ decisions and verification evidence in the issue thread; close it only with the 
 | Issue | Covers |
 | --- | --- |
 | #76 Product pages from data, not inline HTML | D11 — **done** (`7860279`) |
-| #77 Brand icons, processed screenshots, per-page social images | D10 **done** (`5f32de4`); D14 (screenshot processing) and D20 (home hero) remain |
+| #77 Brand icons, processed screenshots, per-page social images | **done** — D10 `5f32de4`, D14 `SHOT_COMMIT`; D20 dropped by owner decision (site left as-is) |
 | #78 Remove the `baseof.html` fork, set dark mode before first paint | D4 — **done** (`4169d95`) |
 | #79 Docsy v0.18, then Hugo past 0.166 | D15, D2 (follow-up) — **done** (`2fbf3d1`) |
 | #80 Repo cleanup: template leftovers, dead scaffolding, dead config | D5, D6, D7, D8, D13, D23 — **done** (`441455d`) |
@@ -219,7 +220,7 @@ tag posts if a news/blog section is planned. Same sweep: `permalinks.blog`,
 `params.taxonomy.*`, `params.versions`, `params.version*`, `archived_version`, `readingtime`,
 `prism_syntax_highlighting`, `outputs.section: print` — none are used by this content set.
 
-### D14. Screenshots are unoptimized PNGs in `static/`
+### D14. Screenshots are unoptimized PNGs in `static/` — **resolved in `SHOT_COMMIT`**
 21 MB of screenshots, individually up to 3.7 MB, copied verbatim (Hugo does not process
 `static/`), no `width`/`height` attributes → cumulative layout shift on the pages that sell the
 apps, mostly to mobile users. Fix: move to page bundles under `assets/` and use Hugo image

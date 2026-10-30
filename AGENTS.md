@@ -35,7 +35,8 @@ the single word "push" and deployed it. Work stays on a working branch until the
 | `layouts/_default/product.html` + `layouts/partials/product/*` | Renders the shared product chrome from that data |
 | `content/en/privacy/` | Privacy policy: `_index.md` (EN) + `privacy_zh.md` (ZH as a separate page, not i18n) |
 | `content/en/terms/index.md`, `support.md` | Legal and contact pages |
-| `static/<product>/` | `version.json`, the current `*.apk`, `SHA256SUMS`, `screenshots/`, `images/logo_200_square.png`. Copied verbatim — never processed by Hugo |
+| `static/<product>/` | `version.json`, the current `*.apk`, `SHA256SUMS` and `images/logo_200_square.png`. Copied verbatim |
+| `assets/screenshots/<product>/` | Screenshot sources (PNG). Hugo renders 230 px and 460 px WebP variants — add a file here and list it in `data/products/<product>.yaml`; never put screenshots back in `static/` |
 | `data/apk_checksums.json` | **Generated** per-APK SHA-256, size, signing-certificate fingerprint, package/versionCode. Never hand-edit; run `scripts/apk-checksums.sh` |
 | `scripts/apk-checksums.sh` | Regenerates the integrity data (`--check` verifies it; CI runs `--check`) |
 | `scripts/hugo` | Runs the npm-pinned Hugo with node_modules/.bin and Go on PATH — **there is no system-wide `hugo`** |
@@ -152,8 +153,9 @@ re-deriving the four version locations by hand.
 5. **No new large binaries.** One APK per product, plus at most the immediately previous one
    if the owner asks. Delete superseded APKs in the same commit (D9). Never commit
    `public/`, `resources/` or `node_modules/`.
-6. **Images stay small.** New screenshots: ≤ 300 KB each, longest edge ≤ 700 px (they render
-   at 230 CSS px). Optimize before committing.
+6. **Screenshots go through Hugo.** Sources live in `assets/screenshots/<product>/` (keep new ones
+   ≤ ~1400 px wide so the repo does not grow) and are rendered to 230/460 px WebP with `srcset` and
+   explicit dimensions. Total published weight is ~600 KB for all 17 — keep it under 2 MB.
 7. **URLs are stable.** Page paths are `/<product>/` and are linked from the App Store
    listings and existing QR/APK pages. Do not rename or move a product page; add a redirect
    or alias if one must change.
