@@ -17,7 +17,7 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 
 | Metric | At audit | Now |
 | --- | --- | --- |
-| Pages built | 19 | 19 |
+| Pages built | 19 | 13 (search, taxonomies and print output removed) |
 | Static files | 59 | 36 (Docsy 0.16 dropped its default favicons — pending #77) |
 | `public/` size | 530 MB | 267 MB |
 | `static/` size | 528 MB (509 MB APKs, 21 MB screenshots) | 265 MB (245 MB APKs, 21 MB screenshots) |
@@ -43,6 +43,11 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 | D17 — no caching, floating tool installs | fixed: npm + Hugo-module caches (15 s cold, 1.4 s warm), no `npm i -D …`, `fetch-depth: 1`; `enableGitInfo` deliberately left off (see D17) | `e5740b9` |
 | Hugo deprecations (`languageName`, `LanguageDirection`) in our config/template | fixed; the two remaining warnings are Docsy v0.11's own (D15) | `2ca1c92` |
 | D18 — Dependabot scope and PR noise | partly fixed: `github-actions` + `gomod` watched, weekly, one PR per ecosystem; #73 and #72 applied locally, #75 deliberately blocked on D15. Closing the PRs needs an Issues/PR write scope the `gh` token lacks | `1ab11e1`, `83da277` |
+| D5 — README/CONTRIBUTING/LICENSE were Docsy template text | fixed: real README, CONTRIBUTING deleted, LICENSE replaced with an all-rights-reserved notice (owner decision) that lists third-party licences | `441455d` |
+| D6 — repo identity was the Docsy example's | fixed: `package.json` name/description/repository/homepage/author/licence, `go.mod` module path, go directive 1.18 | `441455d` |
+| D7 — dead scaffolding | fixed: `hugo-disabled.toml`, `config.yaml`, `docsy.work*`, `netlify.toml`, `Dockerfile`, `docker-compose.yaml` deleted with their npm scripts | `441455d` |
+| D8 — `/search/` published with no backend | fixed: page deleted (enable Docsy offline search later if wanted) | `441455d` |
+| D13 — empty taxonomy pages and dead params | fixed: `disableKinds: [taxonomy]`, taxonomy/version/print/feedback/reading-time config removed | `441455d` |
 | D4 — stale `baseof.html` fork, dark mode after `</body>` | fixed: template deleted, dark mode set in the head hook, fixed-navbar offset restored in project SCSS | `4169d95` |
 | D15 — Docsy v0.11 vs v0.18 | fixed: Docsy v0.18.0 at `github.com/docsy/docsy/theme`, Bootstrap/Font Awesome via `hugo mod npm pack`, Dart Sass via `sass-embedded` + postinstall shim, zero build warnings | `2fbf3d1` |
 | D2 follow-up — Hugo 0.161.1 vs latest | fixed: Hugo 0.169.0, `imaging.quality` migrated to per-format keys | `2fbf3d1` |
@@ -59,7 +64,7 @@ decisions and verification evidence in the issue thread; close it only with the 
 | #77 Brand icons, processed screenshots, per-page social images | D10, D14, D20 |
 | #78 Remove the `baseof.html` fork, set dark mode before first paint | D4 — **done** (`4169d95`) |
 | #79 Docsy v0.18, then Hugo past 0.166 | D15, D2 (follow-up) — **done** (`2fbf3d1`) |
-| #80 Repo cleanup: template leftovers, dead scaffolding, dead config | D5, D6, D7, D8, D13, D23 |
+| #80 Repo cleanup: template leftovers, dead scaffolding, dead config | D5, D6, D7, D8, D13, D23 — **done** (`441455d`) |
 | #81 Quality gates: links, spelling, HTML/a11y, post-deploy smoke test | D16, D22, D24 — **done** |
 | #82 Download trust: verification copy + key-change playbook | D19 (remainder), D25 (site side) |
 | #83 Privacy policy vs product claims | D12 |
@@ -131,7 +136,7 @@ replace `languages.en.languageName` with `label` in `hugo.yaml`, and drop
 
 ## P1 — will bite soon
 
-### D5. README, CONTRIBUTING and LICENSE still describe the Google Docsy template
+### D5. README, CONTRIBUTING and LICENSE still describe the Google Docsy template — **resolved in `441455d`**
 `README.md` is the Docsy example readme (example.docsy.dev, Goldydocs, Netlify dashboards, "use
 this template"); `CONTRIBUTING.md` requires a Google CLA and Google's code of conduct. `LICENSE`
 is Apache-2.0 inherited from the template while all content, screenshots, branding and APKs are
@@ -140,14 +145,14 @@ the owner's. Fix: replace with a real README (what the site is, how to build/dep
 replace it with the real contribution rule; decide the license deliberately — keep Apache-2.0
 for code if desired, but the assets are not Apache-2.0.
 
-### D6. Repo identity is still the template's
+### D6. Repo identity is still the template's — **resolved in `441455d`**
 `go.mod` declares `module github.com/google/docsy-example`; `package.json` is
 `docsy-example-site` version 0.10.0 with Docsy's description, repository, homepage, bugs and
 author fields; `package.json` `spelling` is Docsy's cSpell ignore list. Fix: set
 `module github.com/gnitoapp-com/gnitoapp-com.github.io`, name the package after the site, drop or
 correct the metadata, then re-run the build and `hugo mod` commands.
 
-### D7. Dead template scaffolding
+### D7. Dead template scaffolding — **resolved in `441455d`**
 `hugo-disabled.toml` — a full stale TOML copy of the site config with `example.docsy.dev` and
 `Goldydocs` values; `config.yaml` — Docsy's version guard, harmless but redundant; `docsy.work`
 + empty `docsy.work.sum` — local Docsy workspace pointing at a sibling clone that does not exist;
@@ -156,7 +161,7 @@ correct the metadata, then re-run the build and `hugo mod` commands.
 fetched. Fix: delete all of them (or, if a container workflow is wanted, one working
 `Dockerfile` based on `floryn90/hugo:ext-alpine` with Go installed, and document it).
 
-### D8. `/search/` is published but cannot work
+### D8. `/search/` is published but cannot work — **resolved in `441455d`**
 `content/en/search.md` exists; `params.gcs_engine_id` is commented out and `offlineSearch: false`
 in `hugo.yaml`, so the page renders without a search backend (Docsy only emits the search box
 when one is configured). Fix: either enable Docsy offline search (`offlineSearch: true`) or delete
@@ -205,7 +210,7 @@ owner a diff proposal. Structurally, `params.privacy_policy: /privacy` is fine; 
 enable a `zh` language in `hugo.yaml` (the commented `no`/`fa` examples are the pattern) instead of
 a sibling page.
 
-### D13. Empty taxonomy pages and dead template params
+### D13. Empty taxonomy pages and dead template params — **resolved in `441455d`**
 `taxonomies` are enabled and Docsy shows tag/category clouds, but no page uses `tags:` or
 `categories:`, so `/tags/` and `/categories/` are empty pages in the sitemap. Fix: set
 `disableKinds: [taxonomy, taxonomyTerm]` (the line is already there, commented) or actually

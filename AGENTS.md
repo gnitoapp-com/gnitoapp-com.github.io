@@ -34,7 +34,7 @@ the single word "push" and deployed it. Work stays on a working branch until the
 | `data/products/<product>.yaml` | Per-product facts: `platforms` (required), tagline, category, licence, store link, badges, screenshots, logo, optional `notice` (Markdown, rendered above the download buttons) and optional `version` (only for non-Android products — Android takes it from the APK) |
 | `layouts/_default/product.html` + `layouts/partials/product/*` | Renders the shared product chrome from that data |
 | `content/en/privacy/` | Privacy policy: `_index.md` (EN) + `privacy_zh.md` (ZH as a separate page, not i18n) |
-| `content/en/terms/index.md`, `support.md`, `search.md` | Legal, contact, search page |
+| `content/en/terms/index.md`, `support.md` | Legal and contact pages |
 | `static/<product>/` | `version.json`, the current `*.apk`, `SHA256SUMS`, `screenshots/`, `images/logo_200_square.png`. Copied verbatim — never processed by Hugo |
 | `data/apk_checksums.json` | **Generated** per-APK SHA-256, size, signing-certificate fingerprint, package/versionCode. Never hand-edit; run `scripts/apk-checksums.sh` |
 | `scripts/apk-checksums.sh` | Regenerates the integrity data (`--check` verifies it; CI runs `--check`) |
@@ -48,10 +48,14 @@ the single word "push" and deployed it. Work stays on a working branch until the
 | `assets/scss/_styles_project.scss` | Project **CSS rules** — imported last, so they win equal-specificity fights. All page/component styles live here |
 | `.github/workflows/hugo.yaml` | Build + deploy to GitHub Pages, triggered by push to `main` |
 
-Template leftovers — do **not** treat as documentation and do **not** extend them:
-`README.md`, `CONTRIBUTING.md` (Google Docsy template text), `hugo-disabled.toml`,
-`config.yaml`, `docsy.work`, `docsy.work.sum`, `netlify.toml`, `Dockerfile`,
-`docker-compose.yaml`. See D5–D7.
+The template leftovers that used to be listed here (Docsy's example README and
+CONTRIBUTING, `hugo-disabled.toml`, `config.yaml`, the `docsy.work` workspace,
+`netlify.toml`, the broken Docker files) were deleted in `441455d`. `README.md` and
+`LICENSE` now describe this project.
+
+**Licence:** proprietary, all rights reserved (standing owner decision). Third-party
+dependencies keep their own licences — see `LICENSE`. Do not add Apache/MIT headers to
+this repo's files, and do not relicense the content or the APKs.
 
 ## Toolchain (verified on this machine, 2026-10-29)
 
@@ -166,8 +170,8 @@ re-deriving the four version locations by hand.
    requires `--allow-key-change` for a deliberate rotation (which also needs a page note and
    Android developer-verification registration). The full procedure is `docs/KEY-CHANGE.md`;
    announcements go in the `notice` field of `data/products/<product>.yaml`. See D25.
-11. **`hugo.yaml` is the config.** `config.yaml` is a Docsy version guard and `hugo-disabled.toml`
-   is dead template scaffolding. Put every setting in `hugo.yaml`.
+11. **`hugo.yaml` is the only config.** `config.yaml` and `hugo-disabled.toml` are gone; do not
+   reintroduce them. Put every setting in `hugo.yaml`.
 
 ### GitHub credentials on this machine
 
