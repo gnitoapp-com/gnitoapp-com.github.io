@@ -81,6 +81,6 @@ GnitoApp.com 是 3827992 Canada Inc. 使用的名称。本政策适用于本网�
 ### 联系我们
 
 - 电子邮件：legal@gnitoapp.com（隐私）· support@gnitoapp.com（应用使用帮助）
-- 地址：331 Elmwood Dr, Suite 4-999, Moncton, NB E1A 7Y1, Canada
+- 地址：331 Elmwood Dr, Suite 4-997, Moncton, NB E1A 7Y1, Canada
 
 使用本网站或任一应用，即表示您已阅读本政策。

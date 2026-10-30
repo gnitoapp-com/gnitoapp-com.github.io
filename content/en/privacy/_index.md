@@ -125,6 +125,6 @@ home page.
 ### Contact
 
 - Email: legal@gnitoapp.com (privacy) · support@gnitoapp.com (help with an app)
-- Address: 331 Elmwood Dr, Suite 4-999, Moncton, NB E1A 7Y1, Canada
+- Address: 331 Elmwood Dr, Suite 4-997, Moncton, NB E1A 7Y1, Canada
 
 By using this website or an app, you acknowledge that you have read this policy.
