@@ -12,7 +12,7 @@ images: ["/og/forceworkouthelper.png"]
 
 Elevate every session using our expertly crafted timers, designed to push limits and deliver results. Whether you're crushing intervals, mastering endurance, or perfecting HIIT, there's a tool for every goal:
 
-- **AMPRAP**: Maximize your workout with endless rounds in AMPRAP's high-intensity time challenge!
+- **AMRAP**: Maximize your workout with endless rounds in AMRAP's high-intensity time challenge!
 - **Breath Control**: Master your breathing and boost endurance with Breath Control's guided rhythm!
 - **Countdown**: Race the clock and push your limits with Countdown's thrilling time-crunch!
 - **Death By**: Conquer the ultimate test of grit with Death By's relentless escalating reps!
