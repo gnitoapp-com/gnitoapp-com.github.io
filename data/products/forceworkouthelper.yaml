@@ -1,0 +1,35 @@
+name: Force Workout Helper
+tagline: 15 elite timers (AMRAP, TABATA, EMOM+).
+category: Fitness
+license: Free
+logo: /forceworkouthelper/images/logo_200_square.png
+logoAlt: Force Workout Helper icon
+store:
+  label: Apple App Store (iOS)
+  url: https://apps.apple.com/us/app/force-workout-helper/id6743862189
+badges:
+  - label: Languages
+    value: English
+  - label: Platform Support
+    value: Android & iOS
+  - label: Offline Access
+    value: 100% Offline Functional
+  - label: Privacy
+    value: No Ads / No Trackers / No Login
+screenshots:
+  - file: 01.png
+    alt: Force Workout Helper home
+  - file: 02.png
+    alt: Force Workout Helper improve
+  - file: 03.png
+    alt: Force Workout Helper configure
+  - file: 04.png
+    alt: Force Workout Helper sound
+  - file: 05.png
+    alt: Force Workout Helper set counter
+  - file: 06.png
+    alt: Force Workout Helper appearance
+  - file: 07.png
+    alt: Force Workout Helper list
+  - file: 08.png
+    alt: Force Workout Helper no gimmicks

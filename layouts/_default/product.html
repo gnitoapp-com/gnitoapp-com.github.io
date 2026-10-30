@@ -1,0 +1,34 @@
+{{- /*
+  Product landing page layout.
+
+  All shared chrome (header, quick info, integrity block, install guide,
+  screenshots) is rendered from data/products/<product>.yaml plus the generated
+  data/apk_checksums.json. The page body holds only the product's description.
+
+  Required front matter: layout: product, product: <key>.
+*/ -}}
+{{- define "main" -}}
+  {{- $product := .Params.product -}}
+  {{- if not $product -}}
+    {{ errorf "%s: front matter needs `product:` (see data/products/)" .File.Path }}
+  {{- end -}}
+  {{- $data := index hugo.Data.products $product -}}
+  {{- $apk := index hugo.Data.apk_checksums $product -}}
+  {{- if not $data -}}
+    {{ errorf "%s: data/products/%s.yaml is missing" .File.Path $product }}
+  {{- end -}}
+  {{- if not $apk -}}
+    {{ errorf "%s: %s is missing from data/apk_checksums.json - run scripts/apk-checksums.sh" .File.Path $product }}
+  {{- end -}}
+  {{- $ctx := dict "page" . "product" $product "data" $data "apk" $apk -}}
+  <article class="td-content product-page">
+    {{ partial "product/header.html" $ctx }}
+    {{ partial "apk-verify.html" $ctx }}
+    {{ partial "product/quickinfo.html" $ctx }}
+    {{ partial "product/install.html" $ctx }}
+    {{ partial "product/screenshots.html" $ctx }}
+    <div class="product-description">
+      {{ .Content }}
+    </div>
+  </article>
+{{- end -}}

@@ -84,6 +84,11 @@ jobs:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
         run: npm run build:production
 
+      # The APK link, version and checksum now come from templates, so they are
+      # verified on the built pages rather than in the Markdown source.
+      - name: Verify rendered APK pages
+        run: ./scripts/apk-checksums.sh --rendered public
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:

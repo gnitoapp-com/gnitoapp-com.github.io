@@ -1,0 +1,8 @@
+<section class="product-screenshots">
+  <h2>Screenshots</h2>
+  <div class="product-screenshots__strip">
+    {{- range .data.screenshots }}
+    <img class="product-screenshot" src="/{{ $.product }}/screenshots/{{ .file }}" alt="{{ .alt }}" width="230" loading="lazy" decoding="async">
+    {{- end }}
+  </div>
+</section>

@@ -1,0 +1,41 @@
+<section class="product-quickinfo">
+  <h2>Quick Info</h2>
+  <div class="product-table-scroll">
+  <table class="td-initial">
+    <thead>
+      <tr>
+        <th scope="col">Publisher</th>
+        <th scope="col">Category</th>
+        <th scope="col">Version</th>
+        <th scope="col">License</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>GnitoApp.com</td>
+        <td>{{ .data.category }}</td>
+        <td>{{ .apk.version }}</td>
+        <td>{{ .data.license }}</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="product-table-scroll">
+  <table class="td-initial">
+    <thead>
+      <tr>
+        {{- range .data.badges }}
+        <th scope="col">{{ .label }}</th>
+        {{- end }}
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {{- range .data.badges }}
+        <td>{{ .value }}</td>
+        {{- end }}
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>

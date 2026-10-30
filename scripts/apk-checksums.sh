@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Generate (or verify) the APK integrity data published with each download.
 
-    ./scripts/apk-checksums.sh            # rewrite data + SHA256SUMS files
-    ./scripts/apk-checksums.sh --check    # verify committed data matches the APKs
+    ./scripts/apk-checksums.sh                    # rewrite data + SHA256SUMS files
+    ./scripts/apk-checksums.sh --check            # verify committed data matches the APKs
+    ./scripts/apk-checksums.sh --rendered public  # verify the built pages link them
 
 Outputs, per product:
 
@@ -17,8 +18,10 @@ They are optional: --check works with plain Python, so CI enforces that the
 committed checksums still match the APK without needing an Android SDK.
 
 --check fails (exit 1) on: a missing/stale entry, a SHA256SUMS mismatch, a
-version.json that disagrees with the APK filename, or a landing page that does
-not link the current APK with the current version.
+version.json that disagrees with the APK filename, or missing product data.
+
+--rendered fails (exit 1) on a built page that does not link the current APK,
+show its version, carry its SHA-256, or link its SHA256SUMS file.
 """
 
 from __future__ import annotations
@@ -28,6 +31,7 @@ import glob
 import hashlib
 import json
 import os
+import pathlib
 import re
 import shutil
 import subprocess
@@ -190,16 +194,10 @@ def check(entries: dict) -> int:
         if entry["apk"] != expected:
             problems.append(f"{product}: APK is named {entry['apk']!r} but version.json implies {expected!r}")
 
-        # the landing page must link this APK and show this version
-        page = CONTENT / product / "index.md"
-        if not page.exists():
-            problems.append(f"{product}: {page.relative_to(ROOT)} is missing")
-            continue
-        html = page.read_text()
-        if f'/{product}/{entry["apk"]}' not in html:
-            problems.append(f'{product}: {page.relative_to(ROOT)} does not link /{product}/{entry["apk"]}')
-        if f"Download APK {entry['version']}" not in html:
-            problems.append(f"{product}: {page.relative_to(ROOT)} has no 'Download APK {entry['version']}' button")
+        # the page itself is rendered from templates now (see --rendered), but
+        # the product data it needs must exist
+        if not (ROOT / "data" / "products" / f"{product}.yaml").exists():
+            problems.append(f"{product}: data/products/{product}.yaml is missing")
 
         # signing identity, when this run could read it
         if entry.get("signerCertSha256") and old.get("signerCertSha256") \
@@ -233,9 +231,40 @@ def check(entries: dict) -> int:
     return 0
 
 
+def check_rendered(directory: str, entries: dict) -> int:
+    """Verify the built pages link the APK, show its version and its checksum."""
+    root = pathlib.Path(directory)
+    problems: list[str] = []
+    for product, entry in entries.items():
+        page = root / product / "index.html"
+        if not page.exists():
+            problems.append(f"{product}: {page} is missing - build the site first")
+            continue
+        html = page.read_text(errors="ignore")
+        expectations = {
+            "APK link": f'/{product}/{entry["apk"]}',
+            "download label": f"Download APK {entry['version']}",
+            "SHA-256": entry["sha256"],
+            "SHA256SUMS link": f'{entry["checksumsUrl"]}',
+        }
+        for label, needle in expectations.items():
+            if needle not in html:
+                problems.append(f"{product}: rendered page is missing the {label} ({needle})")
+
+    if problems:
+        print("Rendered APK check FAILED:", file=sys.stderr)
+        for p in problems:
+            print(f"  - {p}", file=sys.stderr)
+        return 1
+    print(f"rendered check ok: {len(entries)} product page(s) in {directory}")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--check", action="store_true", help="verify committed data instead of rewriting it")
+    parser.add_argument("--rendered", metavar="DIR",
+                        help="verify built pages in DIR (e.g. public) link the APK and show its version/checksum")
     parser.add_argument("--allow-key-change", action="store_true",
                         help="accept a new signing certificate (announce it and re-register the app first)")
     parser.add_argument("--skip-cert", action="store_true",
@@ -249,6 +278,9 @@ def main() -> int:
 
     if not entries:
         die("no APKs found under static/*/")
+
+    if args.rendered:
+        return check_rendered(args.rendered, entries)
 
     if args.check:
         return check(entries)

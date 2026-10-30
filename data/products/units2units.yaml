@@ -1,0 +1,30 @@
+# Facts rendered by layouts/_default/product.html. The version, APK file name
+# and checksum come from data/apk_checksums.json (generated from the APK), not
+# from here — never duplicate them by hand.
+name: Units2Units
+tagline: The platinum grade, comprehensive, elegant, and powerful multi-unit conversion suite.
+category: Utilities / Productivity
+license: Free (Optional Pro Upgrade)
+logo: /units2units/images/logo_200_square.png
+logoAlt: Units2Units icon
+store:
+  label: Apple App Store (iOS)
+  url: https://apps.apple.com/ca/app/units2units/id6778024693
+badges:
+  - label: Languages
+    value: 29 Languages (Multilingual)
+  - label: Platform Support
+    value: Android & iOS
+  - label: Offline Access
+    value: 100% Offline Functional
+  - label: Privacy
+    value: No Ads / No Trackers / No Login
+screenshots:
+  - file: 01.png
+    alt: Units2Units main dashboard
+  - file: 02.png
+    alt: Converter category selection
+  - file: 03.png
+    alt: Units2Units dark mode and custom accents
+  - file: 04.png
+    alt: Pro features screen and purchase flow

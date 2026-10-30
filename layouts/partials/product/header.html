@@ -1,0 +1,11 @@
+<div class="product-header">
+  <img class="product-logo" src="{{ .data.logo }}" width="120" height="120" alt="{{ .data.logoAlt }}">
+  <div class="product-header__body">
+    <h1>{{ .data.name }}</h1>
+    <p class="product-tagline">{{ .data.tagline }}</p>
+    <div class="product-actions">
+      <a class="product-btn product-btn--primary" href="/{{ .product }}/{{ .apk.apk }}">Download APK {{ .apk.version }} (Android)</a>
+      <a class="product-btn product-btn--secondary" href="{{ .data.store.url }}">{{ .data.store.label }}</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+name: Romanitaire
+tagline: Solitaire with a Roman flavor.
+category: Games
+license: Free
+logo: /romanitaire/images/logo_200_square.png
+logoAlt: Romanitaire icon
+store:
+  label: Apple App Store (iOS)
+  url: https://apps.apple.com/us/app/romanitaire/id6758518585
+badges:
+  - label: Languages
+    value: English
+  - label: Platform Support
+    value: Android & iOS
+  - label: Offline Access
+    value: 100% Offline Functional
+  - label: Privacy
+    value: No Ads / No Trackers / No Login
+screenshots:
+  - file: 01.png
+    alt: Romanitaire intro
+  - file: 02.png
+    alt: Familiar layout
+  - file: 03.png
+    alt: Left-handed play
+  - file: 04.png
+    alt: Right-handed play
+  - file: 05.png
+    alt: Romanitaire customization
