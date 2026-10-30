@@ -28,6 +28,42 @@ certificate it cannot read. Both refusals are the safety net behind this documen
 Record the decision in the app's repository issue (e.g. `romanitaire#2`,
 `units2units#1`) before touching the site.
 
+### Creating the key
+
+`keytool` ships with the JDK (`dnf install java-17-openjdk-headless` on Fedora, or
+any JDK). Generate the key **outside** the repository, with an interactive password
+prompt — do not pass `-storepass`/`-keypass` on the command line, they end up in
+your shell history:
+
+```bash
+mkdir -p ~/keys && chmod 700 ~/keys
+
+keytool -genkeypair -v \
+  -keystore ~/keys/<product>-release.jks \
+  -storetype PKCS12 \
+  -alias <product> \
+  -keyalg RSA -keysize 4096 -validity 10000 \
+  -dname "CN=GnitoApp.com, OU=gnitoapp.com, O=3827992 Canada Inc., L=Moncton, ST=NB, C=CA"
+```
+
+- `-validity 10000` days (~27 years): the key must outlive every future release.
+  A certificate that expires stops signing and updating.
+- Use a **unique, strong password per app**, stored in the password manager next to
+  the keystore backup. Losing either freezes the app forever.
+- The alias is cosmetic but is baked into the keystore; `<product>` keeps it obvious.
+
+Confirm what you generated — the fingerprint printed here is what users will see on
+the product page:
+
+```bash
+keytool -list -v -keystore ~/keys/<product>-release.jks | grep -E "Alias name|Owner|SHA256|Valid from"
+```
+
+Keep a PKCS12 copy of the keystore in the offline backup. When the app's Gradle build
+uses it, point `android/key.properties` at the absolute path (`storeFile=`) and keep
+that file untracked, exactly as described under "Keys and custody" in the release
+skill.
+
 ## 2. Sign and verify the build
 
 ```bash
@@ -35,8 +71,9 @@ apksigner verify --print-certs <new.apk>        # DN + SHA-256 of the certificat
 aapt2 dump badging <new.apk> | head -1          # versionName must match version.json
 ```
 
-The DN should identify the publisher (`CN=GnitoApp.com…`), not `Android Debug` or
-`Unknown`.
+The DN must be the one you generated in step 1 (`CN=GnitoApp.com, O=3827992 Canada
+Inc.…`), not `Android Debug` or `Unknown`; the SHA-256 must match
+`keytool -list -v`'s output, because that value is what the site will publish.
 
 ## 3. Add the notice on the product page (before publishing)
 
