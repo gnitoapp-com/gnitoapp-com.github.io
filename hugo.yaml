@@ -19,14 +19,11 @@ enableGitInfo: false
 # pages are not published at all.
 disableKinds: [taxonomy]
 
-# Highlighting config
-pygmentsCodeFences: true
-pygmentsUseClasses: false
-# Use the new Chroma Go highlighter in Hugo.
-pygmentsUseClassic: false
-# pygmentsOptions: "linenos=table"
-# See https://help.farbox.com/pygments.html
-pygmentsStyle: tango
+# Syntax highlighting.
+# Class-based output (noClasses: false) is required: with inline styles Hugo
+# bakes a light Chroma background into every <pre>, which is unreadable under the
+# dark theme. Docsy ships the matching light AND dark Chroma class styles and
+# switches them on `data-bs-theme`.
 
 # Image processing configuration.
 imaging:
@@ -75,8 +72,7 @@ markup:
     renderer:
       unsafe: true
   highlight:
-    # See a complete list of available styles at https://xyproto.github.io/splash/docs/all.html
-    style: tango
+    noClasses: false
     # Uncomment if you want your chosen highlight style used for code blocks without a specified language
     # guessSyntax: true
 

@@ -1,0 +1,11 @@
+{{- /*
+  Plain content page (support, terms, privacy_zh …).
+
+  Docsy 0.18 ships `layouts/all.html` for generic pages, which emits `.Content`
+  bare - no `.td-content` wrapper, no page-title heading, and therefore none of
+  Docsy's prose/code styles. The theme's own docs and blog sections use
+  `.Render "_td-content"`; do the same for ordinary pages.
+*/ -}}
+{{ define "main" }}
+{{ .Render "_td-content" }}
+{{ end }}

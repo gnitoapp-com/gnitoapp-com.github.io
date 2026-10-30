@@ -4,6 +4,11 @@
   rules placed in _variables_project.scss, which is imported before Bootstrap.
 */
 
+/* Light/dark Chroma styles for class-based highlighting (`markup.highlight.noClasses:
+   false`). Docsy ships them but does not import them by default; without this the
+   code blocks have no background and inherit the page text colour. */
+@import 'td/code-dark';
+
 /*
   Project-level additions on top of the Docsy theme.
 

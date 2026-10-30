@@ -1,0 +1,9 @@
+{{- /*
+  The privacy policy is a section (`content/en/privacy/_index.md`) so that
+  `privacy_zh.md` can stay a sibling page. Docsy's generic `all.html` emits
+  `.Content` bare; render it through the theme's content wrapper instead, which
+  gives it the page title and Docsy's prose/code styles.
+*/ -}}
+{{ define "main" }}
+{{ .Render "_td-content" }}
+{{ end }}
