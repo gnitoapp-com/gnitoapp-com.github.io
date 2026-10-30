@@ -285,8 +285,14 @@ workflow's `Verify APK integrity data` step runs `--check` (plain Python) before
 stale checksum, a renamed APK, a mismatched `version.json`/`versionName`, or a page still linking
 the previous file fails the deploy.
 
-Still open: server-side headers are not configurable on GitHub Pages (CSP/HSTS need a proxy such
-as Cloudflare in front). A `<meta>` CSP stays blocked by the inline styles in D11.
+Headers — **decided 2026-10-30: accept the limitation, documented rather than half-implemented.**
+GitHub Pages cannot set response headers, so HSTS, `X-Content-Type-Options`, `X-Frame-Options` /
+`frame-ancestors` and a real CSP are unavailable. A `<meta>` CSP is technically possible now that
+#76 removed the inline styles, but it would be largely symbolic here: the content is static with no
+server-side input, the theme still emits ~35 inline `style` attributes (the navbar logo SVG) forcing
+`style-src 'unsafe-inline'`, and `<meta>` cannot express `frame-ancestors` or HSTS at all. If headers
+become a requirement, front the site with Cloudflare and set them there — nothing in the repo blocks
+that.
 
 ---
 
@@ -350,6 +356,9 @@ What to do, in order:
    Brazil/Indonesia/Singapore/Thailand already require registration from participating stores, and
    the requirement goes global in 2027; unregistered apps fall back to ADB/advanced flow. A Play
    account is not required, and Google forbids opening a new one after a termination.
+
+Signing-key changes have a dedicated procedure: `docs/KEY-CHANGE.md` (announcement slot,
+`--allow-key-change`, one-time uninstall, developer-verification registration).
 
 Tracking lives in the app repos (issues created 2026-10-29):
 [force-workout-helper#7](https://github.com/gnitoapp-com/force-workout-helper/issues/7) (untrack keystore +

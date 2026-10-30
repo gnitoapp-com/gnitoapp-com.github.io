@@ -75,6 +75,9 @@ is missing the signing config — fix that, rebuild, do not publish.
   `data/apk_checksums.json`'s `signerCertSha256`.
 - Changing a keystore *password* does not change the certificate, so password rotation is safe;
   re-verify the fingerprint afterwards.
+- Changing the *key* is a different job: follow `docs/KEY-CHANGE.md` end to end — notice in
+  `data/products/<product>.yaml`, `--allow-key-change`, one-time uninstall message, and
+  developer-verification re-registration.
 
 `versionName` must equal the new `version` and `versionCode` must equal `buildNumber`; the
 `--check` step below enforces both when aapt2 is available.
