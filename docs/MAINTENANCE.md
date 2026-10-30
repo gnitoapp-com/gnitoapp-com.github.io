@@ -231,6 +231,11 @@ Done (2026-10-29): Docsy v0.18.0 and Hugo 0.169.0 land together with the module-
 consequences are documented in the commit and on #79: the dark background is a shade darker (theme
 palette change) and the site emits no favicon links until #77 supplies real icons.
 
+The upgrade also added a second local override to re-diff each time: `layouts/partials/navbar.html`
+(theme template + dropdown support for menu entries with children, added for #87). Treat it like
+`baseof.html` used to be — diff it against the theme before/after any Docsy bump, or it silently
+freezes old navbar markup.
+
 ---
 
 ## P2 — delivery and quality gates
