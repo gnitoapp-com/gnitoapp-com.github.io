@@ -157,6 +157,9 @@ re-deriving the four version locations by hand.
    no `static/<product>/` APK — set `platforms` and, if it has no APK, a `version:` in its data.
    The Quick Info "Platform Support" cell is derived from `platforms` (android, ios, windows,
    macos, linux, web), so a page cannot claim a platform it does not ship on.
+   **Deliberately deferred:** per-platform installer downloads (a `downloads:` field rendered as
+   buttons) — build it when the first desktop-only app is actually ready, not before. Until then a
+   non-Android product renders with its store link only.
 10. **Signing identity is a contract.** Never sign a release with a debug key, never commit a
    keystore or `key.properties` to any repo, and never publish an APK whose certificate differs
    from the published `signerCertSha256`. `scripts/apk-checksums.sh` enforces the last one and
