@@ -11,6 +11,20 @@ GitHub Actions to GitHub Pages on the custom domain **https://gnitoapp.com**.
 the audit, the known defects with evidence, and the prioritised backlog. This file is the
 short operating manual; that file is the long memory.
 
+## Hard rule: `main` is off-limits
+
+**Never modify, commit to, merge into, fast-forward, rebase, reset, force-push or update the ref of
+`main` — locally or on `origin` — without an explicit instruction from the owner, in the current
+message, that names `main`.**
+
+"Push", "ship it", "deploy", "get it live" are **not** that instruction. They mean: push the working
+branch. The deploy workflow runs from `main`, so a task can appear to require moving it — when that
+happens, **stop and ask**. Do not infer.
+
+This rule is here because an agent once fast-forwarded `main` to a feature branch on the strength of
+the single word "push" and deployed it. Work stays on a working branch until the owner advances
+`main` themselves.
+
 ## Layout
 
 | Path | Purpose |
