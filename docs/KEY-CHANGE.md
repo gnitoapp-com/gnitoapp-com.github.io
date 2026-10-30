@@ -145,6 +145,37 @@ That failure is expected; the notice is what makes it acceptable.
 - Key lost after publishing: the app can no longer be updated in place, ever — this
   is why the keystore backup comes before step 2, not after step 7.
 
+## Re-keying every app at once (decision 2026-10-30)
+
+All three Android apps get new keys, one per app, because the install base is
+effectively zero — the only moment this is cheap. It also retires two liabilities:
+Force Workout Helper's keystore and passwords are committed to its repository (a
+rotation is the only real remediation), and Units2Units' key cannot be found at all.
+
+| App | Current certificate | Why it is replaced |
+| --- | --- | --- |
+| Force Workout Helper | `55bd1c5b…` (2048-bit, publisher DN) | valid key, but the keystore + `key.properties` are in git |
+| Units2Units | `cfb9df2f…` (`CN=Unknown…`) | anonymous, and the keystore is not on the build machine |
+| Romanitaire | `02006f4f…` (`CN=Android Debug`) | debug key, never a stable identity |
+
+Execution is tracked in the app repos: `force-workout-helper#7`, `units2units#1`,
+`romanitaire#2`. Each issue carries the generation command, the Gradle hard-fail,
+the version bump, the publish handoff and the developer-verification registration.
+
+Site side is prepared:
+
+- `data/products/<product>.yaml` contains a **commented** `notice:` block with the
+  uninstall/data-loss text. Uncomment it in the same release that publishes the new
+  APK; delete it after one release cycle.
+- `scripts/apk-checksums.sh` refuses the changed certificates by default; run
+  `./scripts/apk-checksums.sh --allow-key-change` once for all three, then
+  `npm run build:production && npm run verify`.
+- The published fingerprint in the "Verify this APK" block changes automatically —
+  it comes from the APK, not from any text.
+
+Order matters: generate all three keys and back them up **before** signing anything,
+so a forgotten backup is discovered while the old builds are still published.
+
 ## Checklist
 
 - [ ] key located or created; backed up off-machine; password in the vault

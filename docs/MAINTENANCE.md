@@ -311,7 +311,7 @@ trades a real build-version regression for an advisory with no user exposure. `h
 0.166.0 still pins the same range. Revisit when upstream bumps `adm-zip`, and keep the production
 audit (`--omit=dev`) in the quality gate instead of the full audit.
 
-### D25. Signing identities are inconsistent, and release builds silently fall back to debug
+### D25. Signing identities are inconsistent, and release builds silently fall back to debug — **decision: re-key all three (2026-10-30)**
 Read from the published artifacts with `apksigner verify --print-certs`, and from the app repos
 on 2026-10-29:
 
@@ -345,6 +345,14 @@ Two further problems in the Force Workout Helper repo (private, `gnitoapp-com/fo
   and purge history with `git filter-repo` before adding collaborators or ever making it public.
   Keep the key itself: rotating the key would break in-place updates.
 - **2048-bit RSA** is acceptable (Play requires ≥2048). Do not "upgrade" it — that means a new key.
+
+**Decision (2026-10-30):** replace the key for all three apps rather than repairing the
+existing identities, while the install base is effectively zero. Force Workout Helper is
+included because rotating is the only way to neutralise a keystore that lives in git.
+Execution is tracked in the app repos (`force-workout-helper#7`, `units2units#1`,
+`romanitaire#2`); the site side is ready — the uninstall/data-loss `notice:` text is
+pre-written (commented) in `data/products/*.yaml`, `--allow-key-change` is the publish gate,
+and `docs/KEY-CHANGE.md` has the full procedure including the `keytool` command.
 
 What to do, in order:
 
