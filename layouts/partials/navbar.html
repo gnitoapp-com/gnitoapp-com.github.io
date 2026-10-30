@@ -25,9 +25,16 @@
     {{- /**/ -}}
     <span class="navbar-brand__logo navbar-logo">
       {{- if ne .Site.Params.ui.navbar_logo false -}}
-        {{ with resources.Get "icons/logo.svg" -}}
-          {{ ( . | minify).Content | safeHTML -}}
-        {{ end -}}
+        {{- /* Prefer the project's PNG mark. The theme ships its own logo.svg and
+               logo.png, so a project asset of the same name must win explicitly. */ -}}
+        {{- with resources.Get "icons/logo.png" -}}
+          {{- $logo := .Resize "64x64" -}}
+          <img class="navbar-logo__img" src="{{ $logo.RelPermalink }}" width="32" height="32" alt="" decoding="async">
+        {{- else -}}
+          {{- with resources.Get "icons/logo.svg" -}}
+            {{ ( . | minify).Content | safeHTML -}}
+          {{- end -}}
+        {{- end -}}
       {{ end -}}
     </span>
     {{- /**/ -}}

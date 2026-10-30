@@ -39,6 +39,9 @@ the single word "push" and deployed it. Work stays on a working branch until the
 | `data/apk_checksums.json` | **Generated** per-APK SHA-256, size, signing-certificate fingerprint, package/versionCode. Never hand-edit; run `scripts/apk-checksums.sh` |
 | `scripts/apk-checksums.sh` | Regenerates the integrity data (`--check` verifies it; CI runs `--check`) |
 | `scripts/hugo` | Runs the npm-pinned Hugo with node_modules/.bin and Go on PATH — **there is no system-wide `hugo`** |
+| `scripts/generate-brand-assets.sh` | Generates the favicon set, `site.webmanifest`, the navbar mark and the 1200×630 social cards from `assets/images/logo/gnitoapp-com-logo.png`. Re-run after changing the master logo; never hand-edit the outputs |
+| `assets/images/logo/gnitoapp-com-logo.png` | Master brand logo (550×550). Source for every generated icon |
+| `static/favicon*`, `static/apple-touch-icon.png`, `static/android-chrome-*.png` | Generated icons. Docsy discovers them by these conventional names in `static/` |
 | `layouts/partials/apk-verify.html` | Renders the "Verify this APK" block on each product page from that data |
 | `layouts/partials/navbar.html` | Theme 0.18.0 navbar + one change: menu entries with children render as a Bootstrap dropdown ("Apps"). **Re-diff against the theme on every Docsy upgrade** |
 | `hugo.yaml` | The site config that is actually used (language `en`, `contentDir: content/en`, Docsy module import, baseURL) |
@@ -52,6 +55,10 @@ The template leftovers that used to be listed here (Docsy's example README and
 CONTRIBUTING, `hugo-disabled.toml`, `config.yaml`, the `docsy.work` workspace,
 `netlify.toml`, the broken Docker files) were deleted in `441455d`. `README.md` and
 `LICENSE` now describe this project.
+
+Favicons are convention-based: Docsy 0.18 links `favicon.ico`, `favicon-NxN.png` and
+`apple-touch-icon*.png` from `static/` automatically, so no template change is needed to add a
+size — drop the file in and it is linked.
 
 **Licence:** proprietary, all rights reserved (standing owner decision). Third-party
 dependencies keep their own licences — see `LICENSE`. Do not add Apache/MIT headers to

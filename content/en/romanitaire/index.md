@@ -3,6 +3,7 @@ title: Romanitaire
 menu: {main: {parent: apps, weight: 2}}
 layout: product
 product: romanitaire
+images: ["/og/romanitaire.png"]
 ---
 
 ## Conquer the Cards in Imperial Style!

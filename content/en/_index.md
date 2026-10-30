@@ -1,5 +1,6 @@
 ---
 title: GnitoApp.com
+images: ["/og/gnitoapp-com.png"]
 ---
 
 {{< blocks/cover title="Welcome to GnitoApp.com!" image_anchor="top" height="full" >}}

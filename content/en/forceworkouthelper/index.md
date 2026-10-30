@@ -3,6 +3,7 @@ title: Force Workout Helper
 menu: {main: {parent: apps, weight: 1}}
 layout: product
 product: forceworkouthelper
+images: ["/og/forceworkouthelper.png"]
 ---
 
 ## Unleash Your Potential with Force Workout Helper

@@ -354,3 +354,10 @@ body:not(.td-home) main.td-main {
     margin-top: 0.25rem;
   }
 }
+
+/* Navbar mark rendered from assets/icons/logo.png (see the navbar override). */
+.navbar-logo__img {
+  width: auto;
+  height: 30px;
+  border-radius: 0.35rem;
+}

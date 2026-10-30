@@ -95,7 +95,8 @@ params:
   privacy_policy: /privacy
 
   # First one is picked as the Twitter card image if not set on page.
-  # images: [images/project-illustration.png]
+  # Fallback social card for pages without their own `images:` front matter.
+  images: ["/og/gnitoapp-com.png"]
 
   # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
   github_repo: https://github.com/gnitoapp-com/gnitoapp-com.github.io
