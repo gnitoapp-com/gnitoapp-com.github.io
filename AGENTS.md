@@ -22,6 +22,7 @@ short operating manual; that file is the long memory.
 | `static/<product>/` | `version.json`, the current `*.apk`, `SHA256SUMS`, `screenshots/`, `images/logo_200_square.png`. Copied verbatim — never processed by Hugo |
 | `data/apk_checksums.json` | **Generated** per-APK SHA-256, size, signing-certificate fingerprint, package/versionCode. Never hand-edit; run `scripts/apk-checksums.sh` |
 | `scripts/apk-checksums.sh` | Regenerates the integrity data (`--check` verifies it; CI runs `--check`) |
+| `scripts/hugo` | Runs the npm-pinned Hugo with node_modules/.bin and Go on PATH — **there is no system-wide `hugo`** |
 | `layouts/shortcodes/apk-checksum.html` | Renders the "Verify this download" block on each product page from that data |
 | `hugo.yaml` | The site config that is actually used (language `en`, `contentDir: content/en`, Docsy module import, baseURL) |
 | `layouts/_default/baseof.html` | Local override of Docsy's `baseof.html`; also forces dark mode (see D4 in the maintenance doc) |
@@ -57,28 +58,32 @@ that ships with the `ubuntu-latest` image and logs `go version` in a preflight s
 
 ## Commands
 
+There is **no system-wide `hugo`** on this machine; the binary is the `hugo-extended`
+devDependency. Run it through `./scripts/hugo` (or `npx hugo`), never as bare `hugo`. The wrapper
+adds `node_modules/.bin` and the Go SDK to `PATH`, which Hugo needs for the Dart Sass `sass` CLI
+and for module resolution.
+
 ```bash
-# dev server (hot reload, drafts + future-dated content)
-npx hugo server --port 1313 --bind 127.0.0.1
+./scripts/hugo version                   # 0.169.0+extended, the same binary CI uses
+./scripts/hugo server --port 1313 --bind 127.0.0.1   # dev server, hot reload
 
 # production build — exactly what CI runs (writes ./public, ~267 MB, gitignored)
 npm run build:production                  # = hugo --cleanDestinationDir --minify, plus the stub link check
 
 # full CI simulation from a clean tree (postinstall links the embedded Dart Sass)
-export PATH="$HOME/.local/go-sdk/bin:$PATH"
 rm -rf node_modules public && npm ci && npm run build:production
 
 # after changing the Docsy module version: refresh the generated npm workspace and commit it
-hugo mod npm pack && npm install && git add packages/hugoautogen/package.json
+./scripts/hugo mod npm pack && npm install && git add packages/hugoautogen/package.json
 
 # explicit-URL build (use this to compare against the live site)
-npx hugo --gc --minify --baseURL "https://gnitoapp.com/"
+./scripts/hugo --gc --minify --baseURL "https://gnitoapp.com/"
 
 # build evidence
 grep -o 'og:url" content="[^"]*"' public/units2units/index.html   # must be https://
 grep -c 'rel=canonical' public/units2units/index.html             # exactly 1
 grep -c '<loc>https://gnitoapp.com' public/sitemap.xml
-npx hugo config | head -5                                        # confirms hugo.yaml is the active config
+./scripts/hugo config | head -5                                   # confirms hugo.yaml is the active config
 ```
 
 Cold build with an empty Hugo module cache takes ~15 s (Docsy download); warm builds take ~1.5 s.

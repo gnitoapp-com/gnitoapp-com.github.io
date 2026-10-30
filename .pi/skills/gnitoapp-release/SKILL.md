@@ -193,6 +193,8 @@ Push only if the owner explicitly asks: `git push origin main`.
 - Building without Go on `PATH` → `failed to download modules: binary with name "go" not found`.
 - Trusting `npm run build:preview`: it substitutes `DEPLOY_PRIME_URL` or `/` as baseURL. Use
   `build:production` or an explicit `--baseURL https://gnitoapp.com/` when checking URLs.
+- Running bare `hugo`: there is no system-wide binary. Use `./scripts/hugo …` (it adds
+  `node_modules/.bin` and Go to `PATH`) or `npm run build:production`.
 - Forgetting `./scripts/apk-checksums.sh` after replacing an APK: the landing page then shows the
   previous file's hash and the CI gate fails (by design).
 - Re-signing with a different key "just for this build": silently breaks in-place updates for
