@@ -97,7 +97,7 @@ Hugo bump, either reinstall it or use the wrapper.
 
 ```bash
 ./scripts/hugo version                   # 0.169.0+extended, the same binary CI uses
-./scripts/hugo server --port 1313 --bind 127.0.0.1   # dev server, hot reload
+./scripts/hugo server --port 1313 --bind 127.0.0.1   # dev server (wrapper forces --renderToMemory)
 
 # production build — exactly what CI runs (writes ./public, ~267 MB, gitignored)
 npm run build:production                  # = hugo --cleanDestinationDir --minify, plus the stub link check
@@ -117,6 +117,12 @@ grep -c 'rel=canonical' public/units2units/index.html             # exactly 1
 grep -c '<loc>https://gnitoapp.com' public/sitemap.xml
 ./scripts/hugo config | head -5                                   # confirms hugo.yaml is the active config
 ```
+
+**Never let a dev server write `public/`.** `hugo server` writes development HTML
+(unminified, `noindex`, un-fingerprinted CSS) to `public/` by default; a production build writing the
+same directory then deletes that CSS and pages render unstyled. `scripts/hugo` therefore injects
+`--renderToMemory` for `serve`/`server` (as `npm run serve` already did), and `public/` is only ever
+written by `npm run build:production`, which cleans it first.
 
 Cold build with an empty Hugo module cache takes ~15 s (Docsy download); warm builds take ~1.5 s.
 CI caches both npm and `$RUNNER_TEMP/hugo_cache`.

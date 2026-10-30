@@ -42,4 +42,30 @@ if ! command -v go >/dev/null 2>&1; then
   done
 fi
 
-exec hugo "$@"
+# `hugo server` writes development HTML (unminified, noindex, un-fingerprinted CSS)
+# into public/ by default. If that runs while a production build writes the same
+# directory, pages end up referencing a stylesheet that no longer exists - the site
+# renders unstyled. Force in-memory rendering for server commands; the server URL
+# is what you look at, not public/.
+args=("$@")
+has_memory=0
+is_server=0
+for arg in "$@"; do
+  case "$arg" in
+    --renderToMemory) has_memory=1 ;;
+    serve | server) is_server=1 ;;
+  esac
+done
+
+if [[ $is_server -eq 1 && $has_memory -eq 0 ]]; then
+  reordered=()
+  for arg in "$@"; do
+    reordered+=("$arg")
+    case "$arg" in
+      serve | server) reordered+=(--renderToMemory) ;;
+    esac
+  done
+  args=("${reordered[@]}")
+fi
+
+exec hugo "${args[@]}"
