@@ -1,14 +1,39 @@
+# Dependabot is a *notification* channel for this repo, not a review workflow:
+# the project does not use pull requests. Keep the queue at one PR per
+# ecosystem and clear each one by applying the bump locally on main (see
+# AGENTS.md), verifying the build, then closing the PR with a note.
+# Never merge these through the GitHub UI.
 version: 2
 updates:
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
+      day: monday
       time: "20:00"
-    open-pull-requests-limit: 10
-  # - package-ecosystem: bundler
-  #   directory: "/"
-  #   schedule:
-  #     interval: daily
-  #     time: "20:00"
-  #   open-pull-requests-limit: 10
+    open-pull-requests-limit: 1
+    commit-message:
+      prefix: deps
+
+  # Hugo itself is bumped via npm (`npm run update:hugo`), so this covers
+  # actions/checkout, setup-node, cache, upload-pages-artifact, deploy-pages.
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "20:00"
+    open-pull-requests-limit: 1
+    commit-message:
+      prefix: ci
+
+  # The Docsy theme is a Go module (go.mod / go.sum).
+  - package-ecosystem: gomod
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "20:00"
+    open-pull-requests-limit: 1
+    commit-message:
+      prefix: deps
