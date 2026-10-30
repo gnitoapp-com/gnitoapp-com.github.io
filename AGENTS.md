@@ -40,7 +40,7 @@ the single word "push" and deployed it. Work stays on a working branch until the
 | `scripts/apk-checksums.sh` | Regenerates the integrity data (`--check` verifies it; CI runs `--check`) |
 | `scripts/hugo` | Runs the npm-pinned Hugo with node_modules/.bin and Go on PATH — **there is no system-wide `hugo`** |
 | `layouts/partials/apk-verify.html` | Renders the "Verify this download" block on each product page from that data |
-| `layouts/partials/navbar.html` | Theme 0.18.0 navbar + one change: menu entries with children render as a Bootstrap dropdown ("Select app"). **Re-diff against the theme on every Docsy upgrade** |
+| `layouts/partials/navbar.html` | Theme 0.18.0 navbar + one change: menu entries with children render as a Bootstrap dropdown ("Apps"). **Re-diff against the theme on every Docsy upgrade** |
 | `hugo.yaml` | The site config that is actually used (language `en`, `contentDir: content/en`, Docsy module import, baseURL) |
 | `layouts/_default/baseof.html` | Local override of Docsy's `baseof.html`; also forces dark mode (see D4 in the maintenance doc) |
 | `layouts/404.html` | Not-found page override |

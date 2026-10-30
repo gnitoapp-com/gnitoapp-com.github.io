@@ -89,11 +89,11 @@ markup:
     # guessSyntax: true
 
 # Main navigation. The three app links are grouped under one dropdown labelled
-# "Select app" (rendered by the local navbar override); the remaining pages are
+# "Apps" (rendered by the local navbar override); the remaining pages are
 # ordinary top-level links.
 menu:
   main:
-    - name: Select app
+    - name: Apps
       identifier: apps
       weight: 1
 
