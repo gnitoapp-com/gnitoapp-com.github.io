@@ -40,6 +40,7 @@ the single word "push" and deployed it. Work stays on a working branch until the
 | `data/apk_checksums.json` | **Generated** per-APK SHA-256, size, signing-certificate fingerprint, package/versionCode. Never hand-edit; run `scripts/apk-checksums.sh` |
 | `scripts/apk-checksums.sh` | Regenerates the integrity data (`--check` verifies it; CI runs `--check`) |
 | `scripts/hugo` | Runs the npm-pinned Hugo with node_modules/.bin and Go on PATH — **there is no system-wide `hugo`** |
+| `docs/ANDROID-DEVELOPER-VERIFICATION.md` | Runbook for registering as an Android developer (ADC, not Play) and registering each package name + signing key. Read before any release that touches keys or package names |
 | `scripts/generate-brand-assets.sh` | Generates the favicon set, `site.webmanifest`, the navbar mark and the 1200×630 social cards from `assets/images/logo/gnitoapp-com-logo.png`. Re-run after changing the master logo; never hand-edit the outputs |
 | `assets/images/logo/gnitoapp-com-logo.png` | Master brand logo (550×550). Source for every generated icon |
 | `static/favicon*`, `static/apple-touch-icon.png`, `static/android-chrome-*.png` | Generated icons. Docsy discovers them by these conventional names in `static/` |
