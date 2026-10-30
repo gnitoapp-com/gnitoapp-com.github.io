@@ -44,7 +44,8 @@ the single word "push" and deployed it. Work stays on a working branch until the
 | `hugo.yaml` | The site config that is actually used (language `en`, `contentDir: content/en`, Docsy module import, baseURL) |
 | `layouts/_default/baseof.html` | Local override of Docsy's `baseof.html`; also forces dark mode (see D4 in the maintenance doc) |
 | `layouts/404.html` | Not-found page override |
-| `assets/scss/_variables_project.scss` | The only supported place for Docsy/theme SCSS overrides (currently empty) |
+| `assets/scss/_variables_project.scss` | Theme **variables** only (Docsy imports it before Bootstrap, so rules here lose to theme rules) |
+| `assets/scss/_styles_project.scss` | Project **CSS rules** — imported last, so they win equal-specificity fights. All page/component styles live here |
 | `.github/workflows/hugo.yaml` | Build + deploy to GitHub Pages, triggered by push to `main` |
 
 Template leftovers — do **not** treat as documentation and do **not** extend them:
