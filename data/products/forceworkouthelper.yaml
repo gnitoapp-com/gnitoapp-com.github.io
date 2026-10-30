@@ -16,6 +16,10 @@ badges:
     value: 100% Offline Functional
   - label: Privacy
     value: No Ads / No Trackers / No Login
+# Optional announcement rendered above the download button, in Markdown.
+# Use it for release notices and signing-key changes (see docs/KEY-CHANGE.md).
+# notice: |
+#   **Heads up:** ...
 screenshots:
   - file: 01.png
     alt: Force Workout Helper home

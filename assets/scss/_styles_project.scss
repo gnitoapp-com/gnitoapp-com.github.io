@@ -323,3 +323,24 @@ body:not(.td-home) main.td-main {
     row-gap: 0.25rem;
   }
 }
+
+/*
+  Per-product announcement slot (data/products/<product>.yaml → notice:).
+  Used for key-change notices: the fingerprint on the page changes, and users
+  are told to uninstall once before installing (see docs/KEY-CHANGE.md).
+*/
+.product-notice {
+  margin: 0 0 1rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid #ffd7a3;
+  border-left: 6px solid #ffa630;
+  border-radius: 0.5rem;
+  background-color: #fff8ec;
+  color: #4a2d00;
+  font-size: 0.95rem;
+  line-height: 1.5;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}

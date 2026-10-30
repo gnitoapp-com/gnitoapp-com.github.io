@@ -3,6 +3,9 @@
   <div class="product-header__body">
     <h1>{{ .data.name }}</h1>
     <p class="product-tagline">{{ .data.tagline }}</p>
+    {{- with .data.notice }}
+    <div class="product-notice">{{ . | markdownify }}</div>
+    {{- end }}
     <div class="product-actions">
       <a class="product-btn product-btn--primary" href="/{{ .product }}/{{ .apk.apk }}">Download APK {{ .apk.version }} (Android)</a>
       <a class="product-btn product-btn--secondary" href="{{ .data.store.url }}">{{ .data.store.label }}</a>

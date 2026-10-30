@@ -7,15 +7,18 @@
   <p class="apk-verify__file">
     <strong>{{ .apk.apk }}</strong> · version {{ .apk.version }} (build {{ .apk.buildNumber }}) · {{ int (div .apk.bytes 1048576) }} MiB ({{ int .apk.bytes }} bytes)
   </p>
-  <p class="apk-verify__label">SHA-256</p>
+  <p class="apk-verify__label">SHA-256 of the file</p>
   <code class="apk-verify__hash">{{ .apk.sha256 }}</code>
   {{- with .apk.signerCertSha256 }}
-  <p class="apk-verify__label">Signing certificate SHA-256</p>
+  <p class="apk-verify__label">Signing certificate SHA-256 (the key this build was signed with)</p>
   <code class="apk-verify__hash">{{ . }}</code>
   {{- end }}
   <p class="apk-verify__help">
     After downloading, run <code>sha256sum {{ .apk.apk }}</code> (Linux, macOS)
-    or <code>Get-FileHash</code> (Windows). The hash must match. The full list is in
-    <a href="{{ .apk.checksumsUrl }}">SHA256SUMS</a>.
+    or <code>Get-FileHash</code> (Windows) and compare: the hash must match exactly.
+    The full list is in <a href="{{ .apk.checksumsUrl }}">SHA256SUMS</a>.
+    A different hash or certificate means the file is not the build published here —
+    do not install it, and report it to
+    <a href="mailto:support@gnitoapp.com">support@gnitoapp.com</a>.
   </p>
 </details>
