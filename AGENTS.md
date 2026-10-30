@@ -171,6 +171,11 @@ Two different tokens are in play, and mixing them up wastes an hour:
   every `gh pr`/`gh issue` write fails with `403 Resource not accessible by personal access token`
   even when the token you are editing in the browser has the permissions. Do not re-edit PATs on
   that evidence — check which token `gh` actually holds first.
+- **The router token cannot push commits that touch `.github/workflows/`** — GitHub rejects them
+  with "refusing to allow a Personal Access Token to create or update workflow … without
+  `workflow` scope". If the branch carries workflow edits, either push with a token that has
+  **Workflows: Read and write** (explicitly, without changing the stored helper) or ask the owner
+  to push. Never route such a push through `main`.
 - For GitHub API writes here, override per command instead of touching global auth:
   `GH_TOKEN=$(cat ~/.config/git/tokens/gnitoapp-com/_default) gh pr close 12 --comment "..."`.
   That works once the router token carries **Pull requests: Read and write**,
