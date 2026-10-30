@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "html-validate:recommended"
+  ],
+  "rules": {
+    "doctype-style": "off",
+    "no-inline-style": "off",
+    "no-trailing-whitespace": "off",
+    "no-redundant-role": "off",
+    "prefer-native-element": "off",
+    "aria-label-misuse": "warn",
+    "long-title": "warn",
+    "attr-quotes": "off",
+    "no-raw-characters": [
+      "error",
+      {
+        "relaxed": true
+      }
+    ]
+  }
+}

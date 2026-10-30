@@ -65,6 +65,12 @@ jobs:
       - name: Install Node.js dependencies
         run: npm ci
 
+      - name: Spell check
+        run: npm run spell
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev
+
       - name: Toolchain versions
         run: |
           node --version
@@ -89,6 +95,15 @@ jobs:
       - name: Verify rendered APK pages
         run: ./scripts/apk-checksums.sh --rendered public
 
+      # Internal links and anchors. The build already ran this via its
+      # postbuild:production hook; running it explicitly keeps the gate visible
+      # in the log even if that hook is ever changed.
+      - name: Check links
+        run: npm run check:links
+
+      - name: Validate HTML
+        run: npm run lint:html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
@@ -106,6 +121,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+      # A deploy is only successful if the site actually serves what we built.
+      - name: Smoke test the deployed site
+        run: ./scripts/smoke-test.sh https://gnitoapp.com

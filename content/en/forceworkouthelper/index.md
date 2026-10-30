@@ -31,7 +31,7 @@ Elevate every session using our expertly crafted timers, designed to push limits
 
 Our motto isn't just a phrase—it's a promise. Built for warriors who crave structure without complexity, this app strips away distractions so you can focus on what matters: results.
 
-**ifetime Access, Zero Gimmicks**
+**Lifetime Access, Zero Gimmicks**
 
 Say goodbye to subscriptions and hidden fees. One payment, forever yours. No ads. No in-app purchases. All languages. Free upgrades. Just pure, uninterrupted focus on your fitness journey.
 

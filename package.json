@@ -12,7 +12,7 @@
   "scripts": {
     "_build": "npm run _hugo-dev --",
     "postinstall": "node scripts/ensure-dart-sass.mjs",
-    "_check:links": "echo IMPLEMENTATION PENDING for check-links; echo",
+    "_check:links": "./scripts/check-links.sh",
     "_hugo": "hugo --cleanDestinationDir",
     "_hugo-dev": "npm run _hugo -- -e dev -DFE",
     "_local": "npx cross-env HUGO_MODULE_WORKSPACE=docsy.work",
@@ -34,11 +34,18 @@
     "update:dep": "npm install --save-dev autoprefixer@latest postcss-cli@latest",
     "update:hugo": "npm install --save-dev --save-exact hugo-extended@latest",
     "update:pkgs": "npx npm-check-updates -u",
-    "check:apk": "./scripts/apk-checksums.sh --check && ./scripts/apk-checksums.sh --rendered public"
+    "check:apk": "./scripts/apk-checksums.sh --check && ./scripts/apk-checksums.sh --rendered public",
+    "check:links:external": "./scripts/check-links.sh --external",
+    "lint:html": "html-validate public/index.html public/units2units/index.html public/forceworkouthelper/index.html public/romanitaire/index.html public/privacy/index.html public/terms/index.html public/support/index.html public/search/index.html public/404.html",
+    "spell": "cspell --no-progress \"content/**/*.md\" \"data/**/*.yaml\"",
+    "smoke": "./scripts/smoke-test.sh https://gnitoapp.com",
+    "verify": "npm run check:apk && npm run spell && npm run lint:html && npm run check:links"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "cross-env": "^10.1.0",
+    "cspell": "^10.4.0",
+    "html-validate": "^11.17.0",
     "hugo-extended": "0.169.0",
     "postcss": "^8.5.3",
     "postcss-cli": "^12.0.0",

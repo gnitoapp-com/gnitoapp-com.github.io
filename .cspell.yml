@@ -1,8 +1,52 @@
-# cSpell:ignore textlintrc
-# For settings, see
-# https://www.streetsidesoftware.com/vscode-spell-checker/docs/configuration/
+# Spell-check settings. Run with: npm run spell
+# https://cspell.org/configuration/
 version: '0.2'
-caseSensitive: true
+caseSensitive: false
+ignorePaths:
+  - public/**
+  - resources/**
+  - node_modules/**
+  - packages/**
+  - static/**
+  - package-lock.json
+  - LICENSE
 words:
+  # Company and products
+  - Gnito
+  - GnitoApp
+  - gnitoapp
+  - Units2Units
+  - Romanitaire
+  - romanitaire
+  - forceworkouthelper
+  - bluesky
+  # Training timer vocabulary
+  - AMRAP
+  - AMPRAP
+  - EMOM
+  - TABATA
+  - HIIT
+  - Ferox
+  - Constantia
+  - Undos
+  # Android / download vocabulary
+  - APK
+  - apksigner
+  - keytool
+  - sha256sum
+  - SHA256SUMS
+  - Termux
+  - sideloading
+  - sideload
+  - macOS
+  # Named in legal text
+  - Elmwood
+  - timeframe
+  - Hyperfocal
+  - TDEE
+  - Motorsport
+  - Licence
+  # Theme / tooling
   - Docsy
-  - Goldydocs
+  - Hugo
+  - hugo
