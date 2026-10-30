@@ -58,10 +58,12 @@ that ships with the `ubuntu-latest` image and logs `go version` in a preflight s
 
 ## Commands
 
-There is **no system-wide `hugo`** on this machine; the binary is the `hugo-extended`
-devDependency. Run it through `./scripts/hugo` (or `npx hugo`), never as bare `hugo`. The wrapper
-adds `node_modules/.bin` and the Go SDK to `PATH`, which Hugo needs for the Dart Sass `sass` CLI
-and for module resolution.
+Hugo is pinned by `package.json` as the `hugo-extended` devDependency. For convenience a
+**system-wide copy of the same version is installed** (`/usr/local/bin/hugo` 0.169.0+extended,
+with `/usr/local/bin/sass` = Dart Sass 1.105.0 and Go 1.26 from `dnf`), so a bare `hugo` also
+works. Prefer `./scripts/hugo` or `npm run build:production` anyway: they always use the npm pin
+and put `node_modules/.bin` on `PATH`. The system copy does not follow `package.json` — after a
+Hugo bump, either reinstall it or use the wrapper.
 
 ```bash
 ./scripts/hugo version                   # 0.169.0+extended, the same binary CI uses
