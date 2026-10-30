@@ -1,6 +1,6 @@
 ---
 title: Romanitaire
-menu: {main: {weight: 5}}
+menu: {main: {parent: apps, weight: 2}}
 layout: product
 product: romanitaire
 ---

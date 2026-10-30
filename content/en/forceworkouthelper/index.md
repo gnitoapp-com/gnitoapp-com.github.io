@@ -1,6 +1,6 @@
 ---
 title: Force Workout Helper
-menu: {main: {weight: 5}}
+menu: {main: {parent: apps, weight: 1}}
 layout: product
 product: forceworkouthelper
 ---

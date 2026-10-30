@@ -88,6 +88,15 @@ markup:
     # Uncomment if you want your chosen highlight style used for code blocks without a specified language
     # guessSyntax: true
 
+# Main navigation. The three app links are grouped under one dropdown labelled
+# "Select app" (rendered by the local navbar override); the remaining pages are
+# ordinary top-level links.
+menu:
+  main:
+    - name: Select app
+      identifier: apps
+      weight: 1
+
 # Everything below this are Site Params
 
 # Comment out if you don't want the "print entire section" link enabled.

@@ -1,6 +1,6 @@
 ---
 title: Units2Units
-menu: {main: {weight: 5}}
+menu: {main: {parent: apps, weight: 3}}
 layout: product
 product: units2units
 ---
