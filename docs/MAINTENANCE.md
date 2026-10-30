@@ -36,6 +36,7 @@ Measured 2026-10-29 at baseline `5efb80c`; the "now" column reflects the fixes b
 | --- | --- | --- |
 | D14 — screenshots were unoptimised PNGs served verbatim | fixed: sources moved to `assets/screenshots/`, Hugo renders 230/460 px WebP with `srcset` + width/height; published weight 21 MB → **592 KB** | `f5fc309` |
 | D10 — theme branding: Docsy favicons, no navbar logo, no social image | fixed: favicon set + manifest + apple-touch generated from the master logo, navbar mark, per-product 1200×630 social cards with a site-wide fallback | `5f32de4` |
+| D12 — privacy policy contradicted the apps and had no date | fixed: rewritten against what the shipped APKs actually do (Sentry crash reports, RevenueCat/Stripe purchases, version check, currency API, GitHub Pages logs), dated, Chinese sibling kept per owner decision | `b80326f` |
 | D11 — product pages were raw inline-styled HTML with a 4-way version duplication | fixed: `data/products/*.yaml` + one layout + partials, version from generated data, zero inline styles, semantic tables | `7860279` |
 | D1 — published URLs were `http://`, no canonical | fixed: canonical hook + `hugo.yaml` is the only baseURL source, `robots.txt` advertises the sitemap | `63de339` |
 | D9 — 264 MB of unreferenced APKs | fixed: three superseded APKs deleted (pages unchanged, links verified) | `2d0b3e2` |
@@ -69,7 +70,7 @@ decisions and verification evidence in the issue thread; close it only with the 
 | #80 Repo cleanup: template leftovers, dead scaffolding, dead config | D5, D6, D7, D8, D13, D23 — **done** (`441455d`) |
 | #81 Quality gates: links, spelling, HTML/a11y, post-deploy smoke test | D16, D22, D24 — **done** |
 | #82 Download trust: verification copy + key-change playbook | D19 (remainder), D25 (site side) |
-| #83 Privacy policy vs product claims | D12 |
+| #83 Privacy policy vs product claims | D12 — **done** (`b80326f`) |
 
 Ordering constraints that matter: **#78 before #79** (one unknown at a time), and **#79 before any
 Hugo bump past 0.166** (Docsy v0.11 reads APIs a future Hugo removes). #76 and #77 are independent
@@ -201,7 +202,7 @@ read from `static/<product>/version.json` via `os.ReadFile` at build time, or �
 file becomes the source of truth and `version.json` is generated in the build, eliminating the
 4-way duplication in `AGENTS.md` invariant 1.
 
-### D12. Privacy policy contradicts the product claims, and has no date
+### D12. Privacy policy contradicts the product claims, and has no date — **resolved (rewritten 2026-10-30)**
 `content/en/privacy/_index.md` says "We may use cookies, web beacons, and other tracking
 technologies", and describes third-party account linking, while every product page advertises
 "No Ads / No Trackers / No Login". There is no "last updated" date, no retention/deletion
