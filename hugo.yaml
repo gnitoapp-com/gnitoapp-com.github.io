@@ -15,13 +15,9 @@ enableRobotsTXT: true
 # Will give values to .Lastmod etc.
 enableGitInfo: false
 
-# Comment out to enable taxonomies in Docsy
-# disableKinds: [taxonomy, taxonomyTerm]
-
-# You can add your own taxonomies
-taxonomies:
-  tag: tags
-  category: categories
+# The site has no tagging/blog structure, so Docsy's empty /tags and /categories
+# pages are not published at all.
+disableKinds: [taxonomy]
 
 # Highlighting config
 pygmentsCodeFences: true
@@ -31,10 +27,6 @@ pygmentsUseClassic: false
 # pygmentsOptions: "linenos=table"
 # See https://help.farbox.com/pygments.html
 pygmentsStyle: tango
-
-# Configure how URLs look like per section.
-permalinks:
-  blog: /:section/:year/:month/:day/:slug/
 
 # Image processing configuration.
 imaging:
@@ -99,43 +91,11 @@ menu:
 
 # Everything below this are Site Params
 
-# Comment out if you don't want the "print entire section" link enabled.
-outputs:
-  section: [HTML, print, RSS]
-
 params:
-  taxonomy:
-    # set taxonomyCloud = [] to hide taxonomy clouds
-    taxonomyCloud: [tags, categories]
-
-    # If used, must have same length as taxonomyCloud
-    taxonomyCloudTitle: [Tag Cloud, Categories]
-
-    # set taxonomyPageHeader = [] to hide taxonomies on the page headers
-    taxonomyPageHeader: [tags, categories]
-
   privacy_policy: /privacy
 
   # First one is picked as the Twitter card image if not set on page.
   # images: [images/project-illustration.png]
-
-  # Menu title if your navbar has a versions selector to access old versions of your site.
-  # This menu appears only if you have at least one [params.versions] set.
-  version_menu: Releases
-
-  # Flag used in the "version-banner" partial to decide whether to display a
-  # banner on every page indicating that this is an archived version of the docs.
-  # Set this flag to "true" if you want to display the banner.
-  archived_version: false
-
-  # The version number for the version of the docs represented in this doc set.
-  # Used in the "version-banner" partial to display a version number for the
-  # current doc set.
-  version: 1.0
-
-  # A link to latest version of the docs. Used in the "version-banner" partial to
-  # point people to the main doc site.
-  url_latest_version: https://gnitoapp.com
 
   # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
   github_repo: https://github.com/gnitoapp-com/gnitoapp-com.github.io
@@ -155,9 +115,6 @@ params:
 
   # Enable Lunr.js offline search
   offlineSearch: false
-
-  # Enable syntax highlighting and copy buttons on code blocks with Prism
-  prism_syntax_highlighting: false
 
   copyright:
     authors: GnitoApp.com | All Rights Reserved |
@@ -179,20 +136,7 @@ params:
     # Adds a H2 section titled "Feedback" to the bottom of each doc. The responses are sent to Google Analytics as events.
     # This feature depends on [services.googleAnalytics] and will be disabled if "services.googleAnalytics.id" is not set.
     # If you want this feature, but occasionally need to remove the "Feedback" section from a single page,
-    # add "hide_feedback: true" to the page's front matter.
-    feedback:
-      enable: true
-      # The responses that the user sees after clicking "yes" (the page was helpful) or "no" (the page was not helpful).
-      "yes": >-
-        Glad to hear it! Please <a href="https://github.com/gnitoapp-com/gnitoapp-com.github.io/issues/new">tell us how we can improve</a>.
-      "no": >-
-        Sorry to hear that. Please <a href="https://github.com/gnitoapp-com/gnitoapp-com.github.io/issues/new">tell us how we can improve</a>.
 
-    # Adds a reading time to the top of each doc.
-    # If you want this feature, but occasionally need to remove the Reading time from a single page,
-    # add "hide_readingtime: true" to the page's front matter
-    readingtime:
-      enable: false
 
   links:
     # End user relevant links. These will show up on left side of footer and in the community page if you have one.
@@ -209,8 +153,6 @@ params:
         desc: Development takes place here!
 
 module:
-  # Uncomment the next line to build and serve using local docsy clone declared in the named Hugo workspace:
-  # workspace: docsy.work
   hugoVersion:
     extended: true
     # Docsy 0.16 raised its own minimum to 0.160.1; keep this in step with the
