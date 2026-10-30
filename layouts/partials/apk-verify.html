@@ -14,11 +14,25 @@
   <code class="apk-verify__hash">{{ . }}</code>
   {{- end }}
   <p class="apk-verify__help">
-    After downloading, run <code>sha256sum {{ .apk.apk }}</code> (Linux, macOS)
-    or <code>Get-FileHash</code> (Windows) and compare: the hash must match exactly.
-    The full list is in <a href="{{ .apk.checksumsUrl }}">SHA256SUMS</a>.
-    A different hash or certificate means the file is not the build published here —
-    do not install it, and report it to
+    Compare the hash of the file you actually downloaded with the value above.
+  </p>
+  <ul class="apk-verify__help">
+    <li><strong>On a computer</strong> (or after copying the file to one):
+      <code>sha256sum {{ .apk.apk }}</code> on Linux/macOS,
+      <code>Get-FileHash {{ .apk.apk }}</code> in Windows PowerShell.</li>
+    <li><strong>On Android</strong> there is no built-in checksum tool. Install
+      <a href="https://f-droid.org/packages/com.termux/">Termux</a> and run
+      <code>sha256sum /sdcard/Download/{{ .apk.apk }}</code> (in Termux,
+      <code>~/storage/downloads</code> after <code>termux-setup-storage</code>), or use a
+      reputable checksum app from your app store.</li>
+  </ul>
+  <p class="apk-verify__help">
+    The hash must match exactly; the full list is in
+    <a href="{{ .apk.checksumsUrl }}">SHA256SUMS</a>. The certificate fingerprint is
+    what <code>apksigner verify --print-certs</code> reports for the file (advanced
+    check on a computer) — it identifies the signing key, while the hash identifies
+    the exact file. A different hash or certificate means this is not the build
+    published here: do not install it, and report it to
     <a href="mailto:support@gnitoapp.com">support@gnitoapp.com</a>.
   </p>
 </details>

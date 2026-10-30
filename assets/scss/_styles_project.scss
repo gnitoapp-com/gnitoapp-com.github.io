@@ -344,3 +344,13 @@ body:not(.td-home) main.td-main {
     margin-bottom: 0;
   }
 }
+
+/* Verification help lists inside the product integrity block. */
+.apk-verify__help {
+  margin: 0.5rem 0 0;
+  color: #555;
+
+  li + li {
+    margin-top: 0.25rem;
+  }
+}
