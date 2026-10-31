@@ -1,16 +1,16 @@
 {
   "forceworkouthelper": {
-    "apk": "forceworkouthelper_v1_3_6.apk",
-    "version": "1.3.6",
-    "buildNumber": 50,
-    "bytes": 87576619,
-    "sha256": "91830dd4a07fba031289d0d2f541a62ad15ed5981ae3486fcb24b4fa49ef80b7",
+    "apk": "forceworkouthelper_v1_4_0.apk",
+    "version": "1.4.0",
+    "buildNumber": 51,
+    "bytes": 90721771,
+    "sha256": "545f118a87207cb3faddbcbb3118961072c1ec76c65056c4eb447389ad8e6cb7",
     "checksumsUrl": "/forceworkouthelper/SHA256SUMS",
-    "signerCertSha256": "55bd1c5b3d5bd1b1193c4ebfb99fdf695ce5191afbeec720d9a2c6c9b6da4aa3",
-    "signerDn": "CN=Dewald Pretorius, OU=gnitoapp.com, O=gnitoapp.com, L=moncton, ST=nb, C=ca",
+    "signerCertSha256": "fb9ea968fc4bdf9f4f38099c73b2a26e299a979c7d7b32ae8162a005c2434b34",
+    "signerDn": "CN=GnitoApp.com, OU=gnitoapp.com, O=3827992 Canada Inc., L=Moncton, ST=NB, C=CA",
     "package": "com.gnitoapp.forceworkouthelper_gms",
-    "versionCode": "50",
-    "versionName": "1.3.6"
+    "versionCode": "51",
+    "versionName": "1.4.0"
   },
   "romanitaire": {
     "apk": "romanitaire_v1_0_8.apk",
