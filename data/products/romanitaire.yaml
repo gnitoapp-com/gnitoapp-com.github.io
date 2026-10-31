@@ -26,13 +26,12 @@ badges:
 # re-signed with a new certificate; delete it again after one release cycle.
 # The fingerprint itself is already shown by the "Verify this APK" block, so the
 # text only has to explain the one-time uninstall and its data loss.
-#
-# notice: |
-#   **New signing key.** This build is signed with a new certificate, shown under
-#   "Verify this APK" above. Android cannot update an existing install in place
-#   when the signing key changes, so uninstall the old version once and then
-#   install this build. Anything stored inside the old app is removed by that
-#   uninstall, so export what you need first.
+notice: |
+  **New signing key.** This build is signed with a new certificate, shown under
+  "Verify this APK" above. Android cannot update an existing install in place
+  when the signing key changes, so uninstall the old version once and then
+  install this build. Anything stored inside the old app is removed by that
+  uninstall, so export what you need first.
 screenshots:
   - file: 01.png
     alt: Romanitaire intro

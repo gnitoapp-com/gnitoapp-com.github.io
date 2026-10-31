@@ -13,17 +13,17 @@
     "versionName": "1.4.0"
   },
   "romanitaire": {
-    "apk": "romanitaire_v1_0_8.apk",
-    "version": "1.0.8",
-    "buildNumber": 12,
-    "bytes": 70033699,
-    "sha256": "fbe458d73c8084aa8fee37a958a572820e92fa0d0c58a2d01329260f256a68f3",
+    "apk": "romanitaire_v1_1_0.apk",
+    "version": "1.1.0",
+    "buildNumber": 13,
+    "bytes": 70704775,
+    "sha256": "effa33131745376fb39b930840aef4944cc4aed3b2549e20102385f0f6d14e0a",
     "checksumsUrl": "/romanitaire/SHA256SUMS",
-    "signerCertSha256": "02006f4f6da66174bacf0c1c75443c33667d4c32fb84134faa8d4a842c7e2015",
-    "signerDn": "C=US, O=Android, CN=Android Debug",
+    "signerCertSha256": "ac675f0de837f134fa686d0effb46b71966944d5ea5284ea89e42c9da30bea58",
+    "signerDn": "CN=GnitoApp.com, OU=gnitoapp.com, O=3827992 Canada Inc., L=Moncton, ST=NB, C=CA",
     "package": "com.gnitoapp.romanitaire_gms",
-    "versionCode": "12",
-    "versionName": "1.0.8"
+    "versionCode": "13",
+    "versionName": "1.1.0"
   },
   "units2units": {
     "apk": "units2units_v1_2_0.apk",
