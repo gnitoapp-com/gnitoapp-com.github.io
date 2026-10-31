@@ -26,16 +26,16 @@
     "versionName": "1.1.0"
   },
   "units2units": {
-    "apk": "units2units_v1_2_0.apk",
-    "version": "1.2.0",
-    "buildNumber": 11,
-    "bytes": 98088981,
-    "sha256": "bfd5358e8a3be45a0ab011a7870a4c57b74792bd8662085c17184856850761d4",
+    "apk": "units2units_v1_3_0.apk",
+    "version": "1.3.0",
+    "buildNumber": 12,
+    "bytes": 99080833,
+    "sha256": "e8dbd8cc1500383c02fc296c35e7dee0d8dba39354545e1ce6947cf0be266868",
     "checksumsUrl": "/units2units/SHA256SUMS",
-    "signerCertSha256": "cfb9df2f8c1d110a3dbe74599293621f54b6cb6e0c5559038400f2eecf31be38",
-    "signerDn": "CN=Unknown, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown",
+    "signerCertSha256": "6af18411b4abe05b0a0dbdfecd801723b660f1e203f987538a1d2fa852fc70a1",
+    "signerDn": "CN=GnitoApp.com, OU=gnitoapp.com, O=3827992 Canada Inc., L=Moncton, ST=NB, C=CA",
     "package": "com.gnitoapp.units2units_gms",
-    "versionCode": "11",
-    "versionName": "1.2.0"
+    "versionCode": "12",
+    "versionName": "1.3.0"
   }
 }
