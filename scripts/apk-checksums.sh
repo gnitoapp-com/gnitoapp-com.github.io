@@ -130,11 +130,11 @@ def collect(apksigner: str | None, aapt2: str | None, previous: dict):
         digest = sha256_file(apk)
         cert, dn = signer_info(apk, apksigner)
         old = previous.get(product, {})
-        if old and old.get("sha256") != digest:
-            cert, dn = None, None  # never carry a fingerprint to a different file
         if cert is None and old.get("sha256") == digest:
+            # apksigner is unavailable, but the file is unchanged: keep the recorded
+            # identity. A fingerprint is never carried over to a different file.
             cert, dn = old.get("signerCertSha256"), old.get("signerDn")
-        if cert is None and (not old or old.get("sha256") != digest):
+        if cert is None:
             unverified.append(product)
         if cert and old.get("signerCertSha256") and cert != old["signerCertSha256"]:
             key_changes.append((product, old["signerCertSha256"], cert))
