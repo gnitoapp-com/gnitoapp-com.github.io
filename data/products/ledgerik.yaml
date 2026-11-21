@@ -15,6 +15,9 @@ platforms:
 version: "1.0.0"
 logo: /ledgerik/images/logo_200_square.png
 logoAlt: Ledgerik icon
+# Public user manual under content/en/ledgerik/manual/, linked from the page
+# header (rendered by layouts/partials/product/header.html).
+manual: /ledgerik/manual/
 # Build not published yet: `available: false` renders the entry as a non-link
 # "Coming soon" row so the page never points at a missing file (invariant 3).
 # Set it to true in the same commit that adds the archive to static/ledgerik/.

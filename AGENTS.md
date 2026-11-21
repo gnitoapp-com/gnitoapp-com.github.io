@@ -31,8 +31,11 @@ the single word "push" and deployed it. Work stays on a working branch until the
 | --- | --- |
 | `content/en/_index.md` | Home page (Docsy blocks: cover + feature) |
 | `content/en/{units2units,forceworkouthelper,romanitaire}/index.md` | Product pages: front matter (`layout: product`, `product: <key>`) plus the product description only |
+| `content/en/ledgerik/_index.md` | Ledgerik product page. It is a **branch bundle** (`_index.md`) because the manual lives underneath it; as a leaf bundle (`index.md`) Hugo would treat `manual/` as a page resource and publish nothing |
+| `content/en/ledgerik/manual/` | Ledgerik user manual: the `_index.md` landing page plus one `_index.md` per section, each with `layout: manual` and a `menu.manual` entry (weight = order). Add a section by adding a directory; the sidebar and landing-page cards follow automatically |
 | `data/products/<product>.yaml` | Per-product facts: `platforms` (required), tagline, category, licence, store link, badges, screenshots, logo, optional `notice` (Markdown, rendered above the download buttons), optional `downloads` (per-platform desktop installers) and optional `version` (only for non-Android products — Android takes it from the APK) |
 | `layouts/_default/product.html` + `layouts/partials/product/*` | Renders the shared product chrome from that data |
+| `layouts/_default/manual.html` | Ledgerik manual shell: `manual`-menu sidebar, page content, and the section cards on the manual landing page |
 | `layouts/_default/single.html`, `layouts/privacy/list.html` | Plain content pages (support, terms, privacy, privacy_zh) rendered through Docsy's `_td-content` wrapper. Docsy 0.18's generic `all.html` otherwise emits the content bare — no page title, no prose or code styling |
 | `content/en/privacy/` | Privacy policy: `_index.md` (EN) + `privacy_zh.md` (ZH as a separate page, not i18n) |
 | `content/en/terms/index.md`, `support.md` | Legal and contact pages |
@@ -255,7 +258,7 @@ npm run smoke <url>             # post-deploy assertions (default: https://gnito
 | `scripts/apk-checksums.sh --check` | APK ↔ SHA256SUMS ↔ version.json ↔ product data; refuses a changed signing certificate |
 | `scripts/apk-checksums.sh --rendered public` | the built pages link the APK, show its version and publish its hash |
 | `scripts/check-links.sh` | internal links and `#anchors` resolve in `public/` (188 links, 13 pages). `--external` probes external URLs as warnings |
-| `html-validate` (`.htmlvalidate.json`) | HTML validity and a11y rules on the nine public pages; theme-only style rules are switched off with reasons in the config |
+| `html-validate` (`.htmlvalidate.json`) | HTML validity and a11y rules on the public pages (home, product pages, the Ledgerik manual, legal, support, 404); theme-only style rules are switched off with reasons in the config |
 | `cspell` (`.cspell.yml`) | spelling in `content/` and `data/`, with the product/domain dictionary |
 | `npm audit --omit=dev` | production dependency advisories (dev-only advisories are D24) |
 | `scripts/smoke-test.sh` | after deploy: canonical, download link, version, SHA-256, SHA256SUMS content, APK 200, robots sitemap, sitemap scheme |

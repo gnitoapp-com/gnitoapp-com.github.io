@@ -414,3 +414,108 @@ body:not(.td-home) main.td-main {
   height: 30px;
   border-radius: 0.35rem;
 }
+
+/*
+  Ledgerik user manual (/ledgerik/manual/), rendered by
+  layouts/_default/manual.html. Unlike the product page, manual pages follow
+  the site's dark theme; the sidebar is the `manual` menu, so nothing here
+  depends on the section list or its order.
+*/
+.manual-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.manual-layout {
+  display: grid;
+  grid-template-columns: 16rem minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+
+  @media (max-width: 991.98px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.manual-nav {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.75rem;
+  background-color: var(--bs-tertiary-bg);
+
+  @media (min-width: 992px) {
+    position: sticky;
+    top: 6rem;
+  }
+
+  &__title {
+    margin: 0 0 0.75rem;
+    font-weight: 700;
+
+    a {
+      color: var(--bs-body-color);
+      text-decoration: none;
+    }
+  }
+
+  &__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__item {
+    margin: 0;
+  }
+
+  &__item a {
+    display: block;
+    padding: 0.35rem 0.5rem;
+    border-radius: 0.35rem;
+    color: var(--bs-body-color);
+    font-size: 0.92rem;
+    text-decoration: none;
+
+    &:hover {
+      background-color: var(--bs-secondary-bg);
+    }
+  }
+
+  &__item--active a {
+    background-color: var(--bs-primary-bg-subtle);
+    color: var(--bs-primary-text-emphasis);
+    font-weight: 600;
+  }
+}
+
+.manual-body {
+  min-width: 0;
+}
+
+.manual-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+  padding: 0;
+  margin: 2rem 0 0;
+  list-style: none;
+}
+
+.manual-card {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.75rem;
+  background-color: var(--bs-tertiary-bg);
+}
+
+.manual-card__link {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.manual-card__summary {
+  margin: 0.5rem 0 0;
+  color: var(--bs-secondary-color);
+  font-size: 0.9rem;
+}

@@ -1,0 +1,49 @@
+{{- /*
+  Ledgerik user manual: /ledgerik/manual/ and its section pages.
+
+  Every page in the manual carries `layout: manual` and a `menu.manual` entry.
+  That menu is the single source of section order and titles: the sidebar uses
+  it, and the landing page renders the same entries as cards (minus the landing
+  page's own "Overview"), with the summary text coming from each page's front
+  matter. Adding a section is therefore a content-only change.
+*/ -}}
+{{- define "main" -}}
+{{- $manual := site.GetPage "/ledgerik/manual" -}}
+<div class="td-content manual-page">
+  <div class="manual-layout">
+    <nav class="manual-nav" aria-label="User manual sections">
+      <p class="manual-nav__title">
+        <a href="{{ $manual.RelPermalink }}">{{ $manual.LinkTitle }}</a>
+      </p>
+      <ul class="manual-nav__list">
+        {{- range site.Menus.manual }}
+        {{- $active := $.IsMenuCurrent "manual" . }}
+        <li class="manual-nav__item{{ if $active }} manual-nav__item--active{{ end }}">
+          <a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
+        </li>
+        {{- end }}
+      </ul>
+    </nav>
+    <div class="manual-body">
+      <h1>{{ .Title }}</h1>
+      {{ .Content }}
+      {{- if eq .RelPermalink $manual.RelPermalink }}
+      <ul class="manual-cards">
+        {{- range site.Menus.manual }}
+        {{- if ne .URL $manual.RelPermalink }}
+        <li class="manual-card">
+          <a class="manual-card__link" href="{{ .URL }}">{{ .Name }}</a>
+          {{- with .Page }}
+          {{- with .Params.summary }}
+          <p class="manual-card__summary">{{ . }}</p>
+          {{- end }}
+          {{- end }}
+        </li>
+        {{- end }}
+        {{- end }}
+      </ul>
+      {{- end }}
+    </div>
+  </div>
+</div>
+{{- end -}}

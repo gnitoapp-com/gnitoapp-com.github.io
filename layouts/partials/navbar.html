@@ -1,10 +1,13 @@
 {{- /*
   Navbar override for gnitoapp.com.
 
-  Copied from Docsy 0.18.0's layouts/_partials/navbar.html. The ONLY change is
-  the main-menu loop: an entry with children renders as a Bootstrap dropdown
-  (toggle labelled with the parent's name, children inside), instead of Docsy
-  rendering every entry as a flat top-level link.
+  Copied from Docsy 0.18.0's layouts/_partials/navbar.html. Two changes:
+  1. the main-menu loop: an entry with children renders as a Bootstrap dropdown
+     (toggle labelled with the parent's name, children inside), instead of Docsy
+     rendering every entry as a flat top-level link;
+  2. `aria-label="Main"` on the <nav>. A page with a second navigation
+     landmark (the manual sidebar) needs every landmark to have a unique
+     accessible name, and the theme's navbar has none.
 
   Remove this file as soon as Docsy supports menu dropdowns itself - re-diff
   the theme's navbar.html on every Docsy upgrade, since the rest of this copy
@@ -19,6 +22,7 @@
 {{ $baseURL := urls.Parse $.Site.Params.Baseurl -}}
 <nav class="td-navbar js-navbar-scroll
       {{- if $cover }} td-navbar-cover td-navbar-transparent {{- end }}"
+      aria-label="Main"
       {{- if $dark }} data-bs-theme="dark" {{- end }}>
 <div class="td-navbar-container container-fluid flex-column flex-md-row">
   <a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}">
