@@ -44,7 +44,14 @@
           {{- range $.data.platforms -}}
             {{- $names = $names | append (index $platformNames . | default .) -}}
           {{- end -}}
-          {{- $value = delimit $names " & " -}}
+          {{- /* "Android & iOS" for two, "Windows, macOS & Linux" for three. */ -}}
+          {{- $count := len $names -}}
+          {{- if gt $count 2 -}}
+            {{- $last := sub $count 1 -}}
+            {{- $value = printf "%s & %s" (delimit (first $last $names) ", ") (index $names $last) -}}
+          {{- else -}}
+            {{- $value = delimit $names " & " -}}
+          {{- end -}}
         {{- end }}
         <td>{{ $value }}</td>
         {{- end }}

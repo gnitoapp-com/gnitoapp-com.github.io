@@ -3,14 +3,19 @@
   previously served verbatim from static/, ~21 MB of full-resolution PNG). Hugo
   renders a 230 px and a 460 px WebP variant and emits both as srcset, with the
   intrinsic aspect ratio in width/height so the strip cannot shift while loading.
+
+  Products without screenshots (e.g. a new desktop app) get no section at all
+  rather than an empty heading.
 */ -}}
+{{- $product := .product -}}
+{{- with .data.screenshots }}
 <section class="product-screenshots">
   <h2>Screenshots</h2>
   <div class="product-screenshots__strip">
-    {{- range .data.screenshots }}
+    {{- range . }}
       {{- $file := .file -}}
       {{- $alt := .alt -}}
-      {{- $path := printf "screenshots/%s/%s" $.product $file -}}
+      {{- $path := printf "screenshots/%s/%s" $product $file -}}
       {{- with resources.Get $path -}}
         {{- $small := .Resize "230x webp q82" -}}
         {{- $large := .Resize "460x webp q82" -}}
@@ -22,8 +27,9 @@
              width="230" height="{{ $height }}"
              alt="{{ $alt }}" loading="lazy" decoding="async">
       {{- else -}}
-        {{ errorf "screenshot source missing: assets/%s (data/products/%s.yaml)" $path $.product }}
+        {{ errorf "screenshot source missing: assets/%s (data/products/%s.yaml)" $path $product }}
       {{- end -}}
     {{- end }}
   </div>
 </section>
+{{- end }}

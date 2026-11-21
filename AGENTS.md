@@ -31,12 +31,12 @@ the single word "push" and deployed it. Work stays on a working branch until the
 | --- | --- |
 | `content/en/_index.md` | Home page (Docsy blocks: cover + feature) |
 | `content/en/{units2units,forceworkouthelper,romanitaire}/index.md` | Product pages: front matter (`layout: product`, `product: <key>`) plus the product description only |
-| `data/products/<product>.yaml` | Per-product facts: `platforms` (required), tagline, category, licence, store link, badges, screenshots, logo, optional `notice` (Markdown, rendered above the download buttons) and optional `version` (only for non-Android products — Android takes it from the APK) |
+| `data/products/<product>.yaml` | Per-product facts: `platforms` (required), tagline, category, licence, store link, badges, screenshots, logo, optional `notice` (Markdown, rendered above the download buttons), optional `downloads` (per-platform desktop installers) and optional `version` (only for non-Android products — Android takes it from the APK) |
 | `layouts/_default/product.html` + `layouts/partials/product/*` | Renders the shared product chrome from that data |
 | `layouts/_default/single.html`, `layouts/privacy/list.html` | Plain content pages (support, terms, privacy, privacy_zh) rendered through Docsy's `_td-content` wrapper. Docsy 0.18's generic `all.html` otherwise emits the content bare — no page title, no prose or code styling |
 | `content/en/privacy/` | Privacy policy: `_index.md` (EN) + `privacy_zh.md` (ZH as a separate page, not i18n) |
 | `content/en/terms/index.md`, `support.md` | Legal and contact pages |
-| `static/<product>/` | `version.json`, the current `*.apk`, `SHA256SUMS` and `images/logo_200_square.png`. Copied verbatim |
+| `static/<product>/` | Android: `version.json`, the current `*.apk`, `SHA256SUMS`. Desktop: the published installers named by `downloads:`. Both: `images/logo_200_square.png`. Copied verbatim |
 | `assets/screenshots/<product>/` | Screenshot sources (PNG). Hugo renders 230 px and 460 px WebP variants — add a file here and list it in `data/products/<product>.yaml`; never put screenshots back in `static/` |
 | `data/apk_checksums.json` | **Generated** per-APK SHA-256, size, signing-certificate fingerprint, package/versionCode. Never hand-edit; run `scripts/apk-checksums.sh` |
 | `scripts/apk-checksums.sh` | Regenerates the integrity data (`--check` verifies it; CI runs `--check`) |
@@ -181,9 +181,14 @@ re-deriving the four version locations by hand.
    no `static/<product>/` APK — set `platforms` and, if it has no APK, a `version:` in its data.
    The Quick Info "Platform Support" cell is derived from `platforms` (android, ios, windows,
    macos, linux, web), so a page cannot claim a platform it does not ship on.
-   **Deliberately deferred:** per-platform installer downloads (a `downloads:` field rendered as
-   buttons) — build it when the first desktop-only app is actually ready, not before. Until then a
-   non-Android product renders with its store link only.
+   **Desktop installers use `downloads:`.** Each entry is
+   `platform` + `label` + `note` + `ext` (+ optional `arch`); the layout resolves the file name
+   from those fields and the data `version:` as `<product>-<version>-<platform>[-<arch>].<ext>`,
+   using the same convention as the app repo's `scripts/build-release.sh`. An entry with
+   `available: false` renders as a non-link "Coming soon" row, so a download button never points
+   at an unpublished file; flip it to `true` in the same commit that adds the archive under
+   `static/<product>/`. A `downloads:` entry whose `platform` is missing from `platforms:` fails
+   the build. Pages without screenshots render no screenshot section.
 11. **Signing identity is a contract.** Never sign a release with a debug key, never commit a
    keystore or `key.properties` to any repo, and never publish an APK whose certificate differs
    from the published `signerCertSha256`. `scripts/apk-checksums.sh` enforces the last one and

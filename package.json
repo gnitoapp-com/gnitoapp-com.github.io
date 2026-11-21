@@ -18,7 +18,7 @@
     "check:links": "npm run _check:links",
     "check:links:external": "./scripts/check-links.sh --external",
     "check:apk": "./scripts/apk-checksums.sh --check && ./scripts/apk-checksums.sh --rendered public",
-    "lint:html": "html-validate public/index.html public/units2units/index.html public/forceworkouthelper/index.html public/romanitaire/index.html public/privacy/index.html public/terms/index.html public/support/index.html public/404.html",
+    "lint:html": "html-validate public/index.html public/units2units/index.html public/forceworkouthelper/index.html public/romanitaire/index.html public/ledgerik/index.html public/privacy/index.html public/terms/index.html public/support/index.html public/404.html",
     "spell": "cspell --no-progress \"content/**/*.md\" \"data/**/*.yaml\"",
     "smoke": "./scripts/smoke-test.sh https://gnitoapp.com",
     "verify": "npm run check:apk && npm run spell && npm run lint:html && npm run check:links",

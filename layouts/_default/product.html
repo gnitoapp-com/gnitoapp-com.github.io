@@ -27,9 +27,29 @@
       {{ errorf "%s: %s is marked Android but has no entry in data/apk_checksums.json - run scripts/apk-checksums.sh" .File.Path $product }}
     {{- end -}}
   {{- end -}}
-  {{- $ctx := dict "page" . "product" $product "data" $data "apk" $apk "android" $android -}}
+  {{- /* Desktop installers: resolve each entry in `downloads:` to the file name
+         and href up front, so the header buttons and the downloads section
+         cannot disagree. Names follow the app's packaging script:
+         <product>-<version>-<platform>[-<arch>].<ext> */ -}}
+  {{- $downloads := slice -}}
+  {{- if $data.downloads -}}
+    {{- if not $data.version -}}
+      {{- errorf "%s: data/products/%s.yaml has `downloads:` but no `version:`" .File.Path $product -}}
+    {{- end -}}
+    {{- range $data.downloads -}}
+      {{- if not (in $data.platforms .platform) -}}
+        {{- errorf "%s: data/products/%s.yaml lists a download for %q, which is not in `platforms:`" $.File.Path $product .platform -}}
+      {{- end -}}
+      {{- $arch := "" -}}
+      {{- with .arch }}{{ $arch = printf "-%s" . }}{{ end -}}
+      {{- $file := printf "%s-%s-%s%s.%s" $product $data.version .platform $arch .ext -}}
+      {{- $downloads = $downloads | append (merge . (dict "file" $file "href" (printf "/%s/%s" $product $file))) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $ctx := dict "page" . "product" $product "data" $data "apk" $apk "android" $android "downloads" $downloads -}}
   <article class="td-content product-page">
     {{ partial "product/header.html" $ctx }}
+    {{ partial "product/downloads.html" $ctx }}
     {{- /* APK-specific blocks only exist for Android products. */ -}}
     {{ if $android }}{{ partial "apk-verify.html" $ctx }}{{ end }}
     {{ partial "product/quickinfo.html" $ctx }}

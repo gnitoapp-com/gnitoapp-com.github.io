@@ -14,6 +14,9 @@ images: ["/og/gnitoapp-com.png"]
 <a class="btn btn-lg btn-secondary me-3 mb-4" href="/romanitaire/">
   Romanitaire <i class="fas fa-arrow-alt-circle-right ms-2"></i>
 </a>
+<a class="btn btn-lg btn-secondary me-3 mb-4" href="/ledgerik/">
+  Ledgerik <i class="fas fa-arrow-alt-circle-right ms-2"></i>
+</a>
 <p class="lead mt-5">We develop applications for the web, Windows, MacOS, Linux, iOS, and Android!</p>
 <p class="lead mt-5">We are an operating division of <a href="https://3827992canadainc.com">3827992 Canada Inc</a></p>
 {{< blocks/link-down color="info" >}}

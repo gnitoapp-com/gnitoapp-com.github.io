@@ -1,0 +1,28 @@
+{{- /*
+  Desktop download entries (data/products/<product>.yaml -> downloads:).
+
+  The resolved file name and href are computed once in
+  layouts/_default/product.html. `available: false` renders a non-link
+  "Coming soon" label instead of an anchor: a download button must never point
+  at a file that has not been published (invariant 3).
+*/ -}}
+{{- with .downloads }}
+<section class="product-downloads">
+  <h2>Downloads</h2>
+  <ul class="product-downloads__list">
+    {{- range . }}
+    <li class="product-downloads__item">
+      <div class="product-downloads__info">
+        <span class="product-downloads__platform">{{ .label }}</span>
+        <span class="product-downloads__meta">{{ .note }} · <code>{{ .file }}</code></span>
+      </div>
+      {{- if .available }}
+      <a class="product-btn product-btn--primary" href="{{ .href }}">Download</a>
+      {{- else }}
+      <span class="product-btn product-btn--disabled" aria-disabled="true">Coming soon</span>
+      {{- end }}
+    </li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}

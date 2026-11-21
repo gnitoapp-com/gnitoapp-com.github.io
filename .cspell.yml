@@ -18,6 +18,8 @@ words:
   - Units2Units
   - Romanitaire
   - romanitaire
+  - Ledgerik
+  - ledgerik
   - forceworkouthelper
   - bluesky
   # Training timer vocabulary
@@ -46,7 +48,10 @@ words:
   - Hyperfocal
   - TDEE
   - Motorsport
+  - licence
   - Licence
+  - acw
+  - acwz
   # Theme / tooling
   - Docsy
   - Hugo

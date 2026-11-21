@@ -6,13 +6,23 @@
     {{- with .data.notice }}
     <div class="product-notice">{{ . | markdownify }}</div>
     {{- end }}
+    {{- $availableDownloads := 0 -}}
+    {{- range .downloads }}{{ if .available }}{{ $availableDownloads = add $availableDownloads 1 }}{{ end }}{{ end -}}
+    {{- if or .android .data.store $availableDownloads }}
     <div class="product-actions">
       {{- if .android }}
       <a class="product-btn product-btn--primary" href="/{{ .product }}/{{ .apk.apk }}">Download APK {{ .apk.version }} (Android)</a>
+      {{- end }}
+      {{- /* Desktop products link only the installers that are published. */ -}}
+      {{- range .downloads }}
+      {{- if .available }}
+      <a class="product-btn product-btn--primary" href="{{ .href }}">Download for {{ .label }}</a>
+      {{- end }}
       {{- end }}
       {{- with .data.store }}
       <a class="product-btn product-btn--secondary" href="{{ .url }}">{{ .label }}</a>
       {{- end }}
     </div>
+    {{- end }}
   </div>
 </div>

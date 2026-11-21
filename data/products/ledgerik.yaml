@@ -1,0 +1,54 @@
+# Facts rendered by layouts/_default/product.html. Ledgerik is a desktop-only
+# product: there is no APK, so the version comes from `version:` below and the
+# download buttons are rendered from `downloads:` — never typed into the page.
+name: Ledgerik
+tagline: Multi-company, multi-currency accounting for your desktop.
+category: Business / Accounting
+license: Free (Optional Pro Upgrade)
+# Machine-readable platforms. No "android" or "ios": the APK button, the
+# integrity block and the Android install guide are skipped, and the Quick Info
+# "Platform Support" row is derived from this list.
+platforms:
+  - windows
+  - macos
+  - linux
+version: "1.0.0"
+logo: /ledgerik/images/logo_200_square.png
+logoAlt: Ledgerik icon
+# Build not published yet: `available: false` renders the entry as a non-link
+# "Coming soon" row so the page never points at a missing file (invariant 3).
+# Set it to true in the same commit that adds the archive to static/ledgerik/.
+#
+# File names follow the app repo's scripts/build-release.sh:
+#   ledgerik-<version>-<platform>[-<arch>].<ext>
+notice: |
+  **Downloads are not published yet.** Builds for Windows, macOS and Linux are
+  in preparation; the download entries below will become links once each build
+  is published.
+downloads:
+  - platform: windows
+    label: Windows
+    note: Windows 10 or 11, 64-bit
+    arch: x64
+    ext: zip
+    available: false
+  - platform: macos
+    label: macOS
+    note: macOS app bundle
+    ext: zip
+    available: false
+  - platform: linux
+    label: Linux
+    note: 64-bit Linux
+    arch: x64
+    ext: tar.gz
+    available: false
+badges:
+  - label: Languages
+    value: English, German, Spanish, French
+  - label: Platform Support
+    value: Windows, macOS & Linux
+  - label: Data
+    value: Local .acw company files
+  - label: License
+    value: Basic free forever, Pro one-time

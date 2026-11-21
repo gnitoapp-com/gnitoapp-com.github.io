@@ -90,6 +90,7 @@ body:not(.td-home) main.td-main {
   // selectors are scoped deeper so the white product surface wins.
   .product-description code,
   .product-install code,
+  .product-downloads code,
   .apk-verify code {
     padding: 0.1em 0.3em;
     border-radius: 0.25rem;
@@ -168,6 +169,53 @@ body:not(.td-home) main.td-main {
       background-color: #f2f2f2;
       color: #000;
     }
+  }
+
+  /* An entry whose build is not published yet: visibly a button, but not a
+     link and not focusable (no href). */
+  &--disabled {
+    background-color: #eef1f5;
+    color: #5f6b7a;
+    border: 1px solid #d7dde5;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+}
+
+/*
+  Desktop download list (data/products/<product>.yaml -> downloads:).
+  Android products do not render this section.
+*/
+.product-downloads {
+  margin-bottom: 2rem;
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #eee;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  &__platform {
+    display: block;
+    font-weight: 700;
+  }
+
+  &__meta {
+    display: block;
+    color: #555;
+    font-size: 0.85rem;
+    word-break: break-word;
   }
 }
 
