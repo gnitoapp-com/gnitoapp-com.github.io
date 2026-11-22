@@ -5,15 +5,9 @@ layout: manual
 menu: {manual: {weight: 10}}
 ---
 
-Ledgerik keeps each company's books in its own company file on your computer. This section takes you from a fresh download to a company that is ready for its first entry.
+Ledgerik keeps each company's books in its own company file on your computer. This section takes you from a first launch to a company that is ready for its first entry, so start with [Installation](/ledgerik/manual/installation/) if Ledgerik is not on your machine yet.
 
 This manual is the application's help. Ledgerik opens it from **Help ▸ User Help**.
-
-## Requirements
-
-Ledgerik is a desktop application for Windows 10 or 11 (64-bit), macOS and 64-bit Linux.
-
-The builds are published on the [Ledgerik page](/ledgerik/) as `.zip` archives for Windows and macOS and a `.tar.gz` archive for Linux. Unpack the archive where you want to keep the application and start it from there — there is no installer and nothing is written outside the folder you choose.
 
 ## First launch
 
