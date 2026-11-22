@@ -14,9 +14,17 @@ From then on the expense carries the receipt. An expense can be saved without on
 
 ## Where the files are kept
 
-Attaching copies the file into Ledgerik's own receipts folder, inside the application's documents directory. The copy gets a new name and a checksum, so moving or renaming the original afterwards changes nothing.
+Attaching copies the file into the company's receipts folder. That folder sits **beside the company file** and is named after it: a company file called `Acme.acw` has `Acme_receipts` next to it. The copy gets a new name and a checksum, so moving or renaming the original afterwards changes nothing.
 
-This has one consequence worth knowing. **Receipts are not inside the company file.** A company file is one `.acw` file holding the books; the receipts live beside the application, in their own folder. Backing up the company file therefore does not back up the receipts — see [Backups, Import & Restore](/ledgerik/manual/backups/).
+Because the receipts live next to the company file, the two travel together. Move the folder, or move both files together, and every attachment still opens. Copy only the `.acw` and the receipts stay behind.
+
+## Receipts and backups
+
+The encrypted export — **Company Settings ▸ Backups ▸ export** — packs the company file **and every receipt** into one `.acwz`, and restoring it puts the receipts back beside the restored file. That is the artefact to move a company to another machine, or to another operating system.
+
+The automatic snapshots taken while you work are different: they hold the company file only. They protect the books, not the attachments. See [Backups, Import & Restore](/ledgerik/manual/backups/).
+
+A receipt attached by an older version of Ledgerik may still sit in the application's documents folder, outside the company folder. It opens as always, but it is not part of the company's folder and a new export does not carry it.
 
 ## The gallery
 
