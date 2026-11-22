@@ -56,7 +56,7 @@ The snap is the version that updates itself; the AppImage never does, so come ba
 
 The application holds the program and nothing else. Your books live in `.acw` company files that you create yourself, wherever you choose to keep them — see [Company Files](/ledgerik/manual/company-files/). Installing, upgrading or removing Ledgerik never touches them.
 
-Preferences belong to the installation rather than to a company file: the date pattern, the language and the dashboard sections you have hidden are kept separately, and **File ▸ App Settings** is where the first two are changed.
+Preferences belong to the installation rather than to a company file: the date pattern, the language and the dashboard sections you have hidden are kept separately, and **File ▸ App Settings** is where the first two are changed — see [Menu Bar & App Settings](/ledgerik/manual/menu-bar-and-app-settings/).
 
 ## Upgrading
 

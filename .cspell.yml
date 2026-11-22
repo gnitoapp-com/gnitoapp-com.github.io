@@ -62,6 +62,9 @@ words:
   - zypper
   - openSUSE
   - AppImages
+  # Canadian spellings used in prose (the app's own labels keep US spelling)
+  - colour
+  - colours
   - x86_64
   - msix
   - notarization
