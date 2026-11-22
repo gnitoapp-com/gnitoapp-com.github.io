@@ -23,6 +23,14 @@ There are then two cases.
 
 Two things follow, and they are the reason the model exists. The average cost of the units still on the account does not change. And the base balance stays proportional to the native balance, so a partial disposal can never consume the account's base value out of proportion.
 
+### A movement that increases the account
+
+An increase needs no repricing. The new units are valued at the journal's rate, the account's balances grow by both amounts, and the average is recalculated from the new totals.
+
+Start from 100 EUR and 150 CAD, an average of 1.50. Record another 50 EUR at 1.80. That adds 90 CAD, so the account holds 150 EUR and 240 CAD — an average of 1.60.
+
+The average has moved towards the rate of the new units, weighted by their size. When that balance is reduced later, it is the new average that values the reduction, not the rate of that later day.
+
 ### Emptying an account leaves nothing behind
 
 When a reduction empties a foreign-currency account, the base balance goes to zero with it. Exactly, not approximately.

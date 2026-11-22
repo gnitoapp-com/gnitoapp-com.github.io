@@ -57,6 +57,8 @@ One of two things then happens.
 - **The reduction empties the account.** The base amount taken out is exactly the base balance still on it. So zeroing a foreign-currency account cannot leave a base-currency residue behind — the failure where an account reads zero in its own currency while still carrying a base amount, with nothing left to clear it.
 - **The reduction is partial.** The base amount is the reduction multiplied by the book average, so the average of what remains does not move.
 
+A movement that **increases** the account needs no repricing. The new units enter at the journal's rate, the account's balances grow, and its book average is recalculated from them. It moves towards the journal's rate, in proportion to how much was added.
+
 Either way, whatever the two sides of the journal disagree by in the base currency goes to **Exchange Gain/Loss**, with the memo *realized currency exchange gain* or *realized currency exchange loss*. Voiding a foreign transaction is priced the same way.
 
 [Read the full details of weighted average cost](/ledgerik/manual/currencies/weighted-average-cost/) — the three-journal worked example, the rounding rule, and what a void does to the account's average.
