@@ -38,19 +38,21 @@ Open **Accounts ▸ List Accounts** and choose **New**. The form asks for:
 - **Folder** — required for a posting account. The folder it belongs in.
 - **Account Name** — required.
 - **Sequence Number** — required, and a positive number. It sets the account's order inside its folder.
-- **Currency** — for a posting account whose class may hold a foreign currency. It is then required.
-- **Tax Return Code** — optional, up to 100 characters.
-- **Disabled** — a switch that marks the account inactive.
+- **Currency** — shown only when the class may hold a foreign currency, and then required.
+- **Tax Return Code** — optional, up to 100 characters. Every posting account has one.
+- **Disabled** — a switch that marks the account inactive. Every posting account has one.
 
-Three of those fields depend on the class. **Currency**, **Tax Return Code** and **Disabled** appear only for the classes that may hold a foreign currency: **Asset**, **Liability** and **Equity**.
+Only one of those fields depends on the class. **Currency** is offered for **Asset**, **Liability** and **Equity**, and not for the income and expense classes, which always keep the company's base currency.
 
-The income and expense classes show none of the three when the account is created. Open the account afterwards to set them — the edit form shows all three for every posting account.
+The tax return code and the disabled switch appear for every posting account, whatever its class — when you create it, and when you edit it.
 
 A folder needs only its name and its sequence number.
 
 ## Editing an account
 
 Open an account from the list to edit it. The same fields are there, including the **Disabled** switch.
+
+The **Currency** field of an existing account is shown but cannot be changed. That is why it is chosen when the account is created.
 
 Change the name or the sequence number freely. Changing the class or the type moves the account in the reports, so do it deliberately.
 

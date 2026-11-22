@@ -10,9 +10,9 @@ layout: manual
 
 Three fields make up a reminder.
 
-- **The number of days before the due date** it is meant to go out. The default is 3.
-- **The subject.**
-- **The body.**
+- **Days Before Due** — how many days before the due date the reminder is meant to go out. The default is 3.
+- **Email Subject**
+- **Email Body**
 
 Placeholders are available in the subject and the body, and the window lists them next to the fields, so the wording can name the invoice and its amount.
 
