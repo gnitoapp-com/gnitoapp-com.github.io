@@ -1,8 +1,54 @@
 ---
-title: Expenses & Receipts
-summary: Record expenses, attach receipts and log mileage.
+title: Expenses, Receipts & Mileage
+summary: Spending recorded against the books, the files that prove it, and journeys claimed as expenses.
 layout: manual
 menu: {manual: {weight: 70}}
 ---
 
-This section is not written yet. It will cover expenses, the receipt gallery, categorization rules, mileage tracking and 1099-NEC reporting.
+Three menu entries record money going out: **Expenses ▸ Expenses**, **Expenses ▸ Mileage Log**, and **Receipts ▸ Receipt Gallery**.
+
+This page covers recording an expense. The other two have their own pages, linked below.
+
+## Recording an expense
+
+**Expenses ▸ New Expense** opens the form.
+
+- **Date** — required.
+- **Merchant** — required. Who was paid.
+- **Account** — required. The expense account the spend belongs to.
+- **Paid From** — required. The account the money left: a bank account, a credit card, cash.
+- **Amount** — required, greater than zero, and recorded with tax included.
+- **Tax Code** — optional. The tax rate is taken from it.
+- **Currency**, and **Rate to {currency}** when it is not the base currency.
+- **Client** and **Project** — optional, if the spend belongs to one.
+- **Billable** and **Markup** — see below.
+- **Notes**
+- **Receipt** — **Attach…** adds a photo, a scan or a PDF. See [Receipts](/ledgerik/manual/expenses-and-receipts/receipts/).
+
+Saving posts a bill to the general journal: the expense account is debited and the **Paid From** account is credited, both for the amount including tax. The tax code decides the tax line, exactly as on an invoice.
+
+## Billable and markup
+
+**Billable** marks the expense as one you intend to charge a client for. **Markup** is the percentage you intend to add.
+
+Both are recorded on the expense, and both are shown in the list. Neither one acts on its own: nothing in Ledgerik puts a billable expense onto an invoice today, and no markup is applied anywhere. Treat them as notes on the expense, not as a billing step.
+
+## The expense list
+
+Each row shows the date, the merchant, the account and the amount. **Attach** opens the receipts for that expense, and the row's delete action removes it.
+
+Deleting an expense asks first, naming the merchant, and then voids the journal entry the expense posted. The books are corrected rather than trimmed, so an expense that was already reported on is still visible in the journal as a voided entry — see [Journal Entries](/ledgerik/manual/journal-entries/).
+
+## Mileage
+
+**Expenses ▸ Mileage Log** records journeys claimed as expenses, with their own journal posting. See [Mileage](/ledgerik/manual/expenses-and-receipts/mileage/).
+
+## What expenses affect
+
+- **The general journal** — a bill per expense, voided if you delete it.
+- **The income statement** — the expense account you chose.
+- **The tax return report** — through the tax code.
+- **The home screen** — the expenses figure, and recent activity.
+- **The reports** — every statement in [Reporting](/ledgerik/manual/reports/).
+
+Every entry here is Ledgerik **Pro** — see [Licensing](/ledgerik/manual/licensing/).
