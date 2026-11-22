@@ -58,6 +58,10 @@ words:
   - appimagetool
   - libfuse2
   - libfuse2t64
+  - pacman
+  - zypper
+  - openSUSE
+  - AppImages
   - x86_64
   - msix
   - notarization

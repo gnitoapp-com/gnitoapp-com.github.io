@@ -34,7 +34,14 @@ chmod +x ledgerik-<version>-x86_64.AppImage
 
 An AppImage is the whole application in a single file. It does not install itself, it needs no administrator rights, and it does not add an entry to your applications menu — it runs from wherever you keep it.
 
-AppImages use FUSE 2, which most distributions provide. If Ledgerik does not start and the terminal says **AppImages require FUSE to run**, install the compatibility package — `libfuse2`, or `libfuse2t64` on Ubuntu 24.04 and later — or start the file with `--appimage-extract-and-run`.
+AppImages use FUSE 2. Most distributions provide it, but several recent ones no longer install it by default — Fedora 43 and later among them. If Ledgerik does not start and the terminal says **AppImages require FUSE to run**, install the compatibility package for your distribution:
+
+- **Debian, Ubuntu** — `sudo apt install libfuse2` (on Ubuntu 24.04 and later the package is `libfuse2t64`)
+- **Fedora, RHEL** — `sudo dnf install fuse fuse-libs`
+- **openSUSE** — `sudo zypper install fuse libfuse2`
+- **Arch** — `sudo pacman -S fuse2`
+
+If you would rather not install anything, run the file with `--appimage-extract-and-run` instead: it unpacks the application to a temporary folder and starts it, with no FUSE and no administrator rights.
 
 **From the Snap Store.** Install the `ledgerik` snap:
 
