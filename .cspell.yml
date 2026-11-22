@@ -52,6 +52,16 @@ words:
   - Licence
   - acw
   - acwz
+  # Desktop distribution vocabulary
+  - AppImage
+  - appimage
+  - appimagetool
+  - libfuse2
+  - libfuse2t64
+  - x86_64
+  - msix
+  - notarization
+  - notarized
   # Theme / tooling
   - Docsy
   - Hugo

@@ -25,15 +25,24 @@ Windows 10 or 11 (64-bit), macOS, or 64-bit Linux.
 
 ## Linux
 
-**From this website.** Download the Linux package from the [Ledgerik page](/ledgerik/) and install it with your distribution's package tool.
+**From this website.** Download the `.AppImage` from the [Ledgerik page](/ledgerik/), make it executable, and run it:
 
-**Snap.** Install the `ledgerik` snap:
+```bash
+chmod +x ledgerik-<version>-x86_64.AppImage
+./ledgerik-<version>-x86_64.AppImage
+```
+
+An AppImage is the whole application in a single file. It does not install itself, it needs no administrator rights, and it does not add an entry to your applications menu — it runs from wherever you keep it.
+
+AppImages use FUSE 2, which most distributions provide. If Ledgerik does not start and the terminal says **AppImages require FUSE to run**, install the compatibility package — `libfuse2`, or `libfuse2t64` on Ubuntu 24.04 and later — or start the file with `--appimage-extract-and-run`.
+
+**From the Snap Store.** Install the `ledgerik` snap:
 
 ```bash
 sudo snap install ledgerik
 ```
 
-**Flatpak.** Install Ledgerik from your Flatpak source, in the same way as any other Flatpak application.
+**From Flatpak.** Install Ledgerik from your Flatpak source, in the same way as any other Flatpak application.
 
 ## Where your data lives
 
@@ -43,10 +52,10 @@ Preferences belong to the installation rather than to a company file: the date p
 
 ## Upgrading
 
-Install the newer version the way you installed the first one — the installer, the `.dmg`, the Linux package or the store's update — and it replaces the previous version. Your company files stay exactly where they are: there is no migration step, and Ledgerik only updates itself through a store.
+Install the newer version the way you installed the first one — the installer, the `.dmg`, the AppImage or the store's update — and it replaces the previous version. For an AppImage, download the new file and delete the old one; your company files are not touched either way. There is no migration step, and Ledgerik only updates itself through a store.
 
 ## Removing Ledgerik
 
-Uninstall it the way you installed it: **Settings ▸ Apps** on Windows, by moving `ledgerik.app` from **Applications** to the Bin on macOS, with `snap remove ledgerik` or your Flatpak tool on Linux, or with the package tool for the Linux package.
+Uninstall it the way you installed it: **Settings ▸ Apps** on Windows, by moving `ledgerik.app` from **Applications** to the Bin on macOS, by deleting the `.AppImage` file on Linux, or with `snap remove ledgerik` or your Flatpak tool. Nothing is left behind in a system directory, because nothing was written to one.
 
 Your company files remain wherever you created them, so back them up first if you are removing Ledgerik for good — see [Backups, Import & Restore](/ledgerik/manual/backups/).
