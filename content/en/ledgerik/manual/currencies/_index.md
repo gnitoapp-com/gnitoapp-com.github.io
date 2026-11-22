@@ -44,8 +44,19 @@ Only some accounts may hold a foreign currency: those in the **Asset**, **Liabil
 
 ## How a foreign-currency posting is valued
 
-A foreign-currency posting is not simply converted at the day's rate. When a movement reduces an account that holds that currency, Ledgerik values the reduction at the account's own book average.
+A foreign-currency posting is not simply converted at the day's rate. When a movement reduces an account that holds that currency, Ledgerik values the reduction at the account's own **book average**: the base balance divided by the native balance.
 
-That rule keeps the books consistent, and it is what makes emptying a foreign-currency account exact: 0 in its own currency means 0 in the base currency too, with nothing stranded.
+The rule applies when three things are true at once:
 
-**The full rule is on [Weighted average cost](/ledgerik/manual/currencies/weighted-average-cost/)** — the conditions it applies under, a worked example across three journals, and where the difference ends up.
+- the account's currency is not the base currency;
+- the account's currency matches the journal's currency;
+- the movement reduces the account, so its sign is opposite to the balance it reduces.
+
+One of two things then happens.
+
+- **The reduction empties the account.** The base amount taken out is exactly the base balance still on it. So zeroing a foreign-currency account cannot leave a base-currency residue behind — the failure where an account reads zero in its own currency while still carrying a base amount, with nothing left to clear it.
+- **The reduction is partial.** The base amount is the reduction multiplied by the book average, so the average of what remains does not move.
+
+Either way, whatever the two sides of the journal disagree by in the base currency goes to **Exchange Gain/Loss**, with the memo *realized currency exchange gain* or *realized currency exchange loss*. Voiding a foreign transaction is priced the same way.
+
+[Read the full details of weighted average cost](/ledgerik/manual/currencies/weighted-average-cost/) — the three-journal worked example, the rounding rule, and what a void does to the account's average.
