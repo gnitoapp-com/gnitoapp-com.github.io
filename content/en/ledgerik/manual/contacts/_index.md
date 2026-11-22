@@ -48,11 +48,12 @@ Each row shows the contact's name and a line with the type, the designation and 
 
 ## Deleting a contact
 
-There is no confirmation step. **Delete** removes the contact immediately and reports that it has been deleted.
+**Delete** asks first. The confirmation names the contact, warns that the change cannot be undone, and does nothing unless you confirm.
 
-Two things are worth knowing before you use it.
+Three things are worth knowing before you use it.
 
-- **A contact that is already in use cannot be deleted.** Invoices and expenses point at their contact, and the database refuses to remove a record that others refer to. The delete then fails instead of leaving a document without a counterparty.
+- **A contact that is already in use cannot be deleted.** Invoices and expenses point at their contact, and the database refuses to remove a record that others refer to. The attempt fails, Ledgerik reports the failure, and the contact stays — so no document is ever left without a counterparty.
+- **The outcome is always reported.** A successful delete says so; a refused one says why instead of failing silently.
 - **The deletion is recorded.** Removing a contact writes an entry to the Audit Log, which is described in [Company Settings](/ledgerik/manual/settings/).
 
 ## The 1099 contractor flag
