@@ -40,7 +40,7 @@ Open **Accounts ▸ List Accounts** and choose **New**. The form asks for:
 - **Sequence Number** — required, and a positive number. It sets the account's order inside its folder.
 - **Currency** — shown only when the chosen class allows a foreign currency. It is then required.
 - **Tax Return Code** — optional, up to 100 characters.
-- **Disabled** — a switch for posting accounts. A disabled account cannot accept new transactions.
+- **Disabled** — a switch for posting accounts. A disabled account cannot accept new transactions. On a new account the balance is zero, so the switch is always available.
 
 A folder needs only its name and its sequence number.
 
@@ -49,6 +49,8 @@ A folder needs only its name and its sequence number.
 Open an account from the list to edit it. The same fields are there, including the **Disabled** switch.
 
 Change the name or the sequence number freely. Changing the class or the type moves the account in the reports, so do it deliberately.
+
+**An account can only be disabled while its balance is zero.** If the account carries a balance, the switch stays greyed out, and the form says why: *"A disabled account must have a zero balance and cannot accept new transactions."* Move the balance off the account first — a journal entry moves it, it is never deleted. A disabled account can always be enabled again.
 
 ## The accounts list
 
@@ -64,7 +66,9 @@ A disabled account keeps a badge in the list, so it is never invisible by accide
 
 Ledgerik does not delete accounts. You disable them instead.
 
-A disabled account accepts no new transactions. It keeps its history, it keeps its balances, and the reports still count it. That is the point: a chart of accounts is part of the audit trail, and a used account cannot simply disappear.
+A disabled account accepts no new transactions. It keeps its history, and the reports still count it. That is the point: a chart of accounts is part of the audit trail, and a used account cannot simply disappear.
+
+Disabling also requires a zero balance, so no money can be stranded on a hidden account. Anything the account still held has to be moved first.
 
 If an account was created by mistake and has never been used, disabling it is still the way to go. It then stays out of the way without breaking anything that refers to it.
 
