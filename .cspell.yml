@@ -65,6 +65,7 @@ words:
   # Canadian spellings used in prose (the app's own labels keep US spelling)
   - colour
   - colours
+  - organised
   - x86_64
   - msix
   - notarization
