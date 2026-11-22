@@ -60,10 +60,22 @@ Preferences belong to the installation rather than to a company file: the date p
 
 ## Upgrading
 
-Install the newer version the way you installed the first one — the installer, the `.dmg`, the AppImage or the store's update — and it replaces the previous version. For an AppImage, download the new file and delete the old one; your company files are not touched either way. There is no migration step, and Ledgerik only updates itself through a store.
+Install the newer version the way you installed the first one:
+
+- **Windows** — run the newer `.msi`; it replaces the installed version.
+- **macOS** — open the newer `.dmg` and replace `ledgerik.app` in **Applications**.
+- **Linux, AppImage** — download the newer file and delete the old one.
+- **Linux, snap** — `sudo snap refresh ledgerik`, or wait for the snap to refresh itself.
+
+If you installed from a store, the store delivers the update on its own. Your company files are untouched in every case, and there is no migration step.
 
 ## Removing Ledgerik
 
-Uninstall it the way you installed it: **Settings ▸ Apps** on Windows, by moving `ledgerik.app` from **Applications** to the Bin on macOS, by deleting the `.AppImage` file on Linux, or with `sudo snap remove ledgerik`. Nothing is left behind in a system directory, because nothing was written to one.
+Uninstall it the way you installed it:
 
-Your company files remain wherever you created them, so back them up first if you are removing Ledgerik for good — see [Backups, Import & Restore](/ledgerik/manual/backups/).
+- **Windows** — **Settings ▸ Apps**, then uninstall Ledgerik.
+- **macOS** — move `ledgerik.app` from **Applications** to the Bin.
+- **Linux, AppImage** — delete the `.AppImage` file.
+- **Linux, snap** — `sudo snap remove ledgerik`.
+
+Uninstalling removes the application only. Your company files remain wherever you created them, so back them up first if you are removing Ledgerik for good — see [Backups, Import & Restore](/ledgerik/manual/backups/).
