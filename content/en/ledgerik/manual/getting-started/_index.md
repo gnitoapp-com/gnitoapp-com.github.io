@@ -26,7 +26,7 @@ Two keyboard routes work from the first screen. **Ctrl+K** opens the command pal
 1. Choose **File ▸ New**. Ledgerik asks for a file name first. Type it in **Company file name** and choose **Accept**.
 2. Choose the folder for the file. Ledgerik creates `<name>.acw` in it. It then reports that the file is now the active company file.
 
-The name may be up to 255 characters. It cannot contain `\ / : * ? "`. It cannot be a reserved device name such as `CON` or `LPT1`.
+The name may be up to 255 characters. It cannot contain any of these characters: `\ / : * ? " < > |`. It cannot be a reserved device name such as `CON` or `LPT1`.
 
 If a file with that name already exists in the folder, Ledgerik refuses to overwrite it. It tells you so. Choose another name or another folder.
 

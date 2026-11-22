@@ -14,7 +14,7 @@ Each account has one role, chosen when you create it.
 - **Folder** — groups other accounts. It never takes a journal line. It exists to keep the list readable.
 - **Posting Account** — takes the journal lines. Every amount in the books lands on one of these.
 
-A posting account always sits inside a folder. That is what the folder is for.
+The form asks for a folder when you create a posting account. That is what the folder is for.
 
 ## Class and type
 
@@ -38,9 +38,13 @@ Open **Accounts ▸ List Accounts** and choose **New**. The form asks for:
 - **Folder** — required for a posting account. The folder it belongs in.
 - **Account Name** — required.
 - **Sequence Number** — required, and a positive number. It sets the account's order inside its folder.
-- **Currency** — shown only when the chosen class allows a foreign currency. It is then required.
+- **Currency** — for a posting account whose class may hold a foreign currency. It is then required.
 - **Tax Return Code** — optional, up to 100 characters.
-- **Disabled** — a switch for posting accounts. A disabled account cannot accept new transactions. On a new account the balance is zero, so the switch is always available.
+- **Disabled** — a switch that marks the account inactive.
+
+Three of those fields depend on the class. **Currency**, **Tax Return Code** and **Disabled** appear only for the classes that may hold a foreign currency: **Asset**, **Liability** and **Equity**.
+
+The income and expense classes show none of the three when the account is created. Open the account afterwards to set them — the edit form shows all three for every posting account.
 
 A folder needs only its name and its sequence number.
 
@@ -60,15 +64,17 @@ Each row carries the account's name, its class and its type. It shows the balanc
 
 Two controls sit above the list. **Hide disabled accounts?** filters them out. **Export CSV** writes the list to a file, with the columns Name, Sequence, Role, Class, Type, Currency, Native Balance and Base Balance.
 
-A disabled account keeps a badge in the list, so it is never invisible by accident.
+A disabled account carries a **Disabled** badge in the list.
 
 ## There is no delete
 
 Ledgerik does not delete accounts. You disable them instead.
 
-A disabled account accepts no new transactions. It keeps its history, and the reports still count it. That is the point: a chart of accounts is part of the audit trail, and a used account cannot simply disappear.
+A disabled account accepts no new transactions. Its history stays: the journals that used it are untouched, and the trial balance still lists it.
 
-Disabling also requires a zero balance, so no money can be stranded on a hidden account. Anything the account still held has to be moved first.
+Two reports leave it out. The **Balance Sheet** and the **Income Statement** list only enabled accounts, so a disabled account disappears from both.
+
+That is why disabling requires a zero balance. A balance left on a disabled account would vanish from those two statements while still sitting in the journal. Move the balance first, then disable the account.
 
 If an account was created by mistake and has never been used, disabling it is still the way to go. It then stays out of the way without breaking anything that refers to it.
 
