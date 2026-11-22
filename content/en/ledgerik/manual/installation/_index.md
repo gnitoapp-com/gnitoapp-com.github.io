@@ -42,7 +42,8 @@ AppImages use FUSE 2, which most distributions provide. If Ledgerik does not sta
 sudo snap install ledgerik
 ```
 
-**From Flatpak.** Install Ledgerik from your Flatpak source, in the same way as any other Flatpak application.
+The snap is the version that updates itself; the AppImage never does, so come back to the
+[Ledgerik page](/ledgerik/) for a newer one when you want it.
 
 ## Where your data lives
 
@@ -56,6 +57,6 @@ Install the newer version the way you installed the first one — the installer,
 
 ## Removing Ledgerik
 
-Uninstall it the way you installed it: **Settings ▸ Apps** on Windows, by moving `ledgerik.app` from **Applications** to the Bin on macOS, by deleting the `.AppImage` file on Linux, or with `snap remove ledgerik` or your Flatpak tool. Nothing is left behind in a system directory, because nothing was written to one.
+Uninstall it the way you installed it: **Settings ▸ Apps** on Windows, by moving `ledgerik.app` from **Applications** to the Bin on macOS, by deleting the `.AppImage` file on Linux, or with `sudo snap remove ledgerik`. Nothing is left behind in a system directory, because nothing was written to one.
 
 Your company files remain wherever you created them, so back them up first if you are removing Ledgerik for good — see [Backups, Import & Restore](/ledgerik/manual/backups/).
