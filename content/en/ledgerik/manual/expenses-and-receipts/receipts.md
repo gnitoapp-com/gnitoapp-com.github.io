@@ -24,8 +24,6 @@ The encrypted export — **Company Settings ▸ Backups ▸ export** — packs t
 
 The automatic snapshots taken while you work are different: they hold the company file only. They protect the books, not the attachments. See [Backups, Import & Restore](/ledgerik/manual/backups/).
 
-A receipt attached by an older version of Ledgerik may still sit in the application's documents folder, outside the company folder. It opens as always, but it is not part of the company's folder and a new export does not carry it.
-
 ## The gallery
 
 **Receipts ▸ Receipt Gallery** lists every receipt across every expense, with the merchant and the date, and the gallery says so at the top: *"All receipts stored with your expenses. Missing files show a placeholder."*
