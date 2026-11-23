@@ -17,7 +17,7 @@ Everything you read rather than edit lives in the **Reporting** group, in this o
 - 1099-NEC
 - Audit Log
 
-**Audit Log** is the odd one: it lists what changed and who changed it, rather than figures — created, updated, deleted, finalized, voided and reconciled entries, filtered by **Entity** (contacts, invoices, accounts, payments, expenses, settings) or by **Action**, and refreshed on demand. It sits with the reports because that is where you look for it.
+**Audit Log** lists what changed and who changed it: created, updated, deleted, finalized, voided and reconciled entries, filtered by **Entity** (contacts, invoices, accounts, payments, expenses, settings) or by **Action**, and refreshed on demand.
 
 **Company Settings** holds configuration only — company setup, currencies, tax codes, contacts, email, backups and import.
 
@@ -25,9 +25,9 @@ The three statements have their own page — [Financial statements](/ledgerik/ma
 
 Those three statements are free on Ledgerik Basic. The other five reports, and the Audit Log, are **Pro** — see [Licensing](/ledgerik/manual/licensing/).
 
-## What every report reads
+## What the financial reports read
 
-All of them read the **posted journals**, and nothing else. A report is a view of the ledger, not of the documents you have written.
+They read the **posted journals**, and nothing else. A report is a view of the ledger, not of the documents you have written.
 
 That has one consequence worth remembering: **a draft invoice is in no report.** It appears once it is finalized and its journal entry is posted, and it disappears when the invoice is voided. The same is true of an expense you have not saved.
 
