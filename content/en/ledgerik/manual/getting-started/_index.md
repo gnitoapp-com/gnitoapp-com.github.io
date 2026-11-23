@@ -36,7 +36,7 @@ Only one company file is open at a time. Opening or creating another one closes 
 
 Until setup is finished, the home screen shows **The dashboard will be active after company setup has been completed.**
 
-Open **Company Settings ▸ Company Setup**. Save all four tabs.
+Open **Company Settings ▸ Company Setup**. The tabs are meant to be taken in order, and the last one unlocks only once the first three are saved.
 
 **Company Information** — **Company Name** is required. **Tax Number**, **Sales Tax Number**, **Address**, **Phone Number** and **Email Address** are optional. They appear on the documents you send later. Save the tab when you are done.
 
@@ -44,11 +44,15 @@ Open **Company Settings ▸ Company Setup**. Save all four tabs.
 
 **Base Currency** — search for a currency and select it. Choose deliberately. The base currency of a company cannot be changed once it is set. Saving this tab also fills the new company file with its starting chart of accounts.
 
-**Accounts** — maps seven core references to real accounts: Retained Earnings, Historical Balancing, Exchange Gain/Loss, Sales Tax Collected, Sales Tax Paid, Accounts Receivable and Suspense. For a new company, accept the defaults.
+**Accounts** — maps eight core references to real accounts: Retained Earnings, Historical Balancing, Exchange Gain/Loss, Sales Tax Collected, Sales Tax Paid, Accounts Receivable, Suspense and Transfer Clearing. For a new company, accept the defaults.
+
+This tab stays disabled until the three before it are saved, because the chart of accounts it edits is created by the **Base Currency** step.
 
 Changing a reference affects future postings only. Balances already sitting on the old account have to be moved with a journal entry. **Restore defaults** puts the standard mapping back.
 
 When the fourth tab is saved, setup is complete. The rest of the side menu becomes available.
+
+Until then the home screen keeps pointing at setup, and most side-menu entries stay disabled.
 
 ## The home screen
 

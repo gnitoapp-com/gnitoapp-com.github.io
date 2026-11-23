@@ -52,6 +52,12 @@ Categorization decides the second line of the journal: the category account inst
 
 Money received against an invoice is recorded under **Invoicing ▸ Record Payment**, not here — see [Payments and credit notes](/ledgerik/manual/invoices-and-sales/payments-and-credit-notes/).
 
-The Banking group contains exactly two entries: **Bank Accounts** and **Categorization Rules**. There are no transfers and no bank feeds in this build.
+## Moving money between accounts
+
+**Transfer Between Accounts** sits in the bank accounts header. It asks for a **From Account**, a **To Account**, a date, an amount and an optional description, then reports *"Transfer recorded."*
+
+A transfer is one journal entry, not two: the destination's account is debited, the source's is credited, and both bank statements get their row — already reconciled, because the journal exists from the moment the transfer is recorded. Nothing is left for you to categorize or reconcile afterwards.
+
+The Banking group has exactly two menu entries: **Bank Accounts** and **Categorization Rules**. There are no bank feeds in this build, and nothing connects to your bank: files and pasted statements are how transactions arrive.
 
 Every window here is Ledgerik **Pro** — see [Licensing](/ledgerik/manual/licensing/).

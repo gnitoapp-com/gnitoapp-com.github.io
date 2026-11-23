@@ -22,11 +22,11 @@ A posting account has two more labels.
 
 **Class** is the broad group. Ledgerik has eight, numbered 1 to 8: **Asset**, **Liability**, **Equity**, **Income**, **Cost of Sales**, **Expense**, **Other Income** and **Other Expense**.
 
-The class decides three things: where the account appears in the statements, whether it normally carries a debit or a credit balance, and whether it may hold a currency other than the company's base currency. Asset, Liability and Equity may. The income and expense classes may not.
+The class decides three things: where the account appears in the statements, whether it normally carries a debit or a credit balance, and whether it may hold a foreign currency. Asset, Liability and Equity may; the income and expense classes may not.
 
 **Type** is the finer label inside a class. There are sixteen, from **Bank** and **Accounts Receivable** through **Fixed Asset**, **Credit Card**, **Long Term Liability** and **Other Expense**.
 
-Choose the class first. The type list then offers only the types that belong to it. A Bank account, for example, is an Asset, and Credit Card is a Liability.
+Choose the class first: the type list then offers only the types that belong to it. A Bank account is an Asset; a Credit Card is a Liability.
 
 ## Adding an account
 
@@ -42,31 +42,29 @@ Open **Accounts ▸ List Accounts** and choose **New**. The form asks for:
 - **Tax Return Code** — optional, up to 100 characters. Every posting account has one.
 - **Disabled** — a switch that marks the account inactive. Every posting account has one.
 
-Only one of those fields depends on the class. **Currency** is offered for **Asset**, **Liability** and **Equity**, and not for the income and expense classes, which always keep the company's base currency.
-
-The tax return code and the disabled switch appear for every posting account, whatever its class — when you create it, and when you edit it.
+Only **Currency** depends on the class: it is offered for **Asset**, **Liability** and **Equity**, never for the income and expense classes, which keep the base currency. The tax return code and the disabled switch appear on every posting account.
 
 A folder needs only its name and its sequence number.
 
 ## Editing an account
 
-Open an account from the list to edit it. The same fields are there, including the **Disabled** switch.
-
-The **Currency** field of an existing account is shown but cannot be changed. That is why it is chosen when the account is created.
+Open an account from the list to edit it. The same fields are there, including the **Disabled** switch. An existing account's **Currency** is shown but cannot be changed, which is why it is chosen at creation.
 
 Change the name or the sequence number freely. Changing the class or the type moves the account in the reports, so do it deliberately.
 
 **An account can only be disabled while its balance is zero.** If the account carries a balance, the switch stays greyed out, and the form says why: *"A disabled account must have a zero balance and cannot accept new transactions."* Move the balance off the account first — a journal entry moves it, it is never deleted. A disabled account can always be enabled again.
 
+**An account that Company Settings uses cannot be disabled either.** If one of its eight references points at this account, the switch greys out and the form names the reference: *"This account is used by Company Settings as {references} and cannot be disabled. Point that reference at another account first."*
+
+An account that is already disabled can still be edited and re-enabled, whatever points at it.
+
 ## The accounts list
 
 The list shows the accounts as a tree. Folders expand and collapse, so you can read the chart the way it is organised.
 
-Each row carries the account's name, its class and its type. It shows the balance in the account's own currency. When that currency differs from the company's base currency, the base-currency figure is shown underneath it.
+Each row carries the account's name, its class and type, and its balance in the account's own currency — with the base-currency figure underneath when the two differ. A disabled account carries a **Disabled** badge.
 
-Two controls sit above the list. **Hide disabled accounts?** filters them out. **Export CSV** writes the list to a file, with the columns Name, Sequence, Role, Class, Type, Currency, Native Balance and Base Balance.
-
-A disabled account carries a **Disabled** badge in the list.
+Two controls sit above the list. **Hide disabled accounts?** filters them out. **Export CSV** writes the list to a file: Name, Sequence, Role, Class, Type, Currency, Native Balance and Base Balance.
 
 ## There is no delete
 
@@ -76,23 +74,14 @@ A disabled account accepts no new transactions. Its history stays: the journals 
 
 Two reports leave it out. The **Balance Sheet** and the **Income Statement** list only enabled accounts, so a disabled account disappears from both.
 
-That is why disabling requires a zero balance. A balance left on a disabled account would vanish from those two statements while still sitting in the journal. Move the balance first, then disable the account.
+That is why disabling requires a zero balance: a balance left behind would vanish from those two statements while still sitting in the journal. Move the balance first, then disable the account.
 
-If an account was created by mistake and has never been used, disabling it is still the way to go. It then stays out of the way without breaking anything that refers to it.
+An account created by mistake is disabled the same way. It stays out of the way without breaking anything that refers to it.
 
 ## Opening balances
 
-**Accounts ▸ Enter Opening Balances** opens **Record opening balances**.
-
-The window lists every posting account, in alphabetical order, except the **Historical Balancing** account. Type each account's starting amount, then save.
-
-Two rules apply.
-
-- **The balance must reach zero.** A running total in the base currency shows how far you are from that. **Save** stays disabled until the total is zero.
-- **Once a year is closed, the window locks.** It then reads **Opening Balances Locked**, and explains that a year-end closing journal already exists. Changes after that go through general journals — see [Journal Entries](/ledgerik/manual/journal-entries/).
+**Accounts ▸ Enter Opening Balances** records where each account stood when you started keeping books. The window must balance before it will save, and it locks once a year is closed. See [Opening balances](/ledgerik/manual/chart-of-accounts/opening-balances/).
 
 ## Where accounts come from
 
-A new company file arrives with a starting chart, created when you save the **Base Currency** tab during setup. The **Accounts** tab of company setup then maps seven core references to real accounts: Retained Earnings, Historical Balancing, Exchange Gain/Loss, Sales Tax Collected, Sales Tax Paid, Accounts Receivable and Suspense.
-
-Changing a reference affects future postings only. Balances already on the old account must be moved with a journal entry. [Getting Started](/ledgerik/manual/getting-started/) covers that tab, and [Company Settings](/ledgerik/manual/settings/) covers the rest of the company's own settings.
+A new company file arrives with a starting chart, created when you save the **Base Currency** tab during setup. Company Settings then points eight references at real accounts — receivables, tax, exchange differences, Suspense and others. See [Company account references](/ledgerik/manual/chart-of-accounts/company-account-references/).
