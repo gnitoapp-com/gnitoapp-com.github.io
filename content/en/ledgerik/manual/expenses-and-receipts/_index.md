@@ -37,7 +37,7 @@ Both are recorded on the expense, and both are shown in the list. Neither one ac
 
 Each row shows the date, the merchant, the account and the amount. **Attach** opens the receipts for that expense, and the row's delete action removes it.
 
-Deleting an expense asks first, naming the merchant, and then voids the journal entry the expense posted. The books are corrected rather than trimmed, so an expense that was already reported on is still visible in the journal as a voided entry — see [Journal Entries](/ledgerik/manual/journal-entries/).
+Deleting an expense asks first, naming the merchant, and then voids the journal entry the expense posted. **An expense with a receipt attached cannot be deleted until the receipt is** — the receipt points at the expense, and Ledgerik refuses rather than leaving it orphaned. Delete the receipt from the expense first, then the expense. The books are corrected rather than trimmed, so an expense that was already reported on is still visible in the journal as a voided entry — see [Journal Entries](/ledgerik/manual/journal-entries/).
 
 ## Mileage
 

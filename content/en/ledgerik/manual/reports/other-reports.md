@@ -56,9 +56,20 @@ Nothing is calculated from invoices: only expenses count, which is why a contrac
 
 **Reporting ▸ Audit Log** lists each recorded change with its entity, the person who made it, and the date and time.
 
-The action is one of **Created**, **Updated**, **Deleted**, **Finalized**, **Voided** or **Reconciled**, and contact entries carry the name, so they read like *"Contact Acme Ltd created"*.
+What it records:
 
-**What it records today:** changes to **contacts**, and the fiscal-year advance that closes a year. The **Entity** filter offers invoices, accounts, payments, expenses and settings as well, but no entry of those kinds is written today.
+- **Contacts** — created, updated, deleted.
+- **Invoices** — finalized, voided.
+- **Payments** — recorded.
+- **Credit notes** — created, deleted.
+- **Expenses** — created, deleted.
+- **Accounts** — created, updated, disabled, re-enabled.
+- **Journals** — voided.
+- **Bank transfers** — recorded.
+- **Reconciliations** — completed.
+- **Company settings** — company account references changed, a currency saved, a tax code saved.
+
+It does not cover everything yet. Creating or editing an invoice, editing an expense, attaching or deleting a receipt, importing bank transactions, and any change to estimates, mileage, projects or company setup leave no entry behind.
 
 Two filters narrow the list — **Entity** and **Action**, both with an all option — and **Refresh** reloads it. An empty log says **"No audit entries."**
 
