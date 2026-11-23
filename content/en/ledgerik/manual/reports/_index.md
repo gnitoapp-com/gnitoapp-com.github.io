@@ -5,24 +5,20 @@ layout: manual
 menu: {manual: {weight: 100}}
 ---
 
-Ledgerik has eight reports, and all eight live in one place: the **Reporting** group.
+Ledgerik has eight reports, all of them in the **Reporting** group, in this order:
 
-## The order they appear in
+- Trial Balance
+- Balance Sheet
+- Income Statement
+- AR Aging
+- Cash Flow
+- Tax Return
+- Budget vs. Actual
+- 1099-NEC
 
-| Report | Menu |
-| --- | --- |
-| Trial Balance | Reporting ▸ Trial Balance |
-| Balance Sheet | Reporting ▸ Balance Sheet |
-| Income Statement | Reporting ▸ Income Statement |
-| AR Aging | Reporting ▸ AR Aging |
-| Cash Flow | Reporting ▸ Cash Flow |
-| Tax Return | Reporting ▸ Tax Return |
-| Budget vs. Actual | Reporting ▸ Budget vs. Actual |
-| 1099-NEC | Reporting ▸ 1099-NEC |
+One entry follows them: **Audit Log**, which is a record of what changed rather than a report.
 
-One more entry sits in the same group: **Audit Log**, last of all. It is a record of what changed rather than a report.
-
-**Company Settings** holds configuration only: company setup, currencies, tax codes, contacts, email, backups and import.
+**Company Settings** holds configuration only — company setup, currencies, tax codes, contacts, email, backups and import.
 
 The three statements have their own page — [Financial statements](/ledgerik/manual/reports/financial-statements/). The other four are described in [Other reports](/ledgerik/manual/reports/other-reports/). **Budget vs. Actual** is described with projects, in [Projects & Time](/ledgerik/manual/projects-and-time/).
 
