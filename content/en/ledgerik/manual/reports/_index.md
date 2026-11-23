@@ -1,11 +1,11 @@
 ---
 title: Reporting
-summary: The eight reports, the order they appear in, and what they read.
+summary: The reports and the audit log, the order they appear in, and what they read.
 layout: manual
 menu: {manual: {weight: 100}}
 ---
 
-Ledgerik has eight reports, all of them in the **Reporting** group, in this order:
+Everything you read rather than edit lives in the **Reporting** group, in this order:
 
 - Trial Balance
 - Balance Sheet
@@ -15,12 +15,15 @@ Ledgerik has eight reports, all of them in the **Reporting** group, in this orde
 - Tax Return
 - Budget vs. Actual
 - 1099-NEC
+- Audit Log
 
-One entry follows them: **Audit Log**, which is a record of what changed rather than a report.
+**Audit Log** is the odd one: it lists what changed and who changed it, rather than figures — created, updated, deleted, finalized, voided and reconciled entries, filtered by **Entity** (contacts, invoices, accounts, payments, expenses, settings) or by **Action**, and refreshed on demand. It sits with the reports because that is where you look for it.
 
 **Company Settings** holds configuration only — company setup, currencies, tax codes, contacts, email, backups and import.
 
 The three statements have their own page — [Financial statements](/ledgerik/manual/reports/financial-statements/). The other four are described in [Other reports](/ledgerik/manual/reports/other-reports/). **Budget vs. Actual** is described with projects, in [Projects & Time](/ledgerik/manual/projects-and-time/).
+
+Those three statements are free on Ledgerik Basic. The other five reports, and the Audit Log, are **Pro** — see [Licensing](/ledgerik/manual/licensing/).
 
 ## What every report reads
 
