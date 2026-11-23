@@ -73,7 +73,7 @@ What it records:
 - **Fiscal years** — closed.
 - **Company settings** — company account references changed, a currency saved, a tax code saved.
 
-A few writes still leave no entry: creating or editing an invoice, editing an expense, and any change to projects, company setup, recurring invoices or reminders.
+A few writes still leave no entry: creating or editing an invoice, writing a journal or an opening balance, changing a journal template, and anything in projects, company setup, recurring invoices or reminders.
 
 **The account it was made under is the operating-system account**, taken from the environment — `USERNAME` on Windows, `USER` on macOS and Linux. Ledgerik has no logins of its own, so two people sharing one computer account are indistinguishable in the log.
 
