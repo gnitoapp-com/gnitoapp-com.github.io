@@ -54,15 +54,15 @@ Nothing is calculated from invoices: only expenses count, which is why a contrac
 
 ## Audit Log
 
-**Reporting ▸ Audit Log** answers a different question from the other reports: not *what do the books say*, but *who changed what, and when*.
+**Reporting ▸ Audit Log** lists each recorded change with its entity, the person who made it, and the date and time.
 
-Each entry names what changed, who did it, and when — the entity, the person, and the date with its time. The action is one of **Created**, **Updated**, **Deleted**, **Finalized**, **Voided** or **Reconciled**, and contact entries carry the name, so they read like *"Contact Acme Ltd created"*.
+The action is one of **Created**, **Updated**, **Deleted**, **Finalized**, **Voided** or **Reconciled**, and contact entries carry the name, so they read like *"Contact Acme Ltd created"*.
 
 **What it records today:** changes to **contacts**, and the fiscal-year advance that closes a year. The **Entity** filter offers invoices, accounts, payments, expenses and settings as well, but no entry of those kinds is written today.
 
 Two filters narrow the list — **Entity** and **Action**, both with an all option — and **Refresh** reloads it. An empty log says **"No audit entries."**
 
-Nothing in this window changes anything. It answers a question the figures cannot: who touched this, and when.
+Nothing in this window changes anything.
 
 ## Where to go next
 

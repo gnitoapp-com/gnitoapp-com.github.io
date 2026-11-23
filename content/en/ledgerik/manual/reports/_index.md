@@ -17,7 +17,7 @@ Everything you read rather than edit lives in the **Reporting** group, in this o
 - 1099-NEC
 - Audit Log
 
-The three statements have their own page — [Financial statements](/ledgerik/manual/reports/financial-statements/). AR Aging, Cash Flow, Tax Return and the Audit Log are described in [Other reports](/ledgerik/manual/reports/other-reports/). **Budget vs. Actual** is described with projects, in [Projects & Time](/ledgerik/manual/projects-and-time/).
+The three statements have their own page — [Financial statements](/ledgerik/manual/reports/financial-statements/). AR Aging, Cash Flow, Tax Return, 1099-NEC and the Audit Log are described in [Other reports](/ledgerik/manual/reports/other-reports/). **Budget vs. Actual** is described with projects, in [Projects & Time](/ledgerik/manual/projects-and-time/).
 
 Those three statements are free on Ledgerik Basic. The other five reports, and the Audit Log, are **Pro** — see [Licensing](/ledgerik/manual/licensing/).
 
