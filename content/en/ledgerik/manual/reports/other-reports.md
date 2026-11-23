@@ -62,6 +62,14 @@ The action is one of **Created**, **Updated**, **Deleted**, **Finalized**, **Voi
 
 Two filters narrow the list — **Entity** and **Action**, both with an all option — and **Refresh** reloads it. An empty log says **"No audit entries."**
 
+The list is newest first and stops at **500** entries. Older ones are still in the company file; the window simply does not go further.
+
+### How long entries are kept
+
+Entries are deleted when a fiscal year is closed. **Year End ▸ Close Fiscal Year** advances the company's year and drops every audit entry dated before the first day of the year it just closed: close 2026 and start 2027, and entries from 2025 and earlier are gone while 2026 onwards stays.
+
+There is no setting for it and no size limit. That prune is what keeps the log — and every backup of the company file, which carries the log with it — from growing without end.
+
 Nothing in this window changes anything.
 
 ## Where to go next
