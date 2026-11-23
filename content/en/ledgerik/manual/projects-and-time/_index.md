@@ -43,7 +43,7 @@ Nothing is posted or voided by deleting a project. Only the grouping is lost.
 
 ## Budget vs. Actual
 
-The project's financial view is **Company Settings ▸ Budget vs. Actual** — under Company Settings, although it is about projects. See [Reporting](/ledgerik/manual/reports/).
+The project's financial view is **Reporting ▸ Budget vs. Actual** — the report lives with the others, not with projects. See [Reporting](/ledgerik/manual/reports/).
 
 For every project it shows the **revenue** recorded against it, its **actual cost**, its **budget**, the **variance** between budget and actual, the **profit**, and a progress figure. A project budgeted in hours shows hours instead of money. The report exports to PDF.
 

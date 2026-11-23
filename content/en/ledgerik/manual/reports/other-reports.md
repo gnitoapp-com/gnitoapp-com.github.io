@@ -1,14 +1,14 @@
 ---
 title: Other reports
-summary: Cash flow, AR aging, the tax return and 1099-NEC — the four under Company Settings.
+summary: Cash flow, AR aging, the tax return and 1099-NEC.
 layout: manual
 ---
 
-These four sit under **Company Settings**, not under Reporting, which is where readers look for them first.
+These four are described in the order they appear in the Reporting group.
 
 ## Cash Flow
 
-**Company Settings ▸ Cash Flow** shows money actually moving, month by month.
+**Reporting ▸ Cash Flow** shows money actually moving, month by month.
 
 It opens around today: this year, from two months back to five months ahead. Each row is a month with its **Actual In** and **Actual Out**, and the report leads with the **Opening Cash** amount and closes with the closing cash.
 
@@ -18,7 +18,7 @@ The report exports to PDF.
 
 ## AR Aging
 
-**Company Settings ▸ AR Aging** shows who owes what, and for how long.
+**Reporting ▸ AR Aging** shows who owes what, and for how long.
 
 An invoice is either **not due** yet or falls into one of four buckets: **0–30**, **31–60**, **61–90** days overdue, or **more than 90 days**.
 
@@ -28,7 +28,7 @@ An invoice disappears from this report when it is paid or voided. The report exp
 
 ## Tax Return
 
-**Company Settings ▸ Tax Return** is built from the tax codes on your postings, so it reports what the books already recorded rather than recalculating anything.
+**Reporting ▸ Tax Return** is built from the tax codes on your postings, so it reports what the books already recorded rather than recalculating anything.
 
 It summarizes:
 
@@ -42,7 +42,7 @@ This report is not tax advice: it mirrors what was coded. If a rate was applied 
 
 ## Form 1099-NEC
 
-**Company Settings ▸ 1099-NEC** reports payments to contractors for one year.
+**Reporting ▸ 1099-NEC** reports payments to contractors for one year.
 
 Choose the year and a threshold. The default threshold is **600** in the base currency, and the report starts from **expenses paid to contractor-flagged vendors** — that is, vendor contacts marked **1099 Contractor** and expenses recorded against them.
 

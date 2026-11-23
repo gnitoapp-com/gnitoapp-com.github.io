@@ -1,26 +1,30 @@
 ---
 title: Reporting
-summary: The eight reports, where each one lives, and what they read.
+summary: The eight reports, the order they appear in, and what they read.
 layout: manual
 menu: {manual: {weight: 100}}
 ---
 
-Ledgerik has eight reports. **Three** are under **Reporting**. **Five** are under **Company Settings** — which is where readers lose them.
+Ledgerik has eight reports, and all eight live in one place: the **Reporting** group.
 
-## Where each report is
+## The order they appear in
 
 | Report | Menu |
 | --- | --- |
 | Trial Balance | Reporting ▸ Trial Balance |
 | Balance Sheet | Reporting ▸ Balance Sheet |
 | Income Statement | Reporting ▸ Income Statement |
-| AR Aging | Company Settings ▸ AR Aging |
-| Tax Return | Company Settings ▸ Tax Return |
-| Cash Flow | Company Settings ▸ Cash Flow |
-| Budget vs. Actual | Company Settings ▸ Budget vs. Actual |
-| 1099-NEC | Company Settings ▸ 1099-NEC |
+| AR Aging | Reporting ▸ AR Aging |
+| Cash Flow | Reporting ▸ Cash Flow |
+| Tax Return | Reporting ▸ Tax Return |
+| Budget vs. Actual | Reporting ▸ Budget vs. Actual |
+| 1099-NEC | Reporting ▸ 1099-NEC |
 
-The three statements have their own page — [Financial statements](/ledgerik/manual/reports/financial-statements/). The other four live here: [Other reports](/ledgerik/manual/reports/other-reports/). **Budget vs. Actual** is described with projects, in [Projects & Time](/ledgerik/manual/projects-and-time/).
+One more entry sits in the same group: **Audit Log**, last of all. It is a record of what changed rather than a report.
+
+**Company Settings** holds configuration only: company setup, currencies, tax codes, contacts, email, backups and import.
+
+The three statements have their own page — [Financial statements](/ledgerik/manual/reports/financial-statements/). The other four are described in [Other reports](/ledgerik/manual/reports/other-reports/). **Budget vs. Actual** is described with projects, in [Projects & Time](/ledgerik/manual/projects-and-time/).
 
 ## What every report reads
 

@@ -1,6 +1,6 @@
 ---
 title: Financial statements
-summary: Trial balance, balance sheet and income statement — the three reports under Reporting.
+summary: Trial balance, balance sheet and income statement — the first three in the Reporting group.
 layout: manual
 ---
 
