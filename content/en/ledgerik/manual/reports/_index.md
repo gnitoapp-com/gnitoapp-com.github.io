@@ -1,6 +1,6 @@
 ---
 title: Reporting
-summary: The reports and the audit log, the order they appear in, and what they read.
+summary: The reports in the Reporting group, in menu order, and where each is described.
 layout: manual
 menu: {manual: {weight: 100}}
 ---
@@ -17,9 +17,7 @@ Everything you read rather than edit lives in the **Reporting** group, in this o
 - 1099-NEC
 - Audit Log
 
-**Audit Log** lists what changed and who changed it: created, updated, deleted, finalized, voided and reconciled entries, filtered by **Entity** (contacts, invoices, accounts, payments, expenses, settings) or by **Action**, and refreshed on demand.
-
-The three statements have their own page — [Financial statements](/ledgerik/manual/reports/financial-statements/). The other four are described in [Other reports](/ledgerik/manual/reports/other-reports/). **Budget vs. Actual** is described with projects, in [Projects & Time](/ledgerik/manual/projects-and-time/).
+The three statements have their own page — [Financial statements](/ledgerik/manual/reports/financial-statements/). AR Aging, Cash Flow, Tax Return and the Audit Log are described in [Other reports](/ledgerik/manual/reports/other-reports/). **Budget vs. Actual** is described with projects, in [Projects & Time](/ledgerik/manual/projects-and-time/).
 
 Those three statements are free on Ledgerik Basic. The other five reports, and the Audit Log, are **Pro** — see [Licensing](/ledgerik/manual/licensing/).
 
