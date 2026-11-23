@@ -54,24 +54,30 @@ Nothing is calculated from invoices: only expenses count, which is why a contrac
 
 ## Audit Log
 
-**Reporting ▸ Audit Log** lists each recorded change with its entity, the person who made it, and the date and time.
+**Reporting ▸ Audit Log** lists each recorded change with its entity, the action, the account it was made under, and the date and time.
 
 What it records:
 
 - **Contacts** — created, updated, deleted.
 - **Invoices** — finalized, voided.
+- **Estimates** — created, updated, emailed, converted to an invoice.
 - **Payments** — recorded.
 - **Credit notes** — created, deleted.
-- **Expenses** — created, deleted.
+- **Expenses** — recorded, deleted, and a receipt attached or deleted.
+- **Mileage** — recorded, deleted.
 - **Accounts** — created, updated, disabled, re-enabled.
 - **Journals** — voided.
 - **Bank transfers** — recorded.
+- **Bank imports** — how many transactions, into which account.
 - **Reconciliations** — completed.
+- **Fiscal years** — closed.
 - **Company settings** — company account references changed, a currency saved, a tax code saved.
 
-It does not cover everything yet. Creating or editing an invoice, editing an expense, attaching or deleting a receipt, importing bank transactions, and any change to estimates, mileage, projects or company setup leave no entry behind.
+A few writes still leave no entry: creating or editing an invoice, editing an expense, and any change to projects, company setup, recurring invoices or reminders.
 
-Two filters narrow the list — **Entity** and **Action**, both with an all option — and **Refresh** reloads it. An empty log says **"No audit entries."**
+**The account it was made under is the operating-system account**, taken from the environment — `USERNAME` on Windows, `USER` on macOS and Linux. Ledgerik has no logins of its own, so two people sharing one computer account are indistinguishable in the log.
+
+Two filters narrow the list. **Entity** offers contacts, invoices, accounts, payments, expenses, settings, credit notes, journals, transfer between accounts, reconcile and import; estimates, mileage and fiscal-year entries show under the unfiltered list only. **Action** offers every action the log writes, and both filters have an all option. **Refresh** reloads the list; an empty log says **"No audit entries."**
 
 The list is newest first and stops at **500** entries. Older ones are still in the company file; the window simply does not go further.
 
