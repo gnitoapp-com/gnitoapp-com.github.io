@@ -54,9 +54,23 @@ Money received against an invoice is recorded under **Invoicing ▸ Record Payme
 
 ## Moving money between accounts
 
-**Transfer Between Accounts** sits in the bank accounts header. It asks for a **From Account**, a **To Account**, a date, an amount and an optional description, then reports *"Transfer recorded."*
+**Transfer Between Accounts** sits in the bank accounts header. It asks for a **From Account**, a **To Account**, a date, an amount and an optional description, then reports *"Transfer recorded."* Both accounts need a linked GL account first.
 
-A transfer is one journal entry, not two: the destination's account is debited, the source's is credited, and both bank statements get their row — already reconciled, because the journal exists from the moment the transfer is recorded. Nothing is left for you to categorize or reconcile afterwards.
+**The two accounts hold the same currency.** One journal is posted: the destination's account is debited, the source's credited. Both bank statements get their row — already reconciled, because the journal exists from the moment the transfer is recorded. Nothing is left to categorize.
+
+Give a same-currency transfer a different **Amount Received** and Ledgerik refuses: one of the two amounts would be wrong, and a transfer that sends 100 and lands 95 is a fee nobody has categorised.
+
+**The two accounts hold different currencies.** A second field appears, **Amount Received** — what actually landed in the destination account. Ledgerik will not derive it. The bank's rate, its spread and its cut-off decide it, and booking a table rate instead would leave that account permanently unable to reconcile. So you enter what arrived, and three journals are posted:
+
+1. in the source currency — credit the source bank, debit **Transfer Clearing**;
+2. in the destination currency — debit the destination bank, credit Transfer Clearing;
+3. in the base currency — whatever Transfer Clearing is left holding, the difference between the two sides, posted to **Exchange Gain/Loss** so that clearing ends at exactly zero.
+
+The third journal is the realized exchange difference, described as *"Exchange difference, transfer from … to …"*.
+
+Transfer Clearing must be an account in the company's base currency. If the reference points at any other account, Ledgerik refuses and says which currency it needs — see [Company account references](/ledgerik/manual/chart-of-accounts/company-account-references/).
+
+A transfer is journaled once and cannot be edited. Void it and record a new one to correct it. If any part of a transfer fails, the journals already posted are voided before the error is reported, so money is never left in transit.
 
 The Banking group has exactly two menu entries: **Bank Accounts** and **Categorization Rules**. There are no bank feeds in this build, and nothing connects to your bank: files and pasted statements are how transactions arrive.
 

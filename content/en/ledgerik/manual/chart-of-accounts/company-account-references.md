@@ -19,7 +19,7 @@ Rather than hard-code accounts, Ledgerik keeps a **reference** for each and lets
 - **Sales Tax Paid**
 - **Accounts Receivable**
 - **Suspense**
-- **Transfer Clearing**
+- **Transfer Clearing** — where money in transit waits during a transfer between two bank accounts. It must be an account in the company's base currency: a cross-currency transfer posts its difference here.
 
 A new company file arrives with sensible defaults for all eight, created with the starting chart. For most companies the defaults are right, and this tab is never touched again.
 
