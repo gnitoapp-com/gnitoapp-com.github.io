@@ -45,7 +45,7 @@ Three failures are reported rather than guessed at: *"Invalid license key. Pleas
 
 Pro comes with a **30-day money-back guarantee**: ask within 30 days of purchase, and access returns to Basic. **Nothing is removed from your company files**, and the guarantee applies once per customer. Once you have bought, the paywall shows the date your refund window closes.
 
-The refund policy itself is the application's **Refund Policy** section; the paywall's *"Read the refund policy"* link opens it.
+The refund policy itself is described in [Refund Policy](/ledgerik/manual/refund_policy/) — the page the paywall's *"Read the refund policy"* link opens.
 
 ## What a license does not do
 
