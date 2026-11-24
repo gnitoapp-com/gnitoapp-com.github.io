@@ -1,10 +1,10 @@
 ---
 title: Other reports
-summary: Cash flow, AR aging, the tax return, 1099-NEC and the audit log.
+summary: Cash flow, AR aging, the tax return and 1099-NEC.
 layout: manual
 ---
 
-These are described in the order they appear in the Reporting group.
+These four are described in the order they appear in the Reporting group.
 
 ## Cash Flow
 
@@ -54,40 +54,7 @@ Nothing is calculated from invoices: only expenses count, which is why a contrac
 
 ## Audit Log
 
-**Reporting ▸ Audit Log** lists each recorded change with its entity, the action, the account it was made under, and the date and time.
-
-What it records:
-
-- **Contacts** — created, updated, deleted.
-- **Invoices** — finalized, voided.
-- **Estimates** — created, updated, emailed, converted to an invoice.
-- **Payments** — recorded.
-- **Credit notes** — created, deleted.
-- **Expenses** — recorded, deleted, and a receipt attached or deleted.
-- **Mileage** — recorded, deleted.
-- **Accounts** — created, updated, disabled, re-enabled.
-- **Journals** — voided.
-- **Bank transfers** — recorded.
-- **Bank imports** — how many transactions, into which account.
-- **Reconciliations** — completed.
-- **Fiscal years** — closed.
-- **Company settings** — company account references changed, a currency saved, a tax code saved.
-
-A few writes still leave no entry: creating or editing an invoice, writing a journal or an opening balance, changing a journal template, and anything in projects, company setup, recurring invoices or reminders.
-
-**The account it was made under is the operating-system account**, taken from the environment — `USERNAME` on Windows, `USER` on macOS and Linux. Ledgerik has no logins of its own, so two people sharing one computer account are indistinguishable in the log.
-
-Two filters narrow the list. **Entity** offers contacts, invoices, accounts, payments, expenses, settings, credit notes, journals, transfer between accounts, reconcile and import; estimates, mileage and fiscal-year entries show under the unfiltered list only. **Action** offers every action the log writes, and both filters have an all option. **Refresh** reloads the list; an empty log says **"No audit entries."**
-
-The list is newest first and stops at **500** entries. Older ones are still in the company file; the window simply does not go further.
-
-### How long entries are kept
-
-Entries are deleted when a fiscal year is closed. **Year End ▸ Close Fiscal Year** advances the company's year and drops every audit entry dated before the first day of the year it just closed: close 2026 and start 2027, and entries from 2025 and earlier are gone while 2026 onwards stays.
-
-There is no setting for it and no size limit. That prune is what keeps the log — and every backup of the company file, which carries the log with it — from growing without end.
-
-Nothing in this window changes anything.
+**Reporting ▸ Audit Log** is a different kind of report: it lists what changed rather than what the books say. It has its own page — [Audit Log](/ledgerik/manual/reports/audit-log/).
 
 ## Where to go next
 
