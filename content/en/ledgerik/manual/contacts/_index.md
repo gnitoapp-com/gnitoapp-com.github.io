@@ -40,7 +40,7 @@ It does **not** set the currency of anything. An invoice's currency is chosen on
 
 Each row shows the contact's name and a line with the type, the designation and the currency. Three actions sit at the right of every row.
 
-- **Statement** — opens the statement for that contact. Read the client statements section when it is published; it explains what the statement shows.
+- **Statement** — opens that contact's statement — see [Client Statements](/ledgerik/manual/client-statements/).
 - **Edit** — opens the record.
 - **Delete** — see below.
 

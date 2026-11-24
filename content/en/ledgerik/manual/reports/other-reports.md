@@ -22,7 +22,7 @@ The report exports to PDF.
 
 An invoice is either **not due** yet or falls into one of four buckets: **0–30**, **31–60**, **61–90** days overdue, or **more than 90 days**.
 
-Each row carries the client, the invoice number, its due date and the outstanding amount, with totals per bucket and per client. A **Statement** action opens that client's statement.
+Each row carries the client, the invoice number, its due date and the outstanding amount, with totals per bucket and per client. A **Statement** action opens that client's statement — see [Client Statements](/ledgerik/manual/client-statements/).
 
 An invoice disappears from this report when it is paid or voided. The report exports to PDF.
 
