@@ -28,15 +28,21 @@ What each one allows:
 - **Fiscal Year** — the year and its last month are set once. After that the year field is read only, and the last-month selector stops responding. To choose where the **next** year ends, use the close window instead — see [Year End](/ledgerik/manual/year-end/).
 - **Accounts** — maps the eight company account references, and the tab stays disabled until company setup is complete. See [Company account references](/ledgerik/manual/chart-of-accounts/company-account-references/).
 
-## Tax codes
+## Sales tax codes
 
-A tax code is three things: a **code**, a **description** and a **Tax Rate Percent**.
+**List Tax Codes** holds the **sales tax rates** your postings use — GST, HST, VAT, PST, and whatever else you charge or are charged. A code is three things: a **Tax Code**, a **Tax Code Description** and a **Tax Rate Percent**.
 
-**List Tax Codes** shows them all. **New** adds one; **Edit** changes it; **Delete** asks first, naming the code.
+**New** adds one, **Edit** changes it, **Delete** asks first, naming the code.
 
-Tax codes are what put tax on a posting: an invoice line, an expense or a journal line can carry one, and the tax lines in the ledger come from the rate it holds. They also decide the rows on the [Tax Return](/ledgerik/manual/reports/other-reports/), grouped by rate.
+These are rates, not classifications. They are **not** the tax-return classification codes that tell a filing form which line a figure belongs on — that is a separate field on each **account**, the **Tax Return Code** in [Accounts (Chart of Accounts)](/ledgerik/manual/chart-of-accounts/), and the two are unrelated.
 
-Editing a rate carries a warning in the form itself: *"The new rate will not affect existing transactions."* That is exact — postings keep the rate they were made with, and only new lines use the new one. Deleting a code that postings already use is refused for the same reason a used currency cannot be deleted.
+A sales tax code does three jobs:
+
+- **it puts tax on a line.** An invoice line, an expense or a journal line can carry one, and the tax lines in the ledger come from its rate.
+- **it records the rate on the posting.** The rate travels with the line into the journal, which is what the tax return reports on.
+- **it groups the [Tax Return](/ledgerik/manual/reports/other-reports/)** by rate — one row per rate used, not one row per classification code.
+
+Editing a rate carries a warning in the form itself: *"The new rate will not affect existing transactions."* That is exact — postings keep the rate they were made with, and only new lines use the new one. Deleting a code that postings still reference is refused for the same reason a used currency cannot be deleted.
 
 ## Email Settings
 

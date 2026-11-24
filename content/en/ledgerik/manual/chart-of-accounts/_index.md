@@ -39,7 +39,7 @@ Open **Accounts ▸ List Accounts** and choose **New**. The form asks for:
 - **Account Name** — required.
 - **Sequence Number** — required, and a positive number. It sets the account's order inside its folder.
 - **Currency** — shown only when the class may hold a foreign currency, and then required.
-- **Tax Return Code** — optional, up to 100 characters. Every posting account has one.
+- **Tax Return Code** — optional, up to 100 characters: your own classification for a filing form. It is stored with the account and read by no report; it is not a sales tax rate — see [Company Settings](/ledgerik/manual/settings/).
 - **Disabled** — a switch that marks the account inactive. Every posting account has one.
 
 Only **Currency** depends on the class: it is offered for **Asset**, **Liability** and **Equity**, never for the income and expense classes, which keep the base currency. The tax return code and the disabled switch appear on every posting account.
@@ -60,7 +60,7 @@ An account that is already disabled can still be edited and re-enabled, whatever
 
 ## The accounts list
 
-The list shows the accounts as a tree. Folders expand and collapse, so you can read the chart the way it is organised.
+The list shows the accounts as a tree; folders expand and collapse.
 
 Each row carries the account's name, its class and type, and its balance in the account's own currency — with the base-currency figure underneath when the two differ. A disabled account carries a **Disabled** badge.
 
@@ -76,7 +76,7 @@ Two reports leave it out. The **Balance Sheet** and the **Income Statement** lis
 
 That is why disabling requires a zero balance: a balance left behind would vanish from those two statements while still sitting in the journal. Move the balance first, then disable the account.
 
-An account created by mistake is disabled the same way. It stays out of the way without breaking anything that refers to it.
+An account created by mistake is disabled the same way.
 
 ## Opening balances
 
