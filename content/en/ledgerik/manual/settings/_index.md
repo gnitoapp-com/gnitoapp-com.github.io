@@ -1,6 +1,6 @@
 ---
 title: Company Settings
-summary: Company setup, tax codes and email — the three settings that live here, and where the rest are documented.
+summary: Company setup, sales tax codes and email — the three settings that live here, and where the rest are documented.
 layout: manual
 menu: {manual: {weight: 130}}
 ---
@@ -10,7 +10,7 @@ menu: {manual: {weight: 130}}
 | Entry | What it is | Where it is documented |
 | --- | --- | --- |
 | Company Setup | the company's own facts | below |
-| List Tax Codes | tax rates the books use | below |
+| List Sales Tax Codes | the sales tax rates the books use | below |
 | Email Settings | the mail account and its templates | below |
 | List Currencies | exchange rates | [Currencies](/ledgerik/manual/currencies/) |
 | List Contacts | customers and vendors | [Contacts](/ledgerik/manual/contacts/) |
@@ -30,7 +30,7 @@ What each one allows:
 
 ## Sales tax codes
 
-**List Tax Codes** holds the **sales tax rates** your postings use — GST, HST, VAT, PST, and whatever else you charge or are charged. A code is three things: a **Tax Code**, a **Tax Code Description** and a **Tax Rate Percent**.
+**List Sales Tax Codes** holds the **sales tax rates** your postings use — GST, HST, VAT, PST, and whatever else you charge or are charged. A code is three things: a **Sales Tax Code**, a **Sales Tax Code Description** and a **Tax Rate Percent**.
 
 **New** adds one, **Edit** changes it, **Delete** asks first, naming the code.
 
@@ -70,4 +70,4 @@ Nothing is sent from a window you are not looking at: an invoice is emailed when
 - **Contacts** — [Contacts](/ledgerik/manual/contacts/)
 - **Backups** and **Import Data** — [Backups, Import & Restore](/ledgerik/manual/backups/)
 
-Company Setup, Currencies, Tax Codes and Backups are free on Ledgerik Basic. **Contacts, Email Settings and Import Data are Pro** — see [Licensing](/ledgerik/manual/licensing/).
+Company Setup, Currencies, sales tax codes and Backups are free on Ledgerik Basic. **Contacts, Email Settings and Import Data are Pro** — see [Licensing](/ledgerik/manual/licensing/).

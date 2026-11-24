@@ -30,7 +30,7 @@ Ledgerik numbers invoices itself. The next invoice takes a number one more than 
 - **Issue Date** and **Due Date**.
 - **Rate to Base Currency** — appears when the currency is not the base currency. A foreign-currency invoice will not finalize without a positive rate. See [Currencies](/ledgerik/manual/currencies/).
 
-**Line items** are added with **Add Line**. Each line carries a **Description**, a **Qty**, a **Rate**, an **Account** and an optional **Tax Code**. A line can also carry its own **Discount**, as a percentage or a fixed amount. The account is required: it decides where the line lands in the ledger, and the picker offers only the accounts that can take a posting.
+**Line items** are added with **Add Line**. Each line carries a **Description**, a **Qty**, a **Rate**, an **Account** and an optional **Sales Tax Code**. A line can also carry its own **Discount**, as a percentage or a fixed amount. The account is required: it decides where the line lands in the ledger, and the picker offers only the accounts that can take a posting.
 
 **The invoice discount** applies to the document as a whole, again as a percentage or a fixed amount.
 
@@ -55,7 +55,7 @@ Only a draft can be edited. Once it is sent, the editor says so: *"This invoice 
 
 **Finalize** posts the invoice to the general journal. That is the step that changes the books: until it is finalized, an invoice is a document, not an accounting entry.
 
-Finalizing raises the receivable on the invoice's account for receivables reference, records the income and tax lines from the invoice's own accounts and tax codes, and converts every line to the base currency at the invoice's rate. The difference, if any, is handled exactly as described in [Currencies](/ledgerik/manual/currencies/) — the invoice's own entries are ordinary journal lines.
+Finalizing raises the receivable on the invoice's account for receivables reference, records the income and tax lines from the invoice's own accounts and sales tax codes, and converts every line to the base currency at the invoice's rate. The difference, if any, is handled exactly as described in [Currencies](/ledgerik/manual/currencies/) — the invoice's own entries are ordinary journal lines.
 
 See [Journal Entries](/ledgerik/manual/journal-entries/) for what a posted entry looks like.
 

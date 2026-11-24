@@ -38,4 +38,4 @@ That is the difference between deleting a receipt and deleting an expense: the r
 
 ## What a receipt does not do
 
-A receipt does not change an expense's amount, its account or its tax code. Nothing reads a receipt's contents: there is no scanning of amounts or dates in this build, and no automatic matching of a receipt to an expense.
+A receipt does not change an expense's amount, its account or its sales tax code. Nothing reads a receipt's contents: there is no scanning of amounts or dates in this build, and no automatic matching of a receipt to an expense.

@@ -34,4 +34,4 @@ They do not put anything on an invoice by themselves. Nothing in Ledgerik turns 
 
 ## Where it appears
 
-Mileage entries are expenses, so they reach the income statement through the account you chose, and the tax return report through the tax code on that account's entries. The reports themselves are described in [Reporting](/ledgerik/manual/reports/).
+Mileage entries are expenses, so they reach the income statement through the account you chose, and the tax return report through the sales tax code on those entries. The reports themselves are described in [Reporting](/ledgerik/manual/reports/).

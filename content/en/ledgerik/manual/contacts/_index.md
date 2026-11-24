@@ -25,7 +25,7 @@ Choose **New** in the contacts list. The form asks for:
 - **Designation** — required.
 - **Contact Name** — required.
 - **Currency** — required.
-- **Tax Code** — optional, with **None** as the default.
+- **Sales Tax Code** — optional, with **None** as the default.
 - **Email** and **Phone** — optional. An email address is checked for shape.
 - **Tax ID (EIN / VAT)** — optional.
 - **Address (optional)** — two address lines, city, state or province, postal code and a country ISO code.
@@ -44,7 +44,7 @@ Each row shows the contact's name and a line with the type, the designation and 
 - **Edit** — opens the record.
 - **Delete** — see below.
 
-**Export CSV** writes the list to a file with the columns Name, Type, Designation, Currency, Tax Code, Email, Phone and Tax Id.
+**Export CSV** writes the list to a file with the columns Name, Type, Designation, Currency, Sales Tax Code, Email, Phone and Tax Id.
 
 ## Deleting a contact
 
@@ -70,6 +70,6 @@ Turn it on for a vendor you paid for services and whose payments belong on a 109
 - **Statements** — built from one contact's invoices, payments and credit notes.
 - **1099-NEC** — reads the vendor contacts you flag as contractors.
 
-## Tax codes on a contact
+## Sales tax codes on a contact
 
-The **Tax Code** field on a contact is optional and independent of the tax code on a line of an invoice or an expense. The company's tax codes themselves are maintained under **Company Settings ▸ List Tax Codes**.
+The **Sales Tax Code** field on a contact is optional and independent of the sales tax code on a line of an invoice or an expense. The codes themselves are maintained under **Company Settings ▸ List Sales Tax Codes**.

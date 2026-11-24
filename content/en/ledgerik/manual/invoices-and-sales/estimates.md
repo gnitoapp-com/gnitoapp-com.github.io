@@ -15,7 +15,7 @@ An estimate is a quote. It runs through its own list, and it can be turned into 
 - **Client** — required.
 - **Currency** — the estimate's own currency, with a **Rate to Base Currency** field when it is not the base currency.
 - **Issue Date** and **Expiry Date** — when the quote was made, and when it stops being valid.
-- **Line items** — **Add Line**, then a **Description**, a **Qty**, a **Rate**, an **Account**, an optional **Tax Code** and an optional per-line **Discount**.
+- **Line items** — **Add Line**, then a **Description**, a **Qty**, a **Rate**, an **Account**, an optional **Sales Tax Code** and an optional per-line **Discount**.
 - **Estimate discount** — applied to the whole document, as a percentage or a fixed amount.
 - **Notes** and **Terms**.
 

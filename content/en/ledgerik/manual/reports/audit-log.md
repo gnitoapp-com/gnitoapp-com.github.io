@@ -15,7 +15,7 @@ layout: manual
 - **Banking** — transfers, imports, reconciliations, categorization rules.
 - **Projects and time** — projects created, completed, held and deleted; time entries, with timer start and stop.
 - **Recurring and reminders** — series created, paused, resumed, cancelled; invoices generated; reminder settings and reminder sends.
-- **Configuration** — company settings, company account references, currencies and tax codes (saved and deleted), the mail account, the Stripe keys.
+- **Configuration** — company settings, company account references, currencies and sales tax codes (saved and deleted), the mail account, the Stripe keys.
 - **Data** — encrypted exports and imports.
 
 **Only hand-written journals are logged.** The entries Ledgerik posts for an invoice, a payment or a reconciliation are visible through those documents, so the log is not filled with automatic noise. Fiscal-period generation and the year-end closing journal record nothing themselves; the year close records once, as a closed fiscal year.

@@ -10,7 +10,7 @@ A journal template is the lines of an entry, stored for reuse. It is not an entr
 
 ## Saving one
 
-Write the entry in **Create Journal Entry** and choose **Save as a template** instead of Save. Ledgerik confirms with *"The journal has been saved as a template"*, and the lines are stored as they stand — accounts, sides, memos and tax codes.
+Write the entry in **Create Journal Entry** and choose **Save as a template** instead of Save. Ledgerik confirms with *"The journal has been saved as a template"*, and the lines are stored as they stand — accounts, sides, memos and sales tax codes.
 
 A template keeps the shape of the entry. It does not keep the date, so the day you use it is the day it belongs to.
 

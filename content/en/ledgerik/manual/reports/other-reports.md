@@ -28,7 +28,7 @@ An invoice disappears from this report when it is paid or voided. The report exp
 
 ## Tax Return
 
-**Reporting ▸ Tax Return** is built from the tax codes on your postings, so it reports what the books already recorded rather than recalculating anything.
+**Reporting ▸ Tax Return** is built from the sales tax codes on your postings, so it reports what the books already recorded rather than recalculating anything.
 
 It summarizes:
 

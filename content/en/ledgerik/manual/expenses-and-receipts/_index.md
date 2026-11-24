@@ -18,14 +18,14 @@ This page covers recording an expense. The other two have their own pages, linke
 - **Account** — required. The expense account the spend belongs to.
 - **Paid From** — required. The account the money left: a bank account, a credit card, cash.
 - **Amount** — required, greater than zero, and recorded with tax included.
-- **Tax Code** — optional. The tax rate is taken from it.
+- **Sales Tax Code** — optional. The tax rate is taken from it.
 - **Currency**, and **Rate to {currency}** when it is not the base currency.
 - **Client** and **Project** — optional, if the spend belongs to one.
 - **Billable** and **Markup** — see below.
 - **Notes**
 - **Receipt** — **Attach…** adds a photo, a scan or a PDF. See [Receipts](/ledgerik/manual/expenses-and-receipts/receipts/).
 
-Saving posts a bill to the general journal: the expense account is debited and the **Paid From** account is credited, both for the amount including tax. The tax code decides the tax line, exactly as on an invoice.
+Saving posts a bill to the general journal: the expense account is debited and the **Paid From** account is credited, both for the amount including tax. The sales tax code decides the tax line, exactly as on an invoice.
 
 ## Billable and markup
 
@@ -47,7 +47,7 @@ Deleting an expense asks first, naming the merchant, and then voids the journal 
 
 - **The general journal** — a bill per expense, voided if you delete it.
 - **The income statement** — the expense account you chose.
-- **The tax return report** — through the tax code.
+- **The tax return report** — through the sales tax code.
 - **The home screen** — the expenses figure, and recent activity.
 - **The reports** — every statement in [Reporting](/ledgerik/manual/reports/).
 
