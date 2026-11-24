@@ -9,9 +9,15 @@ A fiscal year ends once, and closing it is the one operation in Ledgerik that ca
 
 ## The fiscal year
 
-The year is set in **Company Setup ▸ Financial Year**: the **Current Fiscal Year** as four digits, and the **Last Month of Fiscal Year**. Together they decide the start and end of every period in the year, and the periods are created from them.
+The year is set in **Company Setup ▸ Financial Year**: the **Current Fiscal Year** as four digits, and the **Last Month of Fiscal Year**. The periods of the year are created from them, one per month.
 
-Those values can be changed when you start a new fiscal year — not in the middle of one.
+**A fiscal year is not always twelve months.** It starts the day after the previous year ends, so there is never a gap between years, and its length follows the last month:
+
+- the **same** last month as the year before gives a twelve-month year;
+- a **later** last month gives a **longer** year — the months it gained, plus the twelve that follow;
+- an **earlier** last month gives a **shorter** year — just the months between the old end and the new one.
+
+There is no maximum length, so a company that changes its year end once can carry a longer year through and settle on twelve months afterwards.
 
 ## What closing does
 
@@ -25,6 +31,14 @@ The window lists four consequences before you commit, in its own words:
 Its note is the one to take seriously: *"Ensure all journal entries for the current year have been posted before proceeding."* Closing does not wait for anyone, and it takes the balances as it finds them.
 
 **Confirm and Close** asks once: *"Are you sure you want to close the current fiscal year? This process will generate year-end journals and cannot be reversed."* Then it reports *"The 2026 fiscal year has been closed."*
+
+## Choosing where the new year ends
+
+The same window also carries **Last Month of the New Fiscal Year**, with the hint *"The new fiscal year ends in this month. Choose an earlier month to open a shorter year."*
+
+It starts at the company's current last month, so closing without touching it behaves exactly as before. Change it to end the new year earlier or later; the year you are closing is unaffected either way.
+
+If the new month differs from the one in company settings, the periods already generated for the new year *and the year after it* are re-cut, because periods are derived from the setting rather than typed. A year that is already closed cannot be re-cut, and Ledgerik refuses rather than let the settings and the months disagree.
 
 ## What is posted
 
