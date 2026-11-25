@@ -32,7 +32,7 @@ The list is newest first and stops at **500** entries; older ones stay in the fi
 
 ## How long entries are kept
 
-Entries are deleted when a fiscal year is closed. **Year End ▸ Close Fiscal Year** advances the company's year and drops every audit entry dated before the first day of the year it just closed: close 2026 and start 2027, and entries from 2025 and earlier are gone while 2026 onwards stays.
+Entries are deleted when a fiscal year is closed. **Year End ▸ Close Fiscal Year** advances the company's year. It then drops every audit entry dated before the first day of the year it just closed. Close 2026 and start 2027: entries from 2025 and earlier are gone, and 2026 onwards stays.
 
 There is no setting for it and no size limit. That prune is what keeps the log — and every backup of the company file, which carries the log with it — from growing without end.
 

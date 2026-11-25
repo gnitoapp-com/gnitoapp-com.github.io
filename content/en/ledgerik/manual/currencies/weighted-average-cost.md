@@ -60,7 +60,7 @@ The account now reads 0 EUR and 0 CAD. Neither side left a residue behind, and t
 
 The two sides of a foreign-currency journal rarely agree in the base currency. In the second journal above, one side gives up 60 CAD and the other receives 64 CAD.
 
-After all its lines are posted, a journal whose base total is not zero gets one more line: the remainder goes to the **Exchange Gain/Loss** account, with the memo **realized currency exchange gain** or **realized currency exchange loss**. The second journal takes 4 CAD there as a gain, the third 12 CAD.
+After all its lines are posted, a journal whose base total is not zero gets one more line. The remainder goes to the **Exchange Gain/Loss** account, with the memo **realized currency exchange gain** or **realized currency exchange loss**. The second journal takes 4 CAD there as a gain, the third 12 CAD.
 
 **Exchange Gain/Loss** is a company account reference, not a fixed account name. It is whichever account the **Accounts** tab of company setup maps to that reference, and it is an Income-class account by default.
 
@@ -70,6 +70,6 @@ Every line is rounded in its own currency's minor unit. The gain or loss line is
 
 A void does not undo a valuation. Its reversing lines are ordinary movements, so a line that reduces a foreign-currency account is repriced at the book average like any other.
 
-If the rate has moved since the original entry, the difference between the original rate and the book average appears as an exchange gain or loss. That is correct: the currency really did change value, and the books record it.
+If the rate has moved since the original entry, the difference between the original rate and the book average appears as an exchange gain or loss. That is correct: the currency did change value, and the books record it.
 
 Back to [Currencies](/ledgerik/manual/currencies/).

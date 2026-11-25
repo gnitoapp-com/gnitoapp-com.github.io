@@ -33,7 +33,7 @@ This is a read-only view of what the client has been sent and what they have pai
 
 Then a table, one row per event, in date order, with the columns **Date**, **Description**, **Reference**, **Debit** and **Credit**: each invoice as a debit, each payment and each credit note as a credit.
 
-The arithmetic is stated once so it cannot be guessed at: the opening balance is the activity before the period, the period shows every invoice, payment and credit note chronologically, and the closing balance is opening plus that activity.
+The arithmetic is stated so it cannot be guessed at. The opening balance is the activity before the period. The period lists every invoice, payment and credit note in date order. Closing is opening plus that activity.
 
 Everything on the statement is in the **base currency**. Foreign invoices are converted at the rate stored on the invoice, not at today's rate — see [Currencies](/ledgerik/manual/currencies/).
 

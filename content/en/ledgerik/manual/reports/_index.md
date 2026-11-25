@@ -40,7 +40,7 @@ Two reports also export CSV: the tax return and the 1099-NEC.
 
 When a figure looks wrong, check these four things in this order:
 
-1. **The period.** A closed fiscal period refuses new postings, and a date outside the range is simply not counted.
+1. **The period.** A closed fiscal period refuses new postings. A date outside the range is not counted.
 2. **Whether the document was finalized.** A draft invoice or an unsaved expense is invisible to every report.
 3. **The currency.** Reports total in the base currency, converting foreign amounts at the rate stored on each posting — see [Currencies](/ledgerik/manual/currencies/).
 4. **Whether the account is disabled.** The Balance Sheet and the Income Statement list enabled accounts only, so a disabled account leaves both — see [Accounts (Chart of Accounts)](/ledgerik/manual/chart-of-accounts/).

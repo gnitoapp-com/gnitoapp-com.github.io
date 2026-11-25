@@ -9,7 +9,7 @@ Ledgerik has two plans. There is no trial, no subscription and no per-seat prici
 
 ## Basic, and what Pro adds
 
-**Ledgerik Basic is free forever.** Its own words: *"The general ledger, your master data, financial statements, backups and file access are free forever."* In practice that is the chart of accounts, sales tax codes, currencies, journals and journal templates, opening balances, the year-end close, the three financial statements, and the whole backups window — snapshots, restore and encrypted import.
+**Ledgerik Basic is free forever.** Its own words: *"The general ledger, your master data, financial statements, backups and file access are free forever."* In practice that is the chart of accounts, sales tax codes, currencies, journals and journal templates, opening balances and the year-end close. It is also the three financial statements, and the whole backups window: snapshots, restore and encrypted import.
 
 **Ledgerik Pro** unlocks *"client billing, expenses, banking, time tracking, projects, contacts, the audit log, tax returns and CSV import"* — one lifetime purchase, and every feature is unlocked for life.
 

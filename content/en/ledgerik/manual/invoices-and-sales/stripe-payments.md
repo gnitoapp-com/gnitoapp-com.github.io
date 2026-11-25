@@ -28,6 +28,6 @@ Two things are checked before anything starts. Stripe must be configured, and a 
 
 ## What it does to the books
 
-A confirmed Stripe payment is recorded as an ordinary payment, through the same path as [Record Payment](/ledgerik/manual/invoices-and-sales/payments-and-credit-notes/): the deposit account is debited, the receivables account is credited, and the invoice becomes paid once it is covered. The payment keeps Stripe's own reference, so it can be matched against the Stripe dashboard. Nothing separate is posted for the card processor.
+A confirmed Stripe payment is recorded as an ordinary payment, through the same path as [Record Payment](/ledgerik/manual/invoices-and-sales/payments-and-credit-notes/). The deposit account is debited and the receivables account credited. The invoice becomes paid once it is covered. The payment keeps Stripe's own reference, so it can be matched against the Stripe dashboard. Nothing separate is posted for the card processor.
 
 The whole Invoicing group is Ledgerik Pro, this entry included — see [Licensing](/ledgerik/manual/licensing/).

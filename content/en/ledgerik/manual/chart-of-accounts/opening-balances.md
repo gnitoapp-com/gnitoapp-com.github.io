@@ -18,7 +18,7 @@ A running total in the base currency sits under the list and shows how far you a
 
 **Save stays disabled until that total is exactly zero.** There is no "save what you have" — an opening balance book that does not balance cannot be posted, which is the whole point of entering it this way.
 
-If the figure will not come out to zero, the usual cause is one side of a pair being missed: a bank account without the equity or loan that funded it, or an asset without its depreciation so far.
+If the figure will not come out to zero, something is missing from a pair. A bank account without the equity or loan that funded it, or an asset without its depreciation so far, are the usual causes.
 
 ## Entering it more than once
 

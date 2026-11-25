@@ -30,7 +30,7 @@ Each row shows the date, the purpose, the distance and the amount. **Delete** as
 
 **Billable** and **Client** are recorded on the entry so you can tell which journeys are chargeable.
 
-They do not put anything on an invoice by themselves. Nothing in Ledgerik turns a billable journey into an invoice line today, so the flags are notes on the entry rather than a billing step — the same as **Billable** on an expense, described in [Expenses, Receipts & Mileage](/ledgerik/manual/expenses-and-receipts/).
+They do not put anything on an invoice by themselves. Nothing in Ledgerik turns a billable journey into an invoice line today. The flags are notes on the entry, not a billing step — the same as **Billable** on an expense, described in [Expenses, Receipts & Mileage](/ledgerik/manual/expenses-and-receipts/).
 
 ## Where it appears
 

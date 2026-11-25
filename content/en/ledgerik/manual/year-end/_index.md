@@ -42,7 +42,7 @@ It starts at the company's current last month, so closing without touching it be
 
 **Complying with it is yours to confirm.** Fiscal-period length and year-end changes are governed by your tax authority and company law, which differ by country and by entity. Ledgerik checks none of it and does not warn: settle whether such a year is acceptable before you change the month.
 
-If the new month differs from the one in company settings, the periods already generated for the new year *and the year after it* are re-cut, because periods are derived from the setting rather than typed. A year that is already closed cannot be re-cut, and Ledgerik refuses rather than let the settings and the months disagree.
+If the new month differs from the one in company settings, the periods already generated for the new year *and the year after it* are re-cut. Periods are derived from the setting, not typed. A year that is already closed cannot be re-cut, and Ledgerik refuses rather than let the settings and the months disagree.
 
 ## What is posted
 

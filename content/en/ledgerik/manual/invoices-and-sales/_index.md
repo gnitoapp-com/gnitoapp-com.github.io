@@ -55,7 +55,7 @@ Only a draft can be edited. Once it is sent, the editor says so: *"This invoice 
 
 **Finalize** posts the invoice to the general journal. That is the step that changes the books: until it is finalized, an invoice is a document, not an accounting entry.
 
-Finalizing raises the receivable on the invoice's account for receivables reference, records the income and tax lines from the invoice's own accounts and sales tax codes, and converts every line to the base currency at the invoice's rate. The difference, if any, is handled exactly as described in [Currencies](/ledgerik/manual/currencies/) — the invoice's own entries are ordinary journal lines.
+Finalizing raises the receivable on the account mapped for receivables. It records the income and tax lines from the invoice's own accounts and sales tax codes. Each line is converted to the base currency at the invoice's rate. The difference, if any, is handled as described in [Currencies](/ledgerik/manual/currencies/) — the invoice's entries are ordinary journal lines.
 
 See [Journal Entries](/ledgerik/manual/journal-entries/) for what a posted entry looks like.
 

@@ -5,7 +5,7 @@ layout: manual
 menu: {manual: {weight: 120}}
 ---
 
-Three things live in **Company Settings**: **Backups**, which takes and restores copies of the company file; the encrypted export, which carries the file *and* its receipts to another machine; and **Import Data**, which brings CSV rows in.
+Three things live in **Company Settings**. **Backups** takes and restores copies of the company file. The encrypted export carries the file *and* its receipts to another machine. **Import Data** brings CSV rows in.
 
 ## Automatic snapshots
 
@@ -38,7 +38,7 @@ Restoring offers two different operations, and they are not interchangeable:
 - **Replace the open company file** — takes a safety snapshot of what is open now, closes it, copies the snapshot over it, and reopens. Ledgerik reports *"Company file restored from backup."* The safety snapshot is why a restore that goes wrong can still be undone.
 - **Restore as a new file** — writes the snapshot to a path you choose and opens it, leaving the current company alone. Ledgerik reports *"Restored file opened."*
 
-Before either, the snapshot is validated exactly like a company file opened from disk: readable SQLite, a schema version this build understands, its tables present, and nothing but tables and indexes inside — see [Company Files](/ledgerik/manual/company-files/).
+Before either, the snapshot is validated exactly like a company file opened from disk. It must be readable SQLite, at a schema version this build understands, with its tables present and nothing but tables and indexes inside — see [Company Files](/ledgerik/manual/company-files/).
 
 **Delete** asks first and removes a snapshot for good.
 
@@ -51,7 +51,7 @@ Two things about that passphrase:
 - **It cannot be recovered.** The window says it in as many words, on export and on import. Lose it and the file is unreadable, by anyone.
 - **It must be at least 12 characters**, and the two entries must match.
 
-This is the copy to move a company to another machine, or to another operating system: the container is a plain byte format with no platform in it, and the database inside is portable SQLite. **Import Encrypted** restores it — writing the receipts back into the company's receipts folder — and reports *"Company file restored with attachments."*
+This is the copy to move a company to another machine, or to another operating system. The container is a plain byte format with no platform in it, and the database inside is portable SQLite. **Import Encrypted** restores it, writing the receipts back into the company's receipts folder, and reports *"Company file restored with attachments."*
 
 Snapshots are not portable in the same sense: they hold the company file only, no receipts.
 

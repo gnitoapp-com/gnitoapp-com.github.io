@@ -34,7 +34,7 @@ What each one allows:
 
 **New** adds one, **Edit** changes it, **Delete** asks first, naming the code.
 
-These are rates, not classifications. They are **not** the tax-return classification codes that tell a filing form which line a figure belongs on — that is a separate field on each **account**, the **Tax Return Code** in [Accounts (Chart of Accounts)](/ledgerik/manual/chart-of-accounts/), and the two are unrelated.
+These are rates, not classifications. They are **not** the tax-return classification codes that tell a filing form which line a figure belongs on. That is a separate field on each **account**: the **Tax Return Code** in [Accounts (Chart of Accounts)](/ledgerik/manual/chart-of-accounts/). The two are unrelated.
 
 A sales tax code does three jobs:
 

@@ -44,7 +44,7 @@ Only some accounts may hold a foreign currency: those in the **Asset**, **Liabil
 
 ## How a foreign-currency posting is valued
 
-A foreign-currency posting is not simply converted at the day's rate. When a movement reduces an account that holds that currency, Ledgerik values the reduction at the account's own **book average**: the base balance divided by the native balance.
+A foreign-currency posting is not converted at the day's rate alone. When a movement reduces an account that holds that currency, Ledgerik values the reduction at the account's own **book average**: the base balance divided by the native balance.
 
 The rule applies when three things are true at once:
 
@@ -54,7 +54,7 @@ The rule applies when three things are true at once:
 
 One of two things then happens.
 
-- **The reduction empties the account.** The base amount taken out is exactly the base balance still on it. So zeroing a foreign-currency account cannot leave a base-currency residue behind — the failure where an account reads zero in its own currency while still carrying a base amount, with nothing left to clear it.
+- **The reduction empties the account.** The base amount taken out is exactly the base balance still on it. So zeroing a foreign-currency account cannot leave a base-currency residue behind. That residue is the failure where an account reads zero in its own currency while still carrying a base amount, with nothing left to clear it.
 - **The reduction is partial.** The base amount is the reduction multiplied by the book average, so the average of what remains does not move.
 
 A movement that **increases** the account needs no repricing. The new units enter at the journal's rate, the account's balances grow, and its book average is recalculated from them. It moves towards the journal's rate, in proportion to how much was added.
