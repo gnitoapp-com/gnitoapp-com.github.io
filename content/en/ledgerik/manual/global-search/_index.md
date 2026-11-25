@@ -5,9 +5,9 @@ layout: manual
 menu: {manual: {weight: 160}}
 ---
 
-**Global Search** is an entry of its own in the side menu, sitting between **Journals** and **Reporting**. It opens a window with one search field. Type part of a name, a number or a description and it lists what matches.
+**Global Search** opens a window with one search field. Type part of a name, a number or a description and it lists what matches.
 
-There is no keyboard shortcut: it is a window, and that menu entry is how you open it.
+There is no keyboard shortcut: it is a window, opened from the side menu like any other.
 
 ## What it searches
 
