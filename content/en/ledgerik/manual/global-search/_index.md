@@ -43,12 +43,6 @@ Choosing a result opens that record, not its list:
 
 That is the point of the window: it is the shortest route from remembering a name to editing the record behind it.
 
-## Where it sits
-
-It is not inside a group. **Global Search** is a top-level entry of its own, listed between **Journals** and **Reporting** — deliberately, because it belongs to neither.
-
-That entry is the only way in. There is no shortcut and no other menu path to it.
-
 ## Free on every plan
 
 Global Search is part of **Ledgerik Basic**. It searches every kind of record on every plan, including contacts and invoices, which belong to Pro features.
