@@ -43,11 +43,16 @@ Choosing a result opens that record, not its list:
 
 That is the point of the window: it is the shortest route from remembering a name to editing the record behind it.
 
-## Free on every plan
+## What your plan changes
 
-Global Search is part of **Ledgerik Basic**. It searches every kind of record on every plan, including contacts and invoices, which belong to Pro features.
+The window itself is part of **Ledgerik Basic**, so you can always open it. What it looks through depends on the plan:
 
-Opening a result that lives in a Pro window is where the plan applies: the window itself asks for Pro if you are on Basic — see [Licensing](/ledgerik/manual/licensing/).
+- **Ledgerik Basic** — it searches **accounts and journals** only. Contacts and invoices are Pro records, so a Basic installation does not search them at all.
+- **Ledgerik Pro** — all four kinds are searched: contacts, invoices, accounts and journals.
+
+While the licence is still being checked, Ledgerik treats the plan as Basic, so nothing paid-for appears before the licence is known. If a refund takes a licence back to Basic with the window already open, the contacts and invoices results drop out and the accounts and journals results stay.
+
+The rule is simple: searching a record needs the same licence as opening it — see [Licensing](/ledgerik/manual/licensing/).
 
 ## What it does not do
 
