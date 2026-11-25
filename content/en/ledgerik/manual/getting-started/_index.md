@@ -19,7 +19,7 @@ The side menu is already there. Almost every entry is disabled.
 
 An entry becomes available only when a company file is open and company setup is complete. The exception is **Company Settings ▸ Company Setup**. It needs an open file and nothing else.
 
-There is no shortcut to learn: every window opens from the side menu once a company is open. **Journals ▸ Global Search** then finds a contact, an invoice, an account or a journal from one box — see [Global Search](/ledgerik/manual/global-search/).
+There is no shortcut to learn: every window opens from the side menu once a company is open. **Global Search**, its own entry between Journals and Reporting, then finds a contact, an invoice, an account or a journal from one box — see [Global Search](/ledgerik/manual/global-search/).
 
 ## Create your first company file
 

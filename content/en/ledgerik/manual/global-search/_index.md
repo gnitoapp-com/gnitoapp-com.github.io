@@ -5,9 +5,9 @@ layout: manual
 menu: {manual: {weight: 160}}
 ---
 
-**Journals ▸ Global Search** opens a window with one search field. Type part of a name, a number or a description and it lists what matches.
+**Global Search** is an entry of its own in the side menu, sitting between **Journals** and **Reporting**. It opens a window with one search field. Type part of a name, a number or a description and it lists what matches.
 
-There is no keyboard shortcut: it is a window, opened from the side menu like any other.
+There is no keyboard shortcut: it is a window, and that menu entry is how you open it.
 
 ## What it searches
 
@@ -43,9 +43,11 @@ Choosing a result opens that record, not its list:
 
 That is the point of the window: it is the shortest route from remembering a name to editing the record behind it.
 
-## Where it sits, and why
+## Where it sits
 
-The window lives at **Journals ▸ Global Search**, which is not where you would look for it. That is the one thing about it worth remembering: it is a general tool that happens to be filed with the journals.
+It is not inside a group. **Global Search** is a top-level entry of its own, listed between **Journals** and **Reporting** — deliberately, because it belongs to neither.
+
+That entry is the only way in. There is no shortcut and no other menu path to it.
 
 ## Free on every plan
 
