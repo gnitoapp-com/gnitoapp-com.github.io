@@ -12,7 +12,7 @@ A client statement is one client's account with you, laid out chronologically an
 - **Client Portal ▸ Client Portal** picks a client and shows their account on screen.
 - **Statement** opens the formal statement, printable and exportable, for that client.
 
-The **Statement** action appears in three places, and all three reach the same window: on a row of **Company Settings ▸ List Contacts**, on a row of **Reporting ▸ AR Aging**, and in the command palette.
+The **Statement** action appears in two places, and both reach the same window: on a row of **Company Settings ▸ List Contacts**, and on a row of **Reporting ▸ AR Aging**.
 
 ## The portal view
 
