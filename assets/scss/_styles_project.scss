@@ -99,6 +99,16 @@ body:not(.td-home) main.td-main {
   }
 }
 
+// Docsy pads inline code by `.4em` on each side (`.td-content ... code`), which
+// opens a visible gap between the code and the punctuation that follows it: a
+// sentence ending in a file extension renders as `.acw` . instead of `.acw`.
+// The background and the monospace face are what mark it as code, so the
+// horizontal padding goes and the vertical stays.
+.td-content :not(pre) > code {
+  padding-inline: 0;
+  padding-block: 0.1em;
+}
+
 .product-header {
   display: flex;
   flex-wrap: wrap;
