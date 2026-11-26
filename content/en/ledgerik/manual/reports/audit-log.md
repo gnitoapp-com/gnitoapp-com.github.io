@@ -10,7 +10,7 @@ layout: manual
 
 - **Documents** — invoices created, updated, finalized, voided; estimates created, updated, emailed, converted, deleted; credit notes created and deleted; payments recorded.
 - **Bookkeeping** — hand-written journals and journal voids; journal templates; opening balances.
-- **Expenses and mileage** — expenses created and deleted, receipts attached and deleted; mileage recorded and deleted.
+- **Expenses and mileage** — expenses created and deleted, receipts attached and deleted, receipt files pruned by a cutoff; mileage recorded and deleted.
 - **Contacts and accounts** — created, updated, deleted; accounts also disabled and re-enabled.
 - **Banking** — transfers, imports, reconciliations, categorization rules.
 - **Projects and time** — projects created, completed, held and deleted; time entries, with timer start and stop.
