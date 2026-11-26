@@ -54,7 +54,7 @@ Shared files are safe: two receipts with identical contents point at one file, a
 
 The result reports what happened — *"412 files removed, 380 MB freed."* — and whether the receipts were kept with placeholders or removed with their rows. A date with nothing before it says *"No receipt is dated before …"*. The prune is recorded in the [Audit Log](/ledgerik/manual/reports/audit-log/).
 
-Receipt Storage is Ledgerik **Pro**; the Receipt Gallery is not — see [Licensing](/ledgerik/manual/licensing/).
+Both windows in the Receipts group are Ledgerik **Pro** — the Gallery and Storage alike — see [Licensing](/ledgerik/manual/licensing/).
 
 ## What a Receipt Does Not Do
 
