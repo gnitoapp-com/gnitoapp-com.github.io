@@ -6,7 +6,7 @@ layout: manual
 
 A recurring series produces invoices for you on a schedule. **Invoicing ▸ Recurring Invoices** lists the series. Nothing generates on its own: a series produces invoices only when you press one of the two generate actions below.
 
-## Creating a series
+## Creating a Series
 
 **New Recurring Series** asks for:
 
@@ -24,7 +24,7 @@ When the series is created Ledgerik reports *"Recurring invoice series created."
 - **Paused** — it generates nothing until you resume it.
 - **Cancelled** — finished.
 
-## Generating invoices
+## Generating Invoices
 
 Two actions generate on demand.
 
@@ -35,10 +35,10 @@ Each run reports what it did: *"3 invoices generated, 3 finalized and posted."* 
 
 Generated invoices are ordinary invoices. They appear in **Invoices** with their own numbers, and can be edited, voided and emailed like any other — see [Invoicing](/ledgerik/manual/invoices-and-sales/).
 
-## Pausing and resuming
+## Pausing and Resuming
 
 **Pause** stops a series without deleting its settings. **Resume** starts it again from the current schedule. Neither action touches invoices that were already generated.
 
-## What a series does not do
+## What a Series Does Not Do
 
 A series is a schedule, not a document. It holds no status the books care about, creates no journal entries by itself, and produces nothing until an invoice is generated from it.

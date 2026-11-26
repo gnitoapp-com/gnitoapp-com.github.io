@@ -7,7 +7,7 @@ menu: {manual: {weight: 60}}
 
 The **Invoicing** group holds nine entries. This page covers invoices themselves — the document, its statuses, and what finalizing does to the books. The other eight have their own pages, listed at the end.
 
-## The invoice list
+## The Invoice List
 
 **Invoicing ▸ Invoices** shows every invoice with its number, its client, its status and its total.
 
@@ -19,7 +19,7 @@ The empty list says so: *"No invoices yet. Create your first invoice."*
 
 Ledgerik numbers invoices itself. The next invoice takes a number one more than the highest already used, and numbers are never reused — a voided invoice keeps its number.
 
-## Creating an invoice
+## Creating an Invoice
 
 **Invoicing ▸ New Invoice** opens the editor.
 
@@ -65,13 +65,13 @@ See [Journal Entries](/ledgerik/manual/journal-entries/) for what a posted entry
 
 A voided invoice cannot be paid, and cannot be edited back into life.
 
-## Sending an invoice
+## Sending an Invoice
 
 **Email to client** sends the invoice to the client's email address. It needs a working mail account first, configured under **Company Settings ▸ Email Settings** — see [Company Settings](/ledgerik/manual/settings/).
 
 The client's email address is the one on their [contact](/ledgerik/manual/contacts/) record, so an invoice cannot be emailed to a contact without one.
 
-## The other entries in the group
+## The Other Entries in the Group
 
 Each of these has its own page.
 
@@ -85,7 +85,7 @@ Each of these has its own page.
 
 Every entry in the Invoicing group is Ledgerik **Pro**. The general ledger, the chart of accounts, journals, the three financial statements and backups are free; invoicing is not — see [Licensing](/ledgerik/manual/licensing/).
 
-## What invoices affect
+## What Invoices Affect
 
 - **The general journal** — on finalize and on void.
 - **The account for receivables** — every unpaid invoice raises it.

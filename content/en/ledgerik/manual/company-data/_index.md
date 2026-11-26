@@ -7,7 +7,7 @@ menu: {manual: {weight: 120}}
 
 Three things live in **Company Data**. **Backups** takes and restores copies of the company file. The encrypted export carries the file *and* its receipts to another machine. **Import Data** brings CSV rows in.
 
-## Automatic snapshots
+## Automatic Snapshots
 
 Ledgerik snapshots the company file by itself, at three moments:
 
@@ -19,7 +19,7 @@ Each snapshot is a full copy of the company file, written with SQLite's own cons
 
 The window says so itself: *"Automatic snapshots run when a company file opens, every 15 minutes while it is open, and when it closes. Retention keeps 7 daily + 4 weekly snapshots."*
 
-## How many are kept
+## How Many Are Kept
 
 Retention is by age, not by count:
 
@@ -29,7 +29,7 @@ Retention is by age, not by count:
 
 Older snapshots are removed as new ones arrive. A day of heavy work therefore leaves one snapshot for that day, not dozens.
 
-## Taking one by hand, and restoring
+## Taking One by Hand and Restoring
 
 **Backup Now** takes a snapshot immediately. A backup cannot be taken with no company file open — the window says **"Open a company file before creating a backup."**
 
@@ -42,7 +42,7 @@ Before either, the snapshot is validated exactly like a company file opened from
 
 **Delete** asks first and removes a snapshot for good.
 
-## The encrypted export and import
+## The Encrypted Export and Import
 
 **Export Encrypted** writes one `.acwz` file containing the company file **and every receipt attachment**, encrypted with a passphrase.
 
@@ -65,7 +65,7 @@ Running it reports three numbers: **Imported**, **Skipped** and **Errors**, with
 
 Two things worth knowing: imported invoices arrive as **drafts**, so they still need finalizing to post; and imported journals are created as entries, which means they are immutable from the moment they land.
 
-## Where the copies actually are
+## Where the Copies Actually Are
 
 Snapshots live in the application's support folder. The encrypted export and the automatic snapshots both belong to the machine you are on — neither is synced anywhere, and no copy leaves the computer unless you move it. [Company Files](/ledgerik/manual/company-files/) explains why the company file itself is the thing worth protecting.
 

@@ -9,7 +9,7 @@ Three menu entries record money going out: **Expenses ▸ Expenses**, **Expenses
 
 This page covers recording an expense. The other two have their own pages, linked below.
 
-## Recording an expense
+## Recording an Expense
 
 In the **Expenses** window, **New Expense** opens the form.
 
@@ -27,13 +27,13 @@ In the **Expenses** window, **New Expense** opens the form.
 
 Saving posts a bill to the general journal: the expense account is debited and the **Paid From** account is credited, both for the amount including tax. The sales tax code decides the tax line, exactly as on an invoice.
 
-## Billable and markup
+## Billable and Markup
 
 **Billable** marks the expense as one you intend to charge a client for. **Markup** is the percentage you intend to add.
 
 Both are recorded on the expense, and both are shown in the list. Neither one acts on its own: nothing in Ledgerik puts a billable expense onto an invoice today, and no markup is applied anywhere. Treat them as notes on the expense, not as a billing step.
 
-## The expense list
+## The Expense List
 
 Each row shows the date, the merchant, the account and the amount. **Attach** opens the receipts for that expense, and the row's delete action removes it.
 
@@ -43,7 +43,7 @@ Deleting an expense asks first, naming the merchant, and then voids the journal 
 
 **Expenses ▸ Mileage Log** records journeys claimed as expenses, with their own journal posting. See [Mileage](/ledgerik/manual/expenses-and-receipts/mileage/).
 
-## What expenses affect
+## What Expenses Affect
 
 - **The general journal** — a bill per expense, voided if you delete it.
 - **The income statement** — the expense account you chose.

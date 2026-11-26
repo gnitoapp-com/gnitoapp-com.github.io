@@ -7,7 +7,7 @@ menu: {manual: {weight: 30}}
 
 Every entry in Ledgerik ends up on an account. The chart of accounts is the full list of them.
 
-## Folders and posting accounts
+## Folders and Posting Accounts
 
 Each account has one role, chosen when you create it.
 
@@ -16,7 +16,7 @@ Each account has one role, chosen when you create it.
 
 The form asks for a folder when you create a posting account. That is what the folder is for.
 
-## Class and type
+## Class and Type
 
 A posting account has two more labels.
 
@@ -28,7 +28,7 @@ The class decides three things: where the account appears in the statements, whe
 
 Choose the class first: the type list then offers only the types that belong to it. A Bank account is an Asset; a Credit Card is a Liability.
 
-## Adding an account
+## Adding an Account
 
 Open **Accounts ▸ List Accounts** and choose **New**. The form asks for:
 
@@ -46,7 +46,7 @@ Only **Currency** depends on the class: it is offered for **Asset**, **Liability
 
 A folder needs only its name and its sequence number.
 
-## Editing an account
+## Editing an Account
 
 Open an account from the list to edit it. The same fields are there, including the **Disabled** switch. An existing account's **Currency** is shown but cannot be changed, which is why it is chosen at creation.
 
@@ -58,7 +58,7 @@ Change the name or the sequence number freely. Changing the class or the type mo
 
 An account that is already disabled can still be edited and re-enabled, whatever points at it.
 
-## The accounts list
+## The Accounts List
 
 The list shows the accounts as a tree; folders expand and collapse.
 
@@ -66,7 +66,7 @@ Each row carries the account's name, its class and type, and its balance in the 
 
 Two controls sit above the list. **Hide disabled accounts?** filters them out. **Export CSV** writes the list to a file: Name, Sequence, Role, Class, Type, Currency, Native Balance and Base Balance.
 
-## There is no delete
+## There Is No Delete
 
 Ledgerik does not delete accounts. You disable them instead.
 
@@ -82,6 +82,6 @@ An account created by mistake is disabled the same way.
 
 **Accounts ▸ Opening Balances** records where each account stood when you started keeping books. The window must balance before it will save, and it locks once a year is closed. See [Opening balances](/ledgerik/manual/chart-of-accounts/opening-balances/).
 
-## Where accounts come from
+## Where Accounts Come From
 
 A new company file arrives with a starting chart, created when you save the **Base Currency** tab during setup. Company Settings then points eight references at real accounts — receivables, tax, exchange differences, Suspense and others. See [Company account references](/ledgerik/manual/chart-of-accounts/company-account-references/).

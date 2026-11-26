@@ -8,7 +8,7 @@ Eight journals flows have to land somewhere specific: tax collected, tax paid, r
 
 Rather than hard-code accounts, Ledgerik keeps a **reference** for each and lets you choose which account it points at.
 
-## Where they are
+## Where They Are
 
 **Company Settings ▸ Company Setup ▸ Accounts**. The tab lists all eight:
 
@@ -23,11 +23,11 @@ Rather than hard-code accounts, Ledgerik keeps a **reference** for each and lets
 
 A new company file arrives with sensible defaults for all eight, created with the starting chart. For most companies the defaults are right, and this tab is never touched again.
 
-## The tab unlocks after setup
+## The Tab Unlocks After Setup
 
 The Accounts tab edits the chart of accounts that company setup creates, so it stays disabled until the **Company Information**, **Fiscal Year** and **Base Currency** tabs are saved. Opening it earlier shows nothing — a rule, not a missing configuration.
 
-## Changing a reference
+## Changing a Reference
 
 Choose another account and save. Two consequences follow.
 
@@ -36,7 +36,7 @@ Choose another account and save. Two consequences follow.
 
 **Restore Defaults** puts the standard mapping back, which is the quickest repair for a company whose references have drifted.
 
-## Why a referenced account cannot be disabled
+## Why a Referenced Account Cannot Be Disabled
 
 An account pointed at by one of these eight cannot be disabled: the reference would have nowhere to post, and the failure would appear later as a broken invoice or tax line.
 

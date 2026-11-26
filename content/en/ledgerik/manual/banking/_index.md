@@ -44,15 +44,15 @@ Posting happens once per transaction. A transaction that already has a journal i
 
 If a bank account has no linked GL account, reconciliation refuses and asks you to link one first.
 
-## Categorizing before you reconcile
+## Categorizing Before You Reconcile
 
 Categorization decides the second line of the journal: the category account instead of Suspense. Do it before reconciling — the transaction's own amount, date and description never change, only where the other side lands.
 
-## Where payments live
+## Where Payments Live
 
 Money received against an invoice is recorded under **Invoicing ▸ Record Payment**, not here — see [Payments and credit notes](/ledgerik/manual/invoices-and-sales/payments-and-credit-notes/).
 
-## Moving money between accounts
+## Moving Money Between Accounts
 
 **Transfer Between Accounts** sits in the bank accounts header. It asks for a **From Account**, a **To Account**, a date, an amount and an optional description, then reports *"Transfer recorded."* Both accounts need a linked GL account first.
 

@@ -79,7 +79,7 @@ It also has a **Manage License** button.
 
 On Ledgerik Basic the tab offers the upgrade instead. **Manage License** is still where a key is entered — see [Licensing](/ledgerik/manual/licensing/).
 
-## Why these settings do not travel
+## Why These Settings Do Not Travel
 
 Everything in App Settings belongs to the installation. The date pattern, the language, the colours and the number format live on this computer. They are not stored inside the company file.
 

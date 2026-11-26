@@ -9,13 +9,13 @@ A company keeps its books in one currency: the base currency. Every report total
 
 Transactions may be recorded in other currencies. Each one carries a rate to the base currency. This section explains what Ledgerik does with that rate.
 
-## The base currency
+## The Base Currency
 
 You choose the base currency during company setup, on the **Base Currency** tab. Pick with care. Once a company has a base currency, it cannot be changed — the selector is disabled from that moment on.
 
 The base currency is stored inside the company file. So is every rate.
 
-## The currency list
+## The Currency List
 
 **Company Settings ▸ Currencies** shows the currencies the company uses.
 
@@ -34,7 +34,7 @@ Every posting stores two amounts: the amount in its own currency, and the amount
 
 A currency cannot be deleted while an account uses it: *"The EUR currency cannot be deleted because it is used in accounts."*
 
-## Where the rate is used
+## Where the Rate Is Used
 
 A journal entry carries a currency and a rate to base. Each line of that journal is posted at the rate: base amount equals native amount times rate.
 
@@ -42,7 +42,7 @@ A foreign-currency invoice needs a valid rate before it can be finalized. Ledger
 
 Only some accounts may hold a foreign currency: those in the **Asset**, **Liability** and **Equity** classes. The income and expense classes stay in the base currency. See [Accounts (Chart of Accounts)](/ledgerik/manual/chart-of-accounts/).
 
-## How a foreign-currency posting is valued
+## How a Foreign-Currency Posting Is Valued
 
 A foreign-currency posting is not converted at the day's rate alone. When a movement reduces an account that holds that currency, Ledgerik values the reduction at the account's own **book average**: the base balance divided by the native balance.
 

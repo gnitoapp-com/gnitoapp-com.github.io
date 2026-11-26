@@ -9,7 +9,7 @@ A contact is one record for a person or a company you trade with. Invoices, esti
 
 Contacts live under **Company Settings ▸ Contacts**.
 
-## Type and designation
+## Type and Designation
 
 Every contact carries two labels, and both are required.
 
@@ -17,7 +17,7 @@ Every contact carries two labels, and both are required.
 
 **Designation** is either **Individual** or **Company**. It records what kind of counterparty this is, and it is shown next to the type in the list.
 
-## Adding a contact
+## Adding a Contact
 
 Choose **New** in the contacts list. The form asks for:
 
@@ -30,13 +30,13 @@ Choose **New** in the contacts list. The form asks for:
 - **Tax ID (EIN / VAT)** — optional.
 - **Address (optional)** — two address lines, city, state or province, postal code and a country ISO code.
 
-## What the currency field does
+## What the Currency Field Does
 
 The currency on a contact is recorded and displayed. It appears in the list and in the CSV export.
 
 It does **not** set the currency of anything. An invoice's currency is chosen on the invoice itself, and a statement shows each document in the currency that document was written in. See [Currencies](/ledgerik/manual/currencies/).
 
-## The contacts list
+## The Contacts List
 
 Each row shows the contact's name and a line with the type, the designation and the currency. Three actions sit at the right of every row.
 
@@ -46,7 +46,7 @@ Each row shows the contact's name and a line with the type, the designation and 
 
 **Export CSV** writes the list to a file with the columns Name, Type, Designation, Currency, Sales Tax Code, Email, Phone and Tax Id.
 
-## Deleting a contact
+## Deleting a Contact
 
 **Delete** asks first. The confirmation names the contact, warns that the change cannot be undone, and does nothing unless you confirm.
 
@@ -56,13 +56,13 @@ Three things are worth knowing before you use it.
 - **The outcome is always reported.** A successful delete says so; a refused one says why instead of failing silently.
 - **The deletion is recorded.** Removing a contact writes an entry to the Audit Log, which is described in [Audit Log](/ledgerik/manual/reports/audit-log/).
 
-## The 1099 contractor flag
+## The 1099 Contractor Flag
 
 **1099 Contractor (paid for services)** is a switch on the contact form, with the note *"Flags vendor contacts for 1099-NEC reporting."*
 
 Turn it on for a vendor you paid for services and whose payments belong on a 1099-NEC. Only vendor contacts appear in that report, so the flag on a customer changes nothing. The report itself is described in [Reporting](/ledgerik/manual/reports/).
 
-## Where contacts are used
+## Where Contacts Are Used
 
 - **Invoices** — the client on an invoice is a contact. Any contact can be chosen, whatever its type. See [Invoicing](/ledgerik/manual/invoices-and-sales/).
 - **Expenses** — the vendor on an expense is a contact.
@@ -70,6 +70,6 @@ Turn it on for a vendor you paid for services and whose payments belong on a 109
 - **Statements** — built from one contact's invoices, payments and credit notes.
 - **1099-NEC** — reads the vendor contacts you flag as contractors.
 
-## Sales tax codes on a contact
+## Sales Tax Codes on a Contact
 
 The **Sales Tax Code** field on a contact is optional and independent of the sales tax code on a line of an invoice or an expense. The codes themselves are maintained under **Company Settings ▸ List Sales Tax Codes**.

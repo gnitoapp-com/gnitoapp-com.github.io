@@ -62,7 +62,7 @@ Three tabs.
 
 Nothing is sent from a window you are not looking at: an invoice is emailed when you press **Email to client**, and a reminder when you press **Send**.
 
-## Where the rest of it lives
+## Where the Rest of It Lives
 
 - **Currencies** — [Currencies](/ledgerik/manual/currencies/)
 - **Contacts** — [Contacts](/ledgerik/manual/contacts/)

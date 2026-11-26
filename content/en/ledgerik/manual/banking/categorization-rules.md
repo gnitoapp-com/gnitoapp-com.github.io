@@ -10,7 +10,7 @@ Rules only decide the **second line** of a bank transaction's journal — the ba
 
 **Banking ▸ Categorization Rules** lists them.
 
-## Writing a rule
+## Writing a Rule
 
 **New Rule** asks for:
 
@@ -22,13 +22,13 @@ Rules only decide the **second line** of a bank transaction's journal — the ba
 
 Saving reports *"Rule created for …"*.
 
-## Order matters
+## Order Matters
 
 Rules have a priority, and you reorder them with **Move Up** and **Move Down**. The list is read top to bottom, the first rule that matches a transaction decides its category, and ties fall back to the older rule.
 
 Put the specific rules above the general ones. A rule that matches everything will otherwise swallow every transaction below it.
 
-## Applying rules
+## Applying Rules
 
 **Apply Rules** runs the rules over the transactions already in the account and reports how many it changed: *"7 transaction(s) categorized."*
 
@@ -36,13 +36,13 @@ Transactions that were already posted are left alone — a rule never rewrites a
 
 Testing a rule costs nothing: an unposted transaction can be re-categorized as often as you like. Categorization becomes final at reconciliation.
 
-## Learning a rule from one transaction
+## Learning a Rule From One Transaction
 
 Categorize a single transaction by hand, and if it had no category before, Ledgerik offers to remember the correction. Accept and it creates a rule matching that transaction's description, then confirms: *"Rule created for …"*.
 
 That is the quickest way to build a rule set: do a few by hand, and let the rules take over the repetitions.
 
-## Editing and deleting
+## Editing and Deleting
 
 **Edit** changes a rule's name, match and account. **Delete** asks for confirmation, naming the rule.
 

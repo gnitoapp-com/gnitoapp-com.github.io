@@ -6,7 +6,7 @@ layout: manual
 
 **Reporting ▸ Audit Log** lists each change a user makes: the entity, the action, the operating-system account it ran under, and the date and time.
 
-## What it records
+## What It Records
 
 - **Documents** — invoices created, updated, finalized, voided; estimates created, updated, emailed, converted, deleted; credit notes created and deleted; payments recorded.
 - **Bookkeeping** — hand-written journals and journal voids; journal templates; opening balances.
@@ -20,7 +20,7 @@ layout: manual
 
 **Only hand-written journals are logged.** The entries Ledgerik posts for an invoice, a payment or a reconciliation are visible through those documents, so the log is not filled with automatic noise. Fiscal-period generation and the year-end closing journal record nothing themselves; the year close records once, as a closed fiscal year.
 
-## What the window can show
+## What the Window Can Show
 
 **Entity** offers eighteen options — contacts, invoices, accounts, payments, expenses, settings, credit notes, journals, journal templates, transfer between accounts, reconcile, import, backup, projects, time entries, recurring invoices, reminders and categorization rules. **Estimates, mileage and fiscal years have no filter option yet**, so those entries appear only in the unfiltered list.
 
@@ -30,7 +30,7 @@ layout: manual
 
 The list is newest first and stops at **500** entries; older ones stay in the file.
 
-## How long entries are kept
+## How Long Entries Are Kept
 
 Entries are deleted when a fiscal year is closed. **Year End ▸ Close Fiscal Year** advances the company's year. It then drops every audit entry dated before the first day of the year it just closed. Close 2026 and start 2027: entries from 2025 and earlier are gone, and 2026 onwards stays.
 
@@ -38,7 +38,7 @@ There is no setting for it and no size limit. That prune is what keeps the log �
 
 Nothing in this window changes anything.
 
-## Where to go next
+## Where to Go Next
 
 - The reports themselves are on [Other reports](/ledgerik/manual/reports/other-reports/) and [Financial statements](/ledgerik/manual/reports/financial-statements/).
 - What a report reads is described in [Reporting](/ledgerik/manual/reports/).

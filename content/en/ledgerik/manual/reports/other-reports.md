@@ -56,7 +56,7 @@ Nothing is calculated from invoices: only expenses count, which is why a contrac
 
 **Reporting ▸ Audit Log** is a different kind of report: it lists what changed rather than what the books say. It has its own page — [Audit Log](/ledgerik/manual/reports/audit-log/).
 
-## Where to go next
+## Where to Go Next
 
 - The three statements are on [Financial statements](/ledgerik/manual/reports/financial-statements/).
 - The project report is with projects, in [Projects & Time](/ledgerik/manual/projects-and-time/).

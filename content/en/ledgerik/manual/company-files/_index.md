@@ -7,7 +7,7 @@ menu: {manual: {weight: 20}}
 
 Every company Ledgerik keeps is one file on your disk. That file is the entire book: accounts, journals, invoices, expenses and settings. Nothing else is needed to open it somewhere else.
 
-## One file, one company
+## One File, One Company
 
 A company file ends in `.acw`. It holds a SQLite database.
 
@@ -18,7 +18,7 @@ Two things follow from that.
 - **The file is portable.** Copy it to another disk or another computer. Ledgerik opens it there with every entry intact.
 - **Your working copy is that one file.** Ledgerik sends it to no server and syncs it with nothing. If you delete it, the books are gone — unless a backup exists. Ledgerik takes automatic snapshots while a company is open, and [Company Data](/ledgerik/manual/company-data/) explains them.
 
-## Creating a file
+## Creating a File
 
 **File ▸ New** asks for a name, then for a folder. It creates `<name>.acw` in that folder.
 
@@ -26,7 +26,7 @@ If a file with that name is already there, Ledgerik refuses. It does not overwri
 
 [Getting Started](/ledgerik/manual/getting-started/) walks through both steps and the naming rules.
 
-## Opening a file
+## Opening a File
 
 **File ▸ Open** shows a file picker titled **Open company file**. The picker is filtered to `.acw`. Choose the file and Ledgerik loads it. The company name then appears in the window header.
 
@@ -37,7 +37,7 @@ If the file cannot be opened, Ledgerik says why in one sentence.
 - **Company file does not exist** — the path is no longer valid. The file was probably moved or deleted.
 - **The file … is not a valid company file** — the file exists, but it cannot be trusted as a Ledgerik company file. The next section explains the checks.
 
-## What "not a valid company file" means
+## What "not a valid company file" Means
 
 A company file can arrive from a colleague. It can come from a backup, a synced folder or anywhere else. So Ledgerik checks it before the rest of the application sees it.
 
@@ -55,7 +55,7 @@ Two things follow from the second test.
 
 The point of all this is not suspicion of your own files. It is that opening a company file runs its contents through the application. An unreadable or unexpected file should fail cleanly, not half-way.
 
-## Closing a file
+## Closing a File
 
 **File ▸ Close** closes every open window. It releases the company.
 
@@ -65,7 +65,7 @@ Ledgerik does not remember which company you had open. After a restart it starts
 
 There is no recent-files list, on purpose. The application never opens a company you did not ask for.
 
-## One company at a time
+## One Company at a Time
 
 Only one company file is open at a time. To work on another, close the current one and open the other. Ledgerik closes the open windows first, so nothing is left pointing at the previous company.
 
@@ -73,7 +73,7 @@ Do not keep two copies of the same file and open them on two machines. That make
 
 If you need the same company in two places, decide which copy is authoritative. Restore from a backup instead of merging by hand.
 
-## Moving, copying and renaming
+## Moving, Copying and Renaming
 
 - **Close Ledgerik first.** The application keeps the file open while a company is loaded.
 - **Copying is safe while the file is closed.** The copy is an independent company from the moment it exists.

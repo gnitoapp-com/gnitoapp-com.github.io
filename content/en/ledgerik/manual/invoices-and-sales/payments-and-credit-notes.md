@@ -6,7 +6,7 @@ layout: manual
 
 Two entries in the Invoicing group move money that has already been invoiced: **Record Payment** brings money in, and **Credit Notes** take part of a charge away.
 
-## Recording a payment
+## Recording a Payment
 
 **Invoicing ▸ Record Payment** opens the payments window.
 
@@ -32,7 +32,7 @@ The invoice becomes **Paid** when the payments cover its total. Partial payments
 
 Payments are listed in the same window, with the invoice, the date, the method and the amount.
 
-## Credit notes
+## Credit Notes
 
 A credit note reduces what a client owes, without changing the original invoice. **Invoicing ▸ Credit Notes** lists them.
 
@@ -46,7 +46,7 @@ A credit note reduces what a client owes, without changing the original invoice.
 
 Deleting a credit note asks for confirmation first, and the dialog is explicit about the consequence: *"Deleting #12 will void its journal entry in the general journal."* Deleting is therefore not a quiet edit — the books are corrected.
 
-## Which of the two to use
+## Which of the Two to Use
 
 - Money arrived? **Record Payment**.
 - The charge was wrong, or part of the work was returned? **Credit Note**.

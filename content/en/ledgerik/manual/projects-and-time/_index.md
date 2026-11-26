@@ -7,7 +7,7 @@ menu: {manual: {weight: 90}}
 
 Two groups work together here. **Projects ▸ Projects** holds the work itself. **Time Tracking ▸ Time Tracker** records the hours spent on it.
 
-## Creating a project
+## Creating a Project
 
 **New Project** asks for:
 
@@ -29,13 +29,13 @@ A project is **Active**, **Completed**, **On Hold** or **Cancelled**, and the li
 
 An active project offers **Complete** and **Hold**. Both change the status and nothing else: no journal entry is posted, and no figure moves. A completed or held project can still receive time entries and expenses; the status is a label for you, not a lock.
 
-## The projects list
+## The Projects List
 
 Each row shows the project's name, its client, and its budget with the figure spelled out — for example *"Budget 40 hours"* or *"Budget 2,500.00 CAD"*.
 
 For a project budgeted in hours, the row also shows the hours logged against the hours allowed.
 
-## Deleting a project
+## Deleting a Project
 
 **Delete** asks first, naming the project, and the warning is exact: *"The project is removed from the list. Time entries and expenses recorded against it stay in the books but are no longer grouped under it. This cannot be undone."*
 
@@ -51,7 +51,7 @@ For every project it shows the **revenue** recorded against it, its **actual cos
 
 Hours are recorded and turned into invoices in **Time Tracking** — see [Time tracking](/ledgerik/manual/projects-and-time/time-tracking/).
 
-## What a project does not do
+## What a Project Does Not Do
 
 A project is a grouping, not a ledger account. It posts nothing, carries no balance of its own, and is not a cost centre in the statements. What it does is tag time entries and expenses so the budget report can total them.
 

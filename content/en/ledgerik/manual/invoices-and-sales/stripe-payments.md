@@ -15,7 +15,7 @@ Stripe needs two keys, both from your Stripe account.
 
 **Save settings** stores them. When both are in place the window reports **"Stripe is configured."**
 
-## Processing a payment
+## Processing a Payment
 
 On the **Process Payment** tab, choose the invoice and the account to **Deposit To**, then **Pay with Stripe**. Stripe takes the card details; Ledgerik never receives them.
 
@@ -26,7 +26,7 @@ Two outcomes are reported.
 
 Two things are checked before anything starts. Stripe must be configured, and a deposit account must be chosen; the window says which of the two is missing.
 
-## What it does to the books
+## What It Does to the Books
 
 A confirmed Stripe payment is recorded as an ordinary payment, through the same path as [Record Payment](/ledgerik/manual/invoices-and-sales/payments-and-credit-notes/). The deposit account is debited and the receivables account credited. The invoice becomes paid once it is covered. The payment keeps Stripe's own reference, so it can be matched against the Stripe dashboard. Nothing separate is posted for the card processor.
 

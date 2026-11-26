@@ -41,7 +41,7 @@ It reads top to bottom in the order the accounts are classed:
 
 Each block has its own total, and the subtotals follow from them: gross profit is income less cost of sales, and net income is what is left after expenses and other items.
 
-## Which one answers what
+## Which One Answers What
 
 - *Did the books balance in this period?* — Trial Balance.
 - *What is the company worth on this date?* — Balance Sheet.

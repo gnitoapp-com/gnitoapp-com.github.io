@@ -8,7 +8,7 @@ An estimate is a quote. It runs through its own list, and it can be turned into 
 
 **Invoicing ▸ Estimates** shows them all, with number, client, status and total.
 
-## Creating an estimate
+## Creating an Estimate
 
 **Invoicing ▸ New Estimate** opens the same editor the invoice uses, minus the parts that only an invoice needs.
 
@@ -30,16 +30,16 @@ An estimate is a quote. It runs through its own list, and it can be turned into 
 - **Expired** — the expiry date has passed.
 - **Invoiced** — already turned into an invoice.
 
-## Converting to an invoice
+## Converting to an Invoice
 
 **Convert** turns the accepted estimate into an invoice, carrying over the client, the currency, the lines and the discount. Ledgerik reports *"Estimate #12 converted to invoice."* and the estimate's status becomes **Invoiced**.
 
 From that point the invoice is the document that matters. It is created as a draft, so it is edited, finalized, emailed and voided like any other — see [Invoicing](/ledgerik/manual/invoices-and-sales/).
 
-## Sending an estimate
+## Sending an Estimate
 
 **Email to client** sends the estimate to the address on the client's [contact](/ledgerik/manual/contacts/) record. Email needs a working mail account under **Company Settings ▸ Email Settings**.
 
-## What an estimate does not do
+## What an Estimate Does Not Do
 
 An estimate never touches the books. It creates no journal entry, raises no receivable, and appears in no financial statement. Only the invoice it becomes does that.

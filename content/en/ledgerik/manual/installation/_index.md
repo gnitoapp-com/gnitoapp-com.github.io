@@ -9,7 +9,7 @@ Ledgerik is a desktop application. It runs on Windows, macOS and Linux. Every re
 
 Use whichever route you prefer. It is the same application either way. Your books are never stored inside it.
 
-## What you need
+## What You Need
 
 Windows 10 or 11, 64-bit. macOS. 64-bit Linux.
 
@@ -55,7 +55,7 @@ sudo snap install ledgerik
 
 The snap updates itself. The AppImage does not. Come back to the [Ledgerik page](/ledgerik/) when you want a newer AppImage.
 
-## Where your data lives
+## Where Your Data Lives
 
 The application holds the program. Nothing else.
 

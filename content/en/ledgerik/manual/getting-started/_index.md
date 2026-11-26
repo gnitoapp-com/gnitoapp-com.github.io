@@ -11,7 +11,7 @@ This section takes you from a first launch to a company ready for its first entr
 
 This manual is the application's help. Ledgerik opens it from **Help ▸ User Help**.
 
-## First launch
+## First Launch
 
 With no company file open, Ledgerik shows its logo and its tagline. Two badges follow. The first shows the app date, or **No app date set.** when none is set. The second reads **No open company file.**
 
@@ -21,7 +21,7 @@ An entry becomes available only when a company file is open and company setup is
 
 There is no shortcut to learn: every window opens from the side menu once a company is open. **Global Search**, its own entry between Journals and Reporting, then finds a contact, an invoice, an account or a journal from one box — see [Global Search](/ledgerik/manual/global-search/).
 
-## Create your first company file
+## Create Your First Company File
 
 1. Choose **File ▸ New**. Ledgerik asks for a file name first. Type it in **Company file name** and choose **Accept**.
 2. Choose the folder for the file. Ledgerik creates `<name>.acw` in it. It then reports that the file is now the active company file.
@@ -32,7 +32,7 @@ If a file with that name already exists in the folder, Ledgerik refuses to overw
 
 Only one company file is open at a time. Opening or creating another one closes the windows of the current company first. The file on disk is untouched. See [Company Files](/ledgerik/manual/company-files/).
 
-## Complete company setup
+## Complete Company Setup
 
 Until setup is finished, the home screen shows **The dashboard will be active after company setup has been completed.**
 
@@ -54,7 +54,7 @@ When the fourth tab is saved, setup is complete. The rest of the side menu becom
 
 Until then the home screen keeps pointing at setup, and most side-menu entries stay disabled.
 
-## The home screen
+## The Home Screen
 
 The header shows the company name, the file name and the app date. Clicking the date opens **App Settings**, where the date and the date pattern are set.
 
@@ -74,13 +74,13 @@ A hidden section stays hidden the next time you start the application.
 
 Every data section is built from bookkeeping records. On Ledgerik Basic, the home screen shows the Basic status and the way to unlock Pro instead. See [Licensing](/ledgerik/manual/licensing/).
 
-## Getting around
+## Getting Around
 
 The side menu on the left is the main map. Its groups are Company Settings, Company Data, Accounts, Journals, Reporting, Invoicing, Projects, Client Portal, Banking, Receipts, Expenses, Time Tracking and Year End — with **Global Search** as an entry of its own between Journals and Reporting.
 
 Choosing an entry opens a window on the canvas. Windows can be moved, resized and stacked. **Windows ▸ Stack Windows** tidies them. **Windows ▸ Close All** closes them. The menus themselves are described in [Menu Bar & App Settings](/ledgerik/manual/menu-bar-and-app-settings/).
 
-## Where to go next
+## Where to Go Next
 
 - [Company Files](/ledgerik/manual/company-files/) — open, close, move and protect the file you just created.
 - [Accounts (Chart of Accounts)](/ledgerik/manual/chart-of-accounts/) — the accounts behind every entry.

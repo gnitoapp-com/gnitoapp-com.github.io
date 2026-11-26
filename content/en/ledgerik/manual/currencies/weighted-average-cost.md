@@ -4,7 +4,7 @@ summary: How Ledgerik values a foreign-currency account when it is reduced, and 
 layout: manual
 ---
 
-## The rule
+## The Rule
 
 Valuing a foreign-currency disposal is the part the application never shows you, and it decides what the disposal is worth.
 
@@ -23,7 +23,7 @@ There are then two cases.
 
 Two things follow, and they are the reason the model exists. The average cost of the units still on the account does not change. And the base balance stays proportional to the native balance, so a partial disposal can never consume the account's base value out of proportion.
 
-### A movement that increases the account
+### A Movement That Increases the Account
 
 An increase needs no repricing. The new units are valued at the journal's rate, the account's balances grow by both amounts, and the average is recalculated from the new totals.
 
@@ -31,7 +31,7 @@ Start from 100 EUR and 150 CAD, an average of 1.50. Record another 50 EUR at 1.8
 
 The average has moved towards the rate of the new units, weighted by their size. When that balance is reduced later, it is the new average that values the reduction, not the rate of that later day.
 
-### Emptying an account leaves nothing behind
+### Emptying an Account Leaves Nothing Behind
 
 When a reduction empties a foreign-currency account, the base balance goes to zero with it. Exactly, not approximately.
 
@@ -41,7 +41,7 @@ This failure is common. An account can read zero in its own currency while still
 
 The guarantee holds whenever the emptying movement is in the account's own currency, which is the only currency Ledgerik offers for that account.
 
-### Worked example
+### Worked Example
 
 Suppose the company keeps its books in CAD, and holds a bank account in EUR.
 
@@ -56,7 +56,7 @@ The account is left with 60 EUR and 90 CAD. Its average is still 1.50. The remai
 
 The account now reads 0 EUR and 0 CAD. Neither side left a residue behind, and the 12 CAD difference from the third journal goes to Exchange Gain/Loss.
 
-## Where the difference goes
+## Where the Difference Goes
 
 The two sides of a foreign-currency journal rarely agree in the base currency. In the second journal above, one side gives up 60 CAD and the other receives 64 CAD.
 
@@ -66,7 +66,7 @@ After all its lines are posted, a journal whose base total is not zero gets one 
 
 Every line is rounded in its own currency's minor unit. The gain or loss line is sized from the rounded lines, so the journal balances to the cent.
 
-## Voiding a foreign transaction
+## Voiding a Foreign Transaction
 
 A void does not undo a valuation. Its reversing lines are ordinary movements, so a line that reduces a foreign-currency account is repriced at the book average like any other.
 

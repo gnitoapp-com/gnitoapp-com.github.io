@@ -9,7 +9,7 @@ menu: {manual: {weight: 160}}
 
 There is no keyboard shortcut: it is a window, opened from the side menu like any other.
 
-## What it searches
+## What It Searches
 
 Four kinds of record:
 
@@ -24,7 +24,7 @@ A search returns at most **eight results per kind**, so a broad word stays reada
 
 Before you type anything it says **"Type to search your records."**; a term with nothing behind it says **"No matches."**
 
-## Reading a result
+## Reading a Result
 
 Each row shows the record's name and a line of detail, so two similar hits can be told apart before you open either:
 
@@ -33,7 +33,7 @@ Each row shows the record's name and a line of detail, so two similar hits can b
 - an **account** shows its class and type — only enabled accounts are offered;
 - a **journal** shows its effective date and its type.
 
-## What a result does
+## What a Result Does
 
 Choosing a result opens that record, not its list:
 
@@ -54,7 +54,7 @@ While the licence is still being checked, Ledgerik treats the plan as Basic, so 
 
 The rule is simple: searching a record needs the same licence as opening it — see [Licensing](/ledgerik/manual/licensing/).
 
-## What Global Search does not do
+## What Global Search Does Not Do
 
 - **It changes nothing.** Searching opens records; it never edits, posts or voids.
 - **It is not a report.** No totals, no date ranges, no export.

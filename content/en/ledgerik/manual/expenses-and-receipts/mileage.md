@@ -6,7 +6,7 @@ layout: manual
 
 **Expenses ▸ Mileage Log** records travel you claim as a business expense. Each entry is a journey, and each journey posts to the books like any other expense.
 
-## Logging a journey
+## Logging a Journey
 
 **Log Mileage** asks for:
 
@@ -22,16 +22,16 @@ The amount is the distance multiplied by the rate. Ledgerik then posts a bill to
 
 If the posting fails, the mileage entry is rolled back with it, so a journey is never left logged without its journal entry.
 
-## The mileage list
+## The Mileage List
 
 Each row shows the date, the purpose, the distance and the amount. **Delete** asks first, naming the journey, and then voids the journal entry the mileage posted — the same correction an expense gets, for the same reason.
 
-## Billable mileage
+## Billable Mileage
 
 **Billable** and **Client** are recorded on the entry so you can tell which journeys are chargeable.
 
 They do not put anything on an invoice by themselves. Nothing in Ledgerik turns a billable journey into an invoice line today. The flags are notes on the entry, not a billing step — the same as **Billable** on an expense, described in [Expenses, Receipts & Mileage](/ledgerik/manual/expenses-and-receipts/).
 
-## Where it appears
+## Where It Appears
 
 Mileage entries are expenses, so they reach the income statement through the account you chose, and the tax return report through the sales tax code on those entries. The reports themselves are described in [Reporting](/ledgerik/manual/reports/).
