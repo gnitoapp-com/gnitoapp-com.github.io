@@ -36,7 +36,7 @@ The currency on a contact is recorded and displayed. It appears in the list and 
 
 It does **not** set the currency of anything. An invoice's currency is chosen on the invoice itself, and a statement shows each document in the currency that document was written in. See [Currencies](/ledgerik/manual/currencies/).
 
-## The list
+## The contacts list
 
 Each row shows the contact's name and a line with the type, the designation and the currency. Three actions sit at the right of every row.
 

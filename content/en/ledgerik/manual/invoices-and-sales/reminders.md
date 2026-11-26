@@ -6,7 +6,7 @@ layout: manual
 
 **Invoicing ▸ Reminders** holds two things: the settings that decide how reminders are written, and a log of the ones already sent.
 
-## The settings
+## The reminder settings
 
 Three fields make up a reminder.
 

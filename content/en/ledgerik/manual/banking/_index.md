@@ -9,7 +9,7 @@ Banking records what happened at the bank. It does **not** post anything to the 
 
 Two entries are here: **Banking ▸ Bank Accounts** and **Banking ▸ Categorization Rules**.
 
-## Bank accounts
+## Bank Accounts
 
 In the **Bank Accounts** window, **Add Account** asks for:
 

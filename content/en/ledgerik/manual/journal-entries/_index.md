@@ -30,7 +30,7 @@ Every other part of the application posts journal entries: an invoice, a payment
 
 **Save as a template** stores the entry's lines for reuse — see [Journal templates](/ledgerik/manual/journal-entries/journal-templates/).
 
-## The list
+## The journals list
 
 **Journals ▸ Journals** shows every entry, newest first, with its date, its type and its description. An entry that has been reversed carries a **Voided** badge, and the reversal itself carries **Voiding**.
 

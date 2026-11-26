@@ -26,7 +26,7 @@ What each one allows:
 - **Fiscal Year** — the year and its last month are set once. After that the year field is read only, and the last-month selector stops responding. To choose where the **next** year ends, use the close window instead — see [Year End](/ledgerik/manual/year-end/).
 - **Accounts** — maps the eight company account references, and the tab stays disabled until company setup is complete. See [Company account references](/ledgerik/manual/chart-of-accounts/company-account-references/).
 
-## Sales tax codes
+## Sales Tax Codes
 
 **Sales Tax Codes** holds the **sales tax rates** your postings use — GST, HST, VAT, PST, and whatever else you charge or are charged. A code is three things: a **Sales Tax Code**, a **Sales Tax Code Description** and a **Tax Rate Percent**.
 

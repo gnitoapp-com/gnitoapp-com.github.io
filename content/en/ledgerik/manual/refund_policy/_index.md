@@ -27,7 +27,7 @@ Use the [support page](/support/) and say you are asking for a refund under the 
 
 The licence key is the one the purchase issued and the activation dialog asked you to save. If you no longer have it, say so in your message.
 
-## What the guarantee is not
+## What the guarantee does not cover
 
 - It is not a trial. Ledgerik has no trial period, and nothing is charged on a schedule — so a refund is a return of a single payment, not the cancellation of a plan.
 - It is not a limit on the software. A refund does not deactivate your company files, and Basic remains a working accounting application.

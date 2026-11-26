@@ -43,7 +43,7 @@ Choosing a result opens that record, not its list:
 
 That is the point of the window: it is the shortest route from remembering a name to editing the record behind it.
 
-## What your plan changes
+## Pro or Basic
 
 The window itself is part of **Ledgerik Basic**, so you can always open it. What it looks through depends on the plan:
 
@@ -54,7 +54,7 @@ While the licence is still being checked, Ledgerik treats the plan as Basic, so 
 
 The rule is simple: searching a record needs the same licence as opening it — see [Licensing](/ledgerik/manual/licensing/).
 
-## What it does not do
+## What Global Search does not do
 
 - **It changes nothing.** Searching opens records; it never edits, posts or voids.
 - **It is not a report.** No totals, no date ranges, no export.

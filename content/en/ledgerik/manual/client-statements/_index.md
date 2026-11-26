@@ -39,7 +39,7 @@ Everything on the statement is in the **base currency**. Foreign invoices are co
 
 **Export PDF** writes the statement out as a document. That is how it reaches a client: Ledgerik does not email it for you.
 
-## What a statement is not
+## What a statement does not do
 
 - **Not a portal the client logs into.** There is no login, no share link and nothing published online; the client receives the PDF from you.
 - **Not a report you can change.** No filters, no date range, no choice of columns — the statement covers the client's whole history.

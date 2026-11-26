@@ -78,7 +78,7 @@ That is why disabling requires a zero balance: a balance left behind would vanis
 
 An account created by mistake is disabled the same way.
 
-## Opening balances
+## Opening Balances
 
 **Accounts ▸ Opening Balances** records where each account stood when you started keeping books. The window must balance before it will save, and it locks once a year is closed. See [Opening balances](/ledgerik/manual/chart-of-accounts/opening-balances/).
 

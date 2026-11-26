@@ -29,7 +29,7 @@ A project is **Active**, **Completed**, **On Hold** or **Cancelled**, and the li
 
 An active project offers **Complete** and **Hold**. Both change the status and nothing else: no journal entry is posted, and no figure moves. A completed or held project can still receive time entries and expenses; the status is a label for you, not a lock.
 
-## The list
+## The projects list
 
 Each row shows the project's name, its client, and its budget with the figure spelled out — for example *"Budget 40 hours"* or *"Budget 2,500.00 CAD"*.
 

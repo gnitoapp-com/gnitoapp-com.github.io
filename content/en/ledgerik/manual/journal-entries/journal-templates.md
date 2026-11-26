@@ -26,7 +26,7 @@ Nothing is posted by using a template. Only saving the entry posts it, exactly a
 
 **Delete** asks for confirmation, then removes the template. Entries already posted from it are untouched — a template is a form, not a record of what was posted.
 
-## What a template is not
+## What a template does not do
 
 - Not a recurring entry. Nothing generates or posts from a template on a schedule.
 - Not a saved draft. A template never appears in **Journals** and never carries a badge.
