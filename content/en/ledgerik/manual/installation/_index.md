@@ -83,4 +83,4 @@ Uninstall it the way you installed it:
 - **Linux, AppImage** — delete the `.AppImage` file.
 - **Linux, snap** — `sudo snap remove ledgerik`.
 
-Uninstalling removes the application only. Your company files stay where you created them. Back them up first if you are removing Ledgerik for good — see [Backups, Import & Restore](/ledgerik/manual/backups/).
+Uninstalling removes the application only. Your company files stay where you created them. Back them up first if you are removing Ledgerik for good — see [Company Data](/ledgerik/manual/company-data/).

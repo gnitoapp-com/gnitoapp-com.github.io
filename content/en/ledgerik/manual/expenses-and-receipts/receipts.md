@@ -22,7 +22,7 @@ Because the receipts live next to the company file, the two travel together. Mov
 
 The encrypted export — **Company Data ▸ Backups ▸ export** — packs the company file **and every receipt** into one `.acwz`, and restoring it puts the receipts back beside the restored file. That is the artefact to move a company to another machine, or to another operating system.
 
-The automatic snapshots taken while you work are different: they hold the company file only. They protect the books, not the attachments. See [Backups, Import & Restore](/ledgerik/manual/backups/).
+The automatic snapshots taken while you work are different: they hold the company file only. They protect the books, not the attachments. See [Company Data](/ledgerik/manual/company-data/).
 
 ## The gallery
 

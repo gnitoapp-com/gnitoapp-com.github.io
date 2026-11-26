@@ -16,7 +16,7 @@ The file sits in the folder you chose when you created it. Ledgerik does not cop
 Two things follow from that.
 
 - **The file is portable.** Copy it to another disk or another computer. Ledgerik opens it there with every entry intact.
-- **Your working copy is that one file.** Ledgerik sends it to no server and syncs it with nothing. If you delete it, the books are gone — unless a backup exists. Ledgerik takes automatic snapshots while a company is open, and [Backups, Import & Restore](/ledgerik/manual/backups/) explains them.
+- **Your working copy is that one file.** Ledgerik sends it to no server and syncs it with nothing. If you delete it, the books are gone — unless a backup exists. Ledgerik takes automatic snapshots while a company is open, and [Company Data](/ledgerik/manual/company-data/) explains them.
 
 ## Creating a file
 

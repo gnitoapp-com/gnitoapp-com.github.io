@@ -65,7 +65,7 @@ Four things, in this order:
 
 1. **Post everything.** A draft is invisible to the closing journal.
 2. **Reconcile the bank accounts** — [Banking](/ledgerik/manual/banking/).
-3. **Back up**, and take the encrypted export if you want the receipts with it — [Backups](/ledgerik/manual/backups/).
+3. **Back up**, and take the encrypted export if you want the receipts with it — [Backups](/ledgerik/manual/company-data/).
 4. **Export the statements you will want to show** — [Reporting](/ledgerik/manual/reports/). The reports still run afterwards; exports are for the people who ask for a file.
 
 ## What closing does not do

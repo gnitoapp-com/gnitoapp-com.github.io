@@ -1,6 +1,6 @@
 ---
-title: Backups, Import & Restore
-summary: The snapshots Ledgerik takes, the encrypted copy you carry, restoring either, and importing CSV data.
+title: Company Data
+summary: Backups, the encrypted copy you carry, restoring it, and importing CSV data.
 layout: manual
 menu: {manual: {weight: 120}}
 ---

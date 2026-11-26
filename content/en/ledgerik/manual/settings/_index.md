@@ -1,21 +1,21 @@
 ---
 title: Company Settings
-summary: Company Settings and Company Data — what each entry is, and where the rest are documented.
+summary: Company setup, sales tax codes, email, currencies and contacts — the five entries in this group.
 layout: manual
 menu: {manual: {weight: 130}}
 ---
 
-These are the two groups that hold configuration: **Company Settings**, which says how the company works, and **Company Data**, which acts on its file. None of their entries is a report and none is day-to-day work.
+**Company Settings** holds configuration: five entries, none of them reports and none of them day-to-day work.
 
-| Group | Entry | What it is | Documented |
-| --- | --- | --- | --- |
-| Company Settings | Company Setup | the company's own facts | below |
-| Company Settings | Sales Tax Codes | the rates the books use | below |
-| Company Settings | Email Settings | the mail account and its templates | below |
-| Company Settings | Currencies | exchange rates | [Currencies](/ledgerik/manual/currencies/) |
-| Company Settings | Contacts | customers and vendors | [Contacts](/ledgerik/manual/contacts/) |
-| Company Data | Backups | snapshots, restore, encrypted export | [Backups, Import & Restore](/ledgerik/manual/backups/) |
-| Company Data | Import Data | CSV import | [Backups, Import & Restore](/ledgerik/manual/backups/) |
+| Entry | What it is | Documented |
+| --- | --- | --- |
+| Company Setup | the company's own facts | below |
+| Sales Tax Codes | the rates the books use | below |
+| Email Settings | the mail account and its templates | below |
+| Currencies | exchange rates | [Currencies](/ledgerik/manual/currencies/) |
+| Contacts | customers and vendors | [Contacts](/ledgerik/manual/contacts/) |
+
+The two entries that act on the company's file rather than on how it works — **Backups** and **Import Data** — sit in their own group, documented in [Company Data](/ledgerik/manual/company-data/).
 
 ## Company Setup
 
@@ -64,16 +64,9 @@ Three tabs.
 
 Nothing is sent from a window you are not looking at: an invoice is emailed when you press **Email to client**, and a reminder when you press **Send**.
 
-## Company Data
-
-**Backups** copies and restores the company file, and carries the encrypted export that includes the receipts. **Import Data** bulk-loads CSV records into it.
-
-Both are described in [Backups, Import & Restore](/ledgerik/manual/backups/).
-
 ## Where the rest of it lives
 
 - **Currencies** — [Currencies](/ledgerik/manual/currencies/)
 - **Contacts** — [Contacts](/ledgerik/manual/contacts/)
-- **Backups** and **Import Data** — [Backups, Import & Restore](/ledgerik/manual/backups/)
 
 Company Setup, Currencies, sales tax codes and Backups are free on Ledgerik Basic. **Contacts, Email Settings and Import Data are Pro** — see [Licensing](/ledgerik/manual/licensing/).
