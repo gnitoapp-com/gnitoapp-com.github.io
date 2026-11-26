@@ -76,7 +76,7 @@ Every data section is built from bookkeeping records. On Ledgerik Basic, the hom
 
 ## Getting around
 
-The side menu on the left is the main map. Its groups are Company Settings, Accounts, Journals, Reporting, Invoicing, Projects, Client Portal, Banking, Receipts, Expenses, Time Tracking and Year End.
+The side menu on the left is the main map. Its groups are Company Settings, Company Data, Accounts, Journals, Reporting, Invoicing, Projects, Client Portal, Banking, Receipts, Expenses, Time Tracking and Year End — with **Global Search** as an entry of its own between Journals and Reporting.
 
 Choosing an entry opens a window on the canvas. Windows can be moved, resized and stacked. **Windows ▸ Stack Windows** tidies them. **Windows ▸ Close All** closes them. The menus themselves are described in [Menu Bar & App Settings](/ledgerik/manual/menu-bar-and-app-settings/).
 

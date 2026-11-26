@@ -17,7 +17,7 @@ The base currency is stored inside the company file. So is every rate.
 
 ## The currency list
 
-**Company Settings ▸ List Currencies** shows the currencies the company uses.
+**Company Settings ▸ Currencies** shows the currencies the company uses.
 
 Each row carries the currency code, its name, a sample amount, and the rate to base. The base currency carries a **BASE** chip. It has no edit button and no delete button, because it has no rate to maintain.
 

@@ -11,7 +11,7 @@ Every other part of the application posts journal entries: an invoice, a payment
 
 ## Writing an entry
 
-**Journals ▸ Create Journal Entry** opens the form.
+**Journals ▸ New Journal Entry** opens the form.
 
 **Type** — one of **General Journal**, **Money Transfer**, **Expense**, **Income**, **Investment**, **Redemption**, **Payment**, **Credit Note** and **Adjustment**. The type labels the entry in the list; it does not change how the lines post.
 
@@ -32,7 +32,7 @@ Every other part of the application posts journal entries: an invoice, a payment
 
 ## The list
 
-**Journals ▸ List Journals** shows every entry, newest first, with its date, its type and its description. An entry that has been reversed carries a **Voided** badge, and the reversal itself carries **Voiding**.
+**Journals ▸ Journals** shows every entry, newest first, with its date, its type and its description. An entry that has been reversed carries a **Voided** badge, and the reversal itself carries **Voiding**.
 
 Three filters narrow the list: **Filter by Account** (with a search box and an all-accounts option), **From Date** and **To Date**.
 
@@ -59,7 +59,7 @@ A reversal is priced like any other movement, so voiding a foreign-currency entr
 
 ## Templates
 
-Reusable sets of lines live under **Journals ▸ List Journal Templates**; they are described in [Journal templates](/ledgerik/manual/journal-entries/journal-templates/).
+Reusable sets of lines live under **Journals ▸ Journal Templates**; they are described in [Journal templates](/ledgerik/manual/journal-entries/journal-templates/).
 
 ## What never happens to a journal
 

@@ -9,7 +9,7 @@ The **Invoicing** group holds nine entries. This page covers invoices themselves
 
 ## The invoice list
 
-**Invoicing ▸ List Invoices** shows every invoice with its number, its client, its status and its total.
+**Invoicing ▸ Invoices** shows every invoice with its number, its client, its status and its total.
 
 Each row offers the actions that are legal for that invoice: edit, finalize, void, email to the client, and a PDF preview. Voided and posted invoices do not offer editing.
 
@@ -21,7 +21,7 @@ Ledgerik numbers invoices itself. The next invoice takes a number one more than 
 
 ## Creating an invoice
 
-**Invoicing ▸ Create Invoice** opens the editor.
+**Invoicing ▸ New Invoice** opens the editor.
 
 **The header** asks for:
 

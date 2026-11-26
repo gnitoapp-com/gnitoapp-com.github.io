@@ -11,7 +11,7 @@ This page covers recording an expense. The other two have their own pages, linke
 
 ## Recording an expense
 
-**Expenses ▸ New Expense** opens the form.
+In the **Expenses** window, **New Expense** opens the form.
 
 - **Date** — required.
 - **Merchant** — required. Who was paid.

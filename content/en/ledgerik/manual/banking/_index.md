@@ -11,7 +11,7 @@ Two entries are here: **Banking ▸ Bank Accounts** and **Banking ▸ Categoriza
 
 ## Bank accounts
 
-**Bank Accounts ▸ Add Account** asks for:
+In the **Bank Accounts** window, **Add Account** asks for:
 
 - **Account Name** — required.
 - **Currency** — required.

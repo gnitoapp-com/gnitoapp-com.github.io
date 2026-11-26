@@ -4,7 +4,7 @@ summary: Where each account starts — entered once, and locked once a year is c
 layout: manual
 ---
 
-An opening balance is where an account stood when you started keeping its books in Ledgerik. **Accounts ▸ Enter Opening Balances** opens **Record opening balances**.
+An opening balance is where an account stood when you started keeping its books in Ledgerik. **Accounts ▸ Opening Balances** opens **Record opening balances**.
 
 ## What the window shows
 

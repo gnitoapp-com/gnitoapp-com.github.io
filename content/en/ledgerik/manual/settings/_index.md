@@ -1,21 +1,21 @@
 ---
 title: Company Settings
-summary: Company setup, sales tax codes and email — the three settings that live here, and where the rest are documented.
+summary: Company Settings and Company Data — what each entry is, and where the rest are documented.
 layout: manual
 menu: {manual: {weight: 130}}
 ---
 
-**Company Settings** holds configuration: seven entries, none of them reports and none of them day-to-day work.
+These are the two groups that hold configuration: **Company Settings**, which says how the company works, and **Company Data**, which acts on its file. None of their entries is a report and none is day-to-day work.
 
-| Entry | What it is | Where it is documented |
-| --- | --- | --- |
-| Company Setup | the company's own facts | below |
-| List Sales Tax Codes | the sales tax rates the books use | below |
-| Email Settings | the mail account and its templates | below |
-| List Currencies | exchange rates | [Currencies](/ledgerik/manual/currencies/) |
-| List Contacts | customers and vendors | [Contacts](/ledgerik/manual/contacts/) |
-| Backups | snapshots, restore, encrypted export | [Backups, Import & Restore](/ledgerik/manual/backups/) |
-| Import Data | CSV import | [Backups, Import & Restore](/ledgerik/manual/backups/) |
+| Group | Entry | What it is | Documented |
+| --- | --- | --- | --- |
+| Company Settings | Company Setup | the company's own facts | below |
+| Company Settings | Sales Tax Codes | the rates the books use | below |
+| Company Settings | Email Settings | the mail account and its templates | below |
+| Company Settings | Currencies | exchange rates | [Currencies](/ledgerik/manual/currencies/) |
+| Company Settings | Contacts | customers and vendors | [Contacts](/ledgerik/manual/contacts/) |
+| Company Data | Backups | snapshots, restore, encrypted export | [Backups, Import & Restore](/ledgerik/manual/backups/) |
+| Company Data | Import Data | CSV import | [Backups, Import & Restore](/ledgerik/manual/backups/) |
 
 ## Company Setup
 
@@ -63,6 +63,12 @@ Three tabs.
 **Outbox** lists the mails Ledgerik has queued, sent or failed, and **Retry Pending** re-sends the ones that did not go.
 
 Nothing is sent from a window you are not looking at: an invoice is emailed when you press **Email to client**, and a reminder when you press **Send**.
+
+## Company Data
+
+**Backups** copies and restores the company file, and carries the encrypted export that includes the receipts. **Import Data** bulk-loads CSV records into it.
+
+Both are described in [Backups, Import & Restore](/ledgerik/manual/backups/).
 
 ## Where the rest of it lives
 

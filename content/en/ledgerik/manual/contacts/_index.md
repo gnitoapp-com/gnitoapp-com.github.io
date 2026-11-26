@@ -7,7 +7,7 @@ menu: {manual: {weight: 50}}
 
 A contact is one record for a person or a company you trade with. Invoices, estimates, expenses and statements all point at a contact.
 
-Contacts live under **Company Settings ▸ List Contacts**.
+Contacts live under **Company Settings ▸ Contacts**.
 
 ## Type and designation
 
@@ -54,7 +54,7 @@ Three things are worth knowing before you use it.
 
 - **A contact that is already in use cannot be deleted.** Invoices and expenses point at their contact, and the database refuses to remove a record that others refer to. The attempt fails, Ledgerik reports the failure, and the contact stays — so no document is ever left without a counterparty.
 - **The outcome is always reported.** A successful delete says so; a refused one says why instead of failing silently.
-- **The deletion is recorded.** Removing a contact writes an entry to the Audit Log, which is described in [Company Settings](/ledgerik/manual/settings/).
+- **The deletion is recorded.** Removing a contact writes an entry to the Audit Log, which is described in [Audit Log](/ledgerik/manual/reports/audit-log/).
 
 ## The 1099 contractor flag
 

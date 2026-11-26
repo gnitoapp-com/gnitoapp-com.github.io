@@ -21,7 +21,7 @@ Everything here is described in the order it appears.
 
 There is no recent-files list. There is no print command. There is no import or export here.
 
-Importing lives under **Company Settings ▸ Import Data**. Printing belongs to the window you are in.
+Importing lives under **Company Data ▸ Import Data**. Printing belongs to the window you are in.
 
 ## Windows
 

@@ -6,11 +6,11 @@ layout: manual
 
 An estimate is a quote. It runs through its own list, and it can be turned into an invoice when the client accepts it.
 
-**Invoicing ▸ List Estimates** shows them all, with number, client, status and total.
+**Invoicing ▸ Estimates** shows them all, with number, client, status and total.
 
 ## Creating an estimate
 
-**Invoicing ▸ Create Estimate** opens the same editor the invoice uses, minus the parts that only an invoice needs.
+**Invoicing ▸ New Estimate** opens the same editor the invoice uses, minus the parts that only an invoice needs.
 
 - **Client** — required.
 - **Currency** — the estimate's own currency, with a **Rate to Base Currency** field when it is not the base currency.

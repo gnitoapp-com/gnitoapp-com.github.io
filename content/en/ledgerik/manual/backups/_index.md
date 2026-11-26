@@ -5,7 +5,7 @@ layout: manual
 menu: {manual: {weight: 120}}
 ---
 
-Three things live in **Company Settings**. **Backups** takes and restores copies of the company file. The encrypted export carries the file *and* its receipts to another machine. **Import Data** brings CSV rows in.
+Three things live in **Company Data**. **Backups** takes and restores copies of the company file. The encrypted export carries the file *and* its receipts to another machine. **Import Data** brings CSV rows in.
 
 ## Automatic snapshots
 

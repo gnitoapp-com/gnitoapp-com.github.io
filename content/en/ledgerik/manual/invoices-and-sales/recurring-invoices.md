@@ -33,7 +33,7 @@ Two actions generate on demand.
 
 Each run reports what it did: *"3 invoices generated, 3 finalized and posted."* If something failed, the same message adds the error below it, so a partly successful run is never silent.
 
-Generated invoices are ordinary invoices. They appear in **List Invoices** with their own numbers, and can be edited, voided and emailed like any other — see [Invoicing](/ledgerik/manual/invoices-and-sales/).
+Generated invoices are ordinary invoices. They appear in **Invoices** with their own numbers, and can be edited, voided and emailed like any other — see [Invoicing](/ledgerik/manual/invoices-and-sales/).
 
 ## Pausing and resuming
 

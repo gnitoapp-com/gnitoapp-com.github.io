@@ -20,7 +20,7 @@ One timer runs at a time.
 
 ## Turning hours into an invoice
 
-Select the unbilled entries you want to bill and choose **Create Invoice**. The invoice editor opens with one line per entry:
+Select the unbilled entries you want to bill and choose **New Invoice**. The invoice editor opens with one line per entry:
 
 - the description as the line description,
 - the hours as the quantity,
