@@ -5,9 +5,9 @@ layout: manual
 menu: {manual: {weight: 70}}
 ---
 
-Three menu entries record money going out: **Expenses ▸ Expenses**, **Expenses ▸ Mileage Log**, and **Receipts ▸ Receipt Gallery**.
+Three menu entries record money going out: **Expenses ▸ Expenses**, **Expenses ▸ Mileage Log**, and **Receipts ▸ Receipt Gallery**. A fourth, **Receipts ▸ Receipt Storage**, looks after the files those receipts are made of.
 
-This page covers recording an expense. The other two have their own pages, linked below.
+This page covers recording an expense. The others have their own pages, linked below.
 
 ## Recording an Expense
 
