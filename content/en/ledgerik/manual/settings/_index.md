@@ -15,8 +15,6 @@ menu: {manual: {weight: 130}}
 | Currencies | exchange rates | [Currencies](/ledgerik/manual/currencies/) |
 | Contacts | customers and vendors | [Contacts](/ledgerik/manual/contacts/) |
 
-The two entries that act on the company's file rather than on how it works — **Backups** and **Import Data** — sit in their own group, documented in [Company Data](/ledgerik/manual/company-data/).
-
 ## Company Setup
 
 The same four tabs you filled in when the company was created — **Company Information**, **Fiscal Year**, **Base Currency** and **Accounts** — reachable again whenever you need them.
@@ -30,7 +28,7 @@ What each one allows:
 
 ## Sales tax codes
 
-**List Sales Tax Codes** holds the **sales tax rates** your postings use — GST, HST, VAT, PST, and whatever else you charge or are charged. A code is three things: a **Sales Tax Code**, a **Sales Tax Code Description** and a **Tax Rate Percent**.
+**Sales Tax Codes** holds the **sales tax rates** your postings use — GST, HST, VAT, PST, and whatever else you charge or are charged. A code is three things: a **Sales Tax Code**, a **Sales Tax Code Description** and a **Tax Rate Percent**.
 
 **New** adds one, **Edit** changes it, **Delete** asks first, naming the code.
 
@@ -69,4 +67,4 @@ Nothing is sent from a window you are not looking at: an invoice is emailed when
 - **Currencies** — [Currencies](/ledgerik/manual/currencies/)
 - **Contacts** — [Contacts](/ledgerik/manual/contacts/)
 
-Company Setup, Currencies, sales tax codes and Backups are free on Ledgerik Basic. **Contacts, Email Settings and Import Data are Pro** — see [Licensing](/ledgerik/manual/licensing/).
+Company Setup, Currencies and sales tax codes are free on Ledgerik Basic. **Contacts and Email Settings are Pro** — see [Licensing](/ledgerik/manual/licensing/).
