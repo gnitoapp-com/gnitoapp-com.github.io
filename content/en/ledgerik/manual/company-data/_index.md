@@ -5,7 +5,7 @@ layout: manual
 menu: {manual: {weight: 120}}
 ---
 
-Three things live in **Company Data**. **Backups** takes and restores copies of the company file. The encrypted export carries the file *and* its receipts to another machine. **Import Data** brings CSV rows in.
+**Company Data** holds three entries. **Backups** takes and restores copies of the company file, and carries the encrypted export that includes the receipts. **Period Copy** writes a second file holding one span of years. **Import Data** brings CSV rows in.
 
 ## Automatic Snapshots
 
@@ -54,6 +54,12 @@ Two things about that passphrase:
 This is the copy to move a company to another machine, or to another operating system. The container is a plain byte format with no platform in it, and the database inside is portable SQLite. **Import Encrypted** restores it, writing the receipts back into the company's receipts folder, and reports *"Company file restored with attachments."*
 
 Snapshots are not portable in the same sense: they hold the company file only, no receipts.
+
+## Period Copy
+
+**Period Copy** writes a second company file containing one span of years from the live books, with opening balances carried in so its trial balance and balance sheet agree with the live file's for every date in the span. The live file is untouched, and the audit log never travels.
+
+It is not a backup: a backup is for restoring, a period copy is for handing a span to an accountant, a buyer or another machine — see [Period Copy](/ledgerik/manual/company-data/period-copy/).
 
 ## Import Data
 
